@@ -4,23 +4,51 @@
 @import 'functions';
 
 
+// Animations CSS
+@keyframes burger-slide-in {
+    from {
+        bottom:200vh;
+    }
+    to {
+        bottom:0;
+    }
+}
+@keyframes burger-slide-out {
+    from {
+        bottom:0;
+    }
+    to {
+        bottom:200vh;
+    }
+}
+
 // Balises HTML
 * {
     @extend %pm-0;
     font-family: 'Montserrat', sans-serif;
 }
-nav{
-    @include flex(row wrap, space-evenly, center);
-    height:10vh;  
+nav {
+    height:10vh;
+    width:100vw;
     box-shadow: 0px 1px 10px grey;
+    .nav-container{
+        @include flex(row wrap, space-evenly, center);
+        width:80%;
+        height: 100%;
+        margin:auto;
 
-    img {
-        width:40px;
-    }
-    i {
-        font-size:40px;
+        :first-child{
+            z-index:9999;
+        }
+        img {
+            width:40px;
+        }
+        i {
+            font-size:40px;
+        }
     }
 }
+
 
 a {
     color:black;
@@ -31,7 +59,39 @@ a {
 input[type="submit"]{
     cursor:pointer;
 }
-
+.burger-animated-in {
+    animation-name: burger-slide-in;
+    animation-direction: normal;
+    animation-duration: 1s; 
+    animation-fill-mode: forwards;  
+}
+.burger-animated-out{
+    animation-name: burger-slide-out;
+    animation-direction: normal;
+    animation-duration: 1s; 
+    animation-fill-mode: forwards; 
+}
+.burger{
+    position:absolute;
+    z-index:2000;
+    width:100vw;
+    bottom:200vh;
+    height:100vh;
+    box-shadow: 0px 1px 10px grey;
+    background-color: white;
+    .burger-row {
+        @include flex(row nowrap, space-evenly, center);
+        height:100vh;
+        .menu-category{
+            width:15%;
+            img {
+                padding:50px 10px;
+                width:100%;
+                box-shadow: 0px 1px 10px grey;
+            }
+        }
+    }
+}
 //Class génériques
 .material-icons {
     font-size:40px !important;

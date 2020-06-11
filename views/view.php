@@ -17,7 +17,7 @@
 ?>
 </div>
 
-<div class="mainContent">
+<div class="main-content">
   <?php require $view['content'] ; ?>
 </div>
 
@@ -25,5 +25,6 @@
 <?php 
 	require ('views/partials/footer.php'); 
 ?>
+<script src="assets/js/script.js"></script>
 </body>
 </html>

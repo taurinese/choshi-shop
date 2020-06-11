@@ -2,13 +2,9 @@
 
 session_start();
 
-/* if(!$_SESSION['user']['is_admin']){
-    header('Location: /choshi/index.php');
-    exit;
-} */
-
 require ('helpers.php');
-
+require ('models/Category.php');
+$categories = getCategories();
 
 if(isset($_GET['controller'])){
     switch ($_GET['controller']){
