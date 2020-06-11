@@ -5,7 +5,7 @@ const navBar = document.querySelector("nav")
 const footer = document.querySelector(".footer")
 let burgerChecked = 0
 let pageContent = document.querySelector(".main-content")
-console.log(pageContent)
+
 
 iconBurger.addEventListener( "click", function(e) {
     e.preventDefault()
@@ -29,7 +29,8 @@ iconBurger.addEventListener( "click", function(e) {
 })
 
 //CONNEXION
-/* const buttonConnect = document.querySelector('#btn-connect') */
+/* const buttonConnect = document.querySelector('#btn-connect') */    
+let modalAlreadyExists = 0
 const userForm = document.querySelector('#user-form')
 userForm.addEventListener('submit', async function(e) {
     e.preventDefault()
@@ -45,7 +46,33 @@ userForm.addEventListener('submit', async function(e) {
         }
         else{
             // Affichage d'un modal pour dire que l'utilisateur s'est trompé
+            if (modalAlreadyExists == 0) {
+                createModal("Identifiants incorrects!","red", userForm)
+                document.querySelector('.close-button').onclick = () => {
+                    document.querySelector('.alert-modal').style.display = "none"
+                }
+                modalAlreadyExists = 1
+            } else if(modalAlreadyExists != 0) {
+                document.querySelector('.alert-modal').style.display = "block"
+            }
         }
     })  
 
 })
+
+
+//FONCTIONS 
+const createModal = (text, color, parent) => {
+    let modal = document.createElement("div")
+    modal.className = "alert-modal"
+    let closeButton = document.createElement("button")
+    closeButton.type = "button"
+    closeButton.className = "close-button"
+    closeButton.innerHTML = `<i class="far fa-times-circle"></i>`
+    modal.appendChild(closeButton)
+    let modal_p = document.createElement("p")
+    modal.appendChild(modal_p)
+    modal_p.innerHTML = text
+    modal.style.backgroundColor = color
+    parent.insertBefore(modal, null) 
+}
