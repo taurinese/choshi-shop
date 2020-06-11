@@ -90,9 +90,6 @@ switch ($_GET['action']) {
                     exit;
                 }
                 else {
-                    if(empty($_POST['password'])){
-                        $_POST['password'] = $user['password'];
-                    }
                     $result = updateUser($_GET['id'], $_POST);
                     $_SESSION['messages'][] = $result ? 'Utilisateur modifié !' : "Erreur lors de la modification de l'utilisateur... :(";
                     $_SESSION['alertSuccess'] = $result ? true : false;
