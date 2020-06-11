@@ -20,7 +20,7 @@ switch ($_GET['action']) {
         break;
     
     case 'add':
-        if(empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['adresse']) || empty($_POST['is_admin'])){
+        if(empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['adresse'])){
 		
             if(empty($_POST['first_name'])){
                 $_SESSION['messages'][] = 'Le champ "prénom" est obligatoire !';
@@ -37,15 +37,15 @@ switch ($_GET['action']) {
             if(empty($_POST['adresse'])){
                 $_SESSION['messages'][] = 'Le champ "adresse" est obligatoire !';
             }
-            if(empty($_POST['is_admin'])){
-                $_SESSION['messages'][] = 'Le champ "is_admin" est obligatoire !';
-            }
             $_SESSION['alertSuccess'] = false;
             $_SESSION['old_inputs'] = $_POST;
             header('Location:index.php?controller=users&action=new');
             exit;
         }
         else{
+            if(empty($_POST['is_admin'])){
+                $_POST['is_admin'] = 0;
+            }
             $result = addUser($_POST);
             $_SESSION['messages'][] = $result ? 'Utilisateur enregistré !' : "Erreur lors de l'enregistrement de l'utilisateur... :(";
             $_SESSION['alertSuccess'] = $result ? true : false;

@@ -1,3 +1,4 @@
+//MENU BURGER
 const iconBurger = document.querySelector("#icon-burger")
 const burger = document.querySelector(".burger")
 const navBar = document.querySelector("nav")
@@ -24,5 +25,27 @@ iconBurger.addEventListener( "click", function(e) {
         burger.classList = "burger burger-animated-out"
         burgerChecked--
     }
+
+})
+
+//CONNEXION
+/* const buttonConnect = document.querySelector('#btn-connect') */
+const userForm = document.querySelector('#user-form')
+userForm.addEventListener('submit', async function(e) {
+    e.preventDefault()
+    let userFormData = new FormData(this)
+    await fetch('index.php?controller=users&action=login',{
+        method: "post",
+        body: userFormData
+    })
+    .then(res => res.json())          
+    .then(json => {
+        if (json.is_logged_in == true) {
+            window.location.href = 'index.php';
+        }
+        else{
+            // Affichage d'un modal pour dire que l'utilisateur s'est trompé
+        }
+    })  
 
 })

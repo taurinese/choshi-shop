@@ -26,11 +26,16 @@
 * {
     @extend %pm-0;
     font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background-color: #F1F1F1;
 }
 nav {
     height:10vh;
-    width:100vw;
+    width:100%;
     box-shadow: 0px 1px 10px grey;
+    background-color: #F7F7F7;
     .nav-container{
         @include flex(row wrap, space-evenly, center);
         width:80%;
@@ -256,6 +261,7 @@ input[type="submit"]{
         border:2px solid lightgrey;
         border-radius:25px;
         box-shadow:0px 1px 10px grey;
+        background-color: #F7F7F7;
 
         h3{
             margin-bottom:25px;
@@ -264,9 +270,16 @@ input[type="submit"]{
         input {
             margin-bottom:25px;
             border-radius:25px;
-            width: 100%;
-            height:2vh;
+            height:3vh;
             border:2px solid lightgrey;
+            outline:none;
+        }
+        input[type=text], input[type=email], input[type=password]{
+            padding-left:40px;
+            width: calc(100vw-40px);
+        }
+        input[type=submit]{
+            width:100%;
         }
         #first_name, #last_name{
             background: no-repeat 10px/10% url("../img/icons/user_full.png");
@@ -279,9 +292,6 @@ input[type="submit"]{
         }
         #user-password{
             background: no-repeat 10px/10% url("../img/icons/lock.png");
-        }
-        input::placeholder{
-            padding-left:40px;
         }
     }
 }
