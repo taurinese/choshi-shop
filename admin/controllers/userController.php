@@ -67,7 +67,7 @@ switch ($_GET['action']) {
                 $view['title'] = 'Formulaire utilisateur';
             }
             else{
-                if(empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['email']) || empty($_POST['adresse']) || empty($_POST['is_admin'])){
+                if(empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['email']) || empty($_POST['adresse'])){
 		
                     if(empty($_POST['first_name'])){
                         $_SESSION['messages'][] = 'Le champ "prénom" est obligatoire !';
@@ -81,15 +81,15 @@ switch ($_GET['action']) {
                     if(empty($_POST['adresse'])){
                         $_SESSION['messages'][] = 'Le champ "adresse" est obligatoire !';
                     }
-                    if(empty($_POST['is_admin'])){
-                        $_SESSION['messages'][] = 'Le champ "is_admin" est obligatoire !';
-                    }
                     $_SESSION['old_inputs'] = $_POST;
                     $_SESSION['alertSuccess'] = false;
                     header('Location:index.php?controller=users&action=edit&id=' . $_GET['id']);
                     exit;
                 }
                 else {
+                    if(empty($_POST['is_admin'])){
+                        $_POST['is_admin'] = 0;
+                    }
                     $result = updateUser($_GET['id'], $_POST);
                     $_SESSION['messages'][] = $result ? 'Utilisateur modifié !' : "Erreur lors de la modification de l'utilisateur... :(";
                     $_SESSION['alertSuccess'] = $result ? true : false;

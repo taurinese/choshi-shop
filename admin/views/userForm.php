@@ -27,8 +27,8 @@
 			<input  type="password" name="password" id="password" value="" /><br>
             <label for="is_admin">Administrateur :</label>
             <select name="is_admin" id="is_admin">
-                <option value="0" <?php if(isset($user) && $user['is_admin'] == false): ?> selected="selected" <?php endif; ?>>Non</option>
-                <option value="1" <?php if(isset($user) && $user['is_admin'] == true): ?> selected="selected" <?php endif; ?>>Oui</option>
+                <option value="0" <?php if(isset($user) && $user['is_admin'] == '0'): ?> selected="selected" <?php endif; ?>>Non</option>
+                <option value="1" <?php if(isset($user) && $user['is_admin'] == '1'): ?> selected="selected" <?php endif; ?>>Oui</option>
             </select><br>
 			<input type="submit" value="Enregistrer" />
 

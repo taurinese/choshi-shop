@@ -45,8 +45,8 @@
 
 			<label for="is_displayed">Afficher le produit :</label>
 			<select name="is_displayed" id="is_displayed">
-				<option value="0" <?php if(isset($product) && $product['is_displayed'] == false): ?> selected="selected" <?php endif; ?>>Non</option>
-                <option value="1" <?php if(isset($product) && $product['is_displayed'] == true): ?> selected="selected" <?php endif; ?>>Oui</option>
+				<option value="0" <?php if(isset($product) && $product['is_displayed'] == '0'): ?> selected="selected" <?php endif; ?>>Non</option>
+                <option value="1" <?php if(isset($product) && $product['is_displayed'] == '1'): ?> selected="selected" <?php endif; ?>>Oui</option>
             </select><br>
 
             <?php if(isset($product) && $product['main_image'] != null): ?> 

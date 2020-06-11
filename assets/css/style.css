@@ -252,6 +252,7 @@ input[type=submit] {
 #user-page #user-form input {
   margin-bottom: 25px;
   border-radius: 25px;
+  width: 100%;
   border: 2px solid lightgrey;
 }
 #user-page #user-form input::placeholder {

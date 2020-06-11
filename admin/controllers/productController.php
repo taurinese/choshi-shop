@@ -98,7 +98,7 @@ switch ($_GET['action']) {
                 }
                 else {
                     if(empty($_POST['is_displayed'])){
-                        $_POST['is_displayed'] = 1;
+                        $_POST['is_displayed'] = 0;
                     }
                     if(empty($_POST['license_id'])){
                         $_POST['license_id'] = null;
