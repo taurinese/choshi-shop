@@ -1,0 +1,277 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+nav {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 10vh;
+  box-shadow: 0px 1px 10px grey;
+}
+nav img {
+  width: 40px;
+}
+nav i {
+  font-size: 40px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+input[type=submit] {
+  cursor: pointer;
+}
+
+.material-icons {
+  font-size: 40px !important;
+}
+
+.flex-center {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-row-between {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-center;
+}
+
+.flex-row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.text-transparent {
+  color: transparent;
+}
+
+.row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.row > div {
+  width: 20%;
+  height: 20vh;
+  margin-bottom: 30px;
+  text-align: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.row > div > h5 {
+  font-size: 20px;
+  font-weight: 500;
+}
+.row > div i {
+  font-size: 30px;
+}
+.row .icons {
+  margin: 0px 15px;
+}
+
+#logo-nav {
+  width: 200px;
+}
+
+.box-content {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.box-surprise {
+  background-color: #F7F7F7;
+  box-shadow: 0px 1px 10px grey;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.box-surprise img {
+  width: 20%;
+}
+
+.blue-square {
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  display: inline-block;
+  background-color: #74B9FF;
+}
+
+.red-square {
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  display: inline-block;
+  background-color: #FF7675;
+}
+
+.green-square {
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  display: inline-block;
+  background-color: #00B894;
+}
+
+.product-box {
+  height: 100vh;
+  width: 100%;
+  background-color: transparent;
+}
+.product-box h1 {
+  font-size: 60px;
+  font-weight: 400;
+  display: inline-block;
+}
+.product-box p {
+  font-size: 30px;
+  font-weight: 300;
+  margin-bottom: 50px;
+}
+
+.box-title {
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+.box-title div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.products {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.products div {
+  width: 20%;
+  text-align: center;
+}
+.products div h2 {
+  font-size: 36px;
+  font-weight: 400;
+}
+.products div p {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.category {
+  width: 100%;
+}
+.category h2 {
+  text-align: center;
+  width: 50%;
+  margin: auto;
+}
+.category .category-content {
+  width: 100vw;
+  min-height: 100vh;
+}
+.category .category-content aside {
+  width: 20vw;
+}
+
+.category-products {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: end;
+  width: 80vw;
+}
+.category-products div {
+  width: 40%;
+  text-align: center;
+}
+.category-products div img {
+  width: 50%;
+}
+.category-products div h2 {
+  font-size: 36px;
+  font-weight: 400;
+}
+.category-products div p {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.img-products {
+  width: 100%;
+}
+
+.filters {
+  height: 90vh;
+  border-right: 2px solid grey;
+}
+
+#user-page {
+  height: 90vh;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+#user-page #user-form {
+  padding: 50px;
+  border: 2px solid lightgrey;
+  border-radius: 25px;
+  box-shadow: 0px 1px 10px grey;
+}
+#user-page #user-form h2 {
+  margin-bottom: 25px;
+}
+#user-page #user-form input {
+  margin-bottom: 25px;
+  border-radius: 25px;
+  border: 2px solid lightgrey;
+}
+#user-page #user-form input::placeholder {
+  padding-left: 20px;
+}
+#user-page #user-form input[type=submit] {
+  width: 100%;
+}
+
+.footer {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: space-evenly;
+  background-color: #272727;
+  color: white;
+  width: 100%;
+}
+.footer > div:first-child {
+  margin-top: 30px;
+}
+
+/*# sourceMappingURL=style.css.map */
