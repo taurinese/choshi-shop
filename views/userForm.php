@@ -9,7 +9,7 @@
         <input type="email" name="user-email" id="user-email" placeholder="Email"><br>
         <input type="password" name="user-password" id="user-password" placeholder="Mot de passe"><br>
 
-        <input type="submit" value="Se connecter" id="btn-connect"><br>
+        <input type="submit" value="<?= $_GET['form'] == 'login'? 'Se connecter' : 'S\'inscrire' ?>" id="btn-connect"><br>
         <a href="index.php?controller=users&action=form&form=<?= $_GET['form'] == 'login'? 'register' : 'login' ?>">
             <p><?= $_GET['form'] == 'login'? 'Vous n\'avez pas de compte ?' : 'Vous avez un compte ?' ?></p>
         </a>

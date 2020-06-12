@@ -23,6 +23,21 @@ if(isset($_GET['action'])){
             break;
 
         case 'register':
+            $result = addUser($_POST);
+            if(!$result){
+                $json_return['is_created'] = false;
+            }
+            else{
+                $json_return['is_created'] = true;
+                $_SESSION['user']= [
+                    'first_name' => $_POST['first_name'],
+                    'last_name' => $_POST['last_name'],
+                    'adresse' => $_POST['address'],
+                    'email' => $_POST['user-email']
+                ];
+            }
+            echo json_encode($json_return);
+            exit();
         break;
 
         default:
