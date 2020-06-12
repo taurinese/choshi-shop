@@ -4,9 +4,9 @@
             <h5>Suivez-nous</h5>
             <i class="fas fa-arrow-down icons text-transparent"></i>
             <div class="flex-row-between">
-                <i class="fab fa-facebook-square icons"></i>
-                <i class="fab fa-twitter-square icons"></i>
-                <i class="fab fa-instagram-square icons"></i>
+                <i class="fab fa-facebook-f icons"></i>
+                <i class="fab fa-instagram icons i-larger"></i>
+                <i class="fab fa-twitter icons i-larger"></i>
             </div>
         </div>
         <div>

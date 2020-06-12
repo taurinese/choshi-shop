@@ -13,9 +13,11 @@ if(isset($_GET['action'])){
             $result = checkUser($_POST);
             if(empty($result)){
                 $json_return['is_logged_in'] = false;
+                $json_return['message'] = "Identifiants incorrects !";
             }
             else{
                 $json_return['is_logged_in'] = true;
+                $json_return['message'] = "Utilisateur connecté !";
                 $_SESSION['user']= $result;
             }
             echo json_encode($json_return);
@@ -26,9 +28,11 @@ if(isset($_GET['action'])){
             $result = addUser($_POST);
             if(!$result){
                 $json_return['is_created'] = false;
+                $json_return['message'] = "Erreur lors de l'enregistrement de l'utilisateur !";
             }
             else{
                 $json_return['is_created'] = true;
+                $json_return['message'] = "Utilisateur enregistré et connecté !";
                 //A vérifier si ça fonctionne
                 $user = checkUser($_POST);
                 $_SESSION['user']= [
@@ -60,6 +64,36 @@ if(isset($_GET['action'])){
                 exit();
             }
             break;
+
+        case 'edit':
+            if(isset($_GET['id']) && !empty($_POST)){
+                if(empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['user-email']) || empty($_POST['adresse'])){
+                    $json_return['is_updated'] = false;
+                    $json_return['message'] = "Tous les champs sont obligatoires à l'exception du mot de passe !";
+                    echo json_encode($json_return);
+                    exit();
+                }
+                $result = editUser($_POST, $_GET['id']);
+                if(!$result){
+                    $json_return['is_updated'] = false;
+                }
+                else{
+                    $json_return['is_updated'] = true;
+                    $json_return['message'] = "Modifications enregistrées !";
+                    unset($_SESSION['user']);
+                    $_SESSION['user']= [
+                        'id' => $_GET['id'],
+                        'first_name' => $_POST['first_name'],
+                        'last_name' => $_POST['last_name'],
+                        'adresse' => $_POST['adresse'],
+                        'email' => $_POST['user-email']
+                    ];
+                }
+                echo json_encode($json_return);
+                exit();
+            }
+            break;
+
         default:
             # code...
             break;

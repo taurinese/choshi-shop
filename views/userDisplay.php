@@ -1,13 +1,12 @@
 <div class="user-profile">
     <nav id="profile-nav">
-        <div class="profile-nav-container"><!-- 
-            <input type="checkbox" name="button-toggle" id="button-toggle"> -->
+        <div class="profile-nav-container">
             <div class="select-btn"><span id="button-toggler"></span></div>
         </div>
     </nav>
     <div class="profile-content">
         <div class="user-data">
-            <form action="index.php?controller=users&action=edit&id=<?= $_SESSION['user']['id'] ?>">
+            <form id="edit-user-form" action="index.php?controller=users&action=edit&id=<?= $_SESSION['user']['id'] ?>">
                 <label for="first_name">Prénom :</label><br>
                 <input type="text" name="first_name" value="<?= $_SESSION['user']['first_name'] ?>"> <br>
                 <label for="last_name">Nom de famille :</label><br>

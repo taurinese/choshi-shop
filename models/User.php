@@ -25,3 +25,23 @@ function addUser($informations)
         'is_admin' => 0
     ]);
 }
+
+function editUser($informations, $id)
+{
+    $db = dbConnect();
+
+    $queryString = 'UPDATE users SET first_name = :first_name, last_name = :last_name, adresse = :adresse,' . (!empty($informations['password'])? 'password = :password,': '') . 'email = :email, is_admin = :is_admin WHERE id = :id';
+    $queryArray = [
+        'first_name' => $informations['first_name'],
+        'last_name' => $informations['last_name'],
+        'adresse' => $informations['adresse'],
+        'email' => $informations['user-email'],
+        'is_admin' => 0,
+		'id' => $id
+    ];
+    if(!empty($informations['user-password'])){
+        $queryArray['password'] = hash('md5', $informations['user-password']);
+    }
+    $query = $db->prepare($queryString);
+    return $query->execute($queryArray);
+}

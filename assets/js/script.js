@@ -18,6 +18,7 @@ const createModal = (text, color, parent) => {
     let modal_p = document.createElement("p")
     modal.appendChild(modal_p)
     modal_p.innerHTML = text
+    modal_p.style.color = 'white'
     modal.style.backgroundColor = color
     parent.insertBefore(modal, null) 
 }
@@ -55,7 +56,6 @@ iconBurger.addEventListener( "click", function(e) {
 //CONNEXION
 /* const buttonConnect = document.querySelector('#btn-connect') */  
 if(getParameterByName('controller') == 'users' && getParameterByName('action') == 'form'){
-    let modalAlreadyExists = 0
     const userForm = document.querySelector('#user-form')
     userForm.addEventListener('submit', async function(e) {
         e.preventDefault()
@@ -69,19 +69,16 @@ if(getParameterByName('controller') == 'users' && getParameterByName('action') =
             .then(res => res.json())          
             .then(json => {
                 if (json.is_logged_in == true) {
-                    window.location.href = 'index.php';
+                    createModal(json.message,"#00B894", userForm)
+                    document.querySelector('.close-button').onclick = () => {
+                        window.location.href = 'index.php';
+                    }
                 }
                 else{
                     // Affichage d'un modal pour dire que l'utilisateur s'est trompé
-                    if (modalAlreadyExists == 0) {
-                        createModal("Identifiants incorrects!","red", userForm)
-                        document.querySelector('.close-button').onclick = () => {
-                            document.querySelector('.alert-modal').style.display = "none"
-                            modalAlreadyExists = 0
-                        }
-                        modalAlreadyExists = 1
-                    } else if(modalAlreadyExists != 0) {
-                        document.querySelector('.alert-modal').style.display = "block"
+                    createModal(json.message,"#FF7675", userForm)
+                    document.querySelector('.close-button').onclick = () => {
+                        document.querySelector('.alert-modal').remove()
                     }
                 }
             })  
@@ -94,18 +91,16 @@ if(getParameterByName('controller') == 'users' && getParameterByName('action') =
             .then(json => {
                 if (json.is_created == true) {
                     window.location.href = 'index.php';
+                    createModal(json.message,"#00B894", editUserForm)
+                    document.querySelector('.close-button').onclick = () => {
+                        document.querySelector('.alert-modal').remove()
+                    }
                 }
                 else{
                     // Affichage d'un modal pour dire que l'utilisateur s'est trompé
-                    if (modalAlreadyExists == 0) {
-                        createModal("Impossible de s'inscrire!","red", userForm)
-                        document.querySelector('.close-button').onclick = () => {
-                            document.querySelector('.alert-modal').style.display = "none"
-                            modalAlreadyExists = 0
-                        }
-                        modalAlreadyExists = 1
-                    } else if(modalAlreadyExists != 0) {
-                        document.querySelector('.alert-modal').style.display = "block"
+                    createModal(json.message,"#FF7675", userForm)
+                    document.querySelector('.close-button').onclick = () => {
+                        document.querySelector('.alert-modal').remove()
                     }
                 }
             })  
@@ -120,6 +115,7 @@ if(getParameterByName('controller') == 'users' && getParameterByName('action') =
 if (getParameterByName('controller') == "users" && getParameterByName('action') == 'display') {
     console.log('Bonne page')
     const userSelectBtn = document.querySelector('.select-btn')
+    const editUserForm = document.getElementById('edit-user-form')
     let isChecked = 0
     userSelectBtn.addEventListener('click', () => {
         if (isChecked == 0) {
@@ -130,5 +126,29 @@ if (getParameterByName('controller') == "users" && getParameterByName('action') 
             isChecked --
         }
     })
+    editUserForm.addEventListener('submit', async (e) =>{
+        e.preventDefault()
+        let editUserFormData = new FormData(editUserForm)
+        await fetch(editUserForm.action,{
+            method: "post",
+            body: editUserFormData
+        })
+        .then(res => res.json())          
+        .then(json => {
+            if (json.is_updated == true) {
+                createModal(json.message,"#00B894", editUserForm)
+                document.querySelector('.close-button').onclick = () => {
+                    document.querySelector('.alert-modal').remove()
+                }
+            }
+            else{
+                // Affichage d'un modal pour dire que l'utilisateur s'est trompé
+                    createModal(json.message,"#FF7675", editUserForm)
+                    document.querySelector('.close-button').onclick = () => {
+                        document.querySelector('.alert-modal').remove()
+                    }
+            }
+        }) 
+    }) 
 }
 
