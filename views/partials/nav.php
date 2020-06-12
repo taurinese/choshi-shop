@@ -1,4 +1,4 @@
-<nav>
+<nav id="nav-bar">
     <div class="nav-container">
         <div>
             <a href=""><span class="material-icons" id="icon-burger"> menu </span></a>
@@ -10,7 +10,16 @@
             <a href="index.php"><img src="assets/img/logo_choshi.png" alt="Logo choshi" id="logo-nav"></a>
         </div>
         <div>
-            <a href="index.php?controller=users&action=form&form=login"><img src="assets/img/icons/user.png" alt="user"></a>
+            <a href="index.php?controller=users&action=<?= !empty($_SESSION['user'])? 'display' : 'form&form=login' ?>"><img src="assets/img/icons/user.png" alt="user"></a>
+            <?php if(!empty($_SESSION['user'])): ?>
+                <i class="fas fa-caret-up"></i>
+                <div class="account-submenu">
+                    <ul>
+                        <li><a href="index.php?controller=users&action=display">Mon compte</a></li>
+                        <li><a href="index.php?controller=users&action=disconnect">Se déconnecter</a></li>
+                    </ul>
+                </div>
+            <?php endif; ?>
         </div>
         <div>
             <a href=""><img src="assets/img/icons/cart.png" alt="cart"></a>

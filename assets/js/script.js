@@ -6,6 +6,30 @@ const footer = document.querySelector(".footer")
 let burgerChecked = 0
 let pageContent = document.querySelector(".main-content")
 
+//FONCTIONS 
+const createModal = (text, color, parent) => {
+    let modal = document.createElement("div")
+    modal.className = "alert-modal"
+    let closeButton = document.createElement("button")
+    closeButton.type = "button"
+    closeButton.className = "close-button"
+    closeButton.innerHTML = `<i class="far fa-times-circle"></i>`
+    modal.appendChild(closeButton)
+    let modal_p = document.createElement("p")
+    modal.appendChild(modal_p)
+    modal_p.innerHTML = text
+    modal.style.backgroundColor = color
+    parent.insertBefore(modal, null) 
+}
+
+const getParameterByName = (name) => {
+    let url = new URL(document.URL);
+    let parameter = url.searchParams.get(name)
+    console.log(parameter)
+    return parameter
+}
+
+
 
 iconBurger.addEventListener( "click", function(e) {
     e.preventDefault()
@@ -29,86 +53,82 @@ iconBurger.addEventListener( "click", function(e) {
 })
 
 //CONNEXION
-/* const buttonConnect = document.querySelector('#btn-connect') */    
-let modalAlreadyExists = 0
-const userForm = document.querySelector('#user-form')
-userForm.addEventListener('submit', async function(e) {
-    e.preventDefault()
-    let userFormData = new FormData(this)
-    let currentForm = getParameterByName('form')
-    if (currentForm == 'login') {
-        await fetch('index.php?controller=users&action=login',{
-            method: "post",
-            body: userFormData
-        })
-        .then(res => res.json())          
-        .then(json => {
-            if (json.is_logged_in == true) {
-                window.location.href = 'index.php';
-            }
-            else{
-                // Affichage d'un modal pour dire que l'utilisateur s'est trompé
-                if (modalAlreadyExists == 0) {
-                    createModal("Identifiants incorrects!","red", userForm)
-                    document.querySelector('.close-button').onclick = () => {
-                        document.querySelector('.alert-modal').style.display = "none"
-                        modalAlreadyExists = 0
-                    }
-                    modalAlreadyExists = 1
-                } else if(modalAlreadyExists != 0) {
-                    document.querySelector('.alert-modal').style.display = "block"
+/* const buttonConnect = document.querySelector('#btn-connect') */  
+if(getParameterByName('controller') == 'users' && getParameterByName('action') == 'form'){
+    let modalAlreadyExists = 0
+    const userForm = document.querySelector('#user-form')
+    userForm.addEventListener('submit', async function(e) {
+        e.preventDefault()
+        let userFormData = new FormData(this)
+        let currentForm = getParameterByName('form')
+        if (currentForm == 'login') {
+            await fetch('index.php?controller=users&action=login',{
+                method: "post",
+                body: userFormData
+            })
+            .then(res => res.json())          
+            .then(json => {
+                if (json.is_logged_in == true) {
+                    window.location.href = 'index.php';
                 }
-            }
-        })  
-    } else if(currentForm == 'register'){
-        await fetch('index.php?controller=users&action=register',{
-            method: "post",
-            body: userFormData
-        })
-        .then(res => res.json())          
-        .then(json => {
-            if (json.is_created == true) {
-                window.location.href = 'index.php';
-            }
-            else{
-                // Affichage d'un modal pour dire que l'utilisateur s'est trompé
-                if (modalAlreadyExists == 0) {
-                    createModal("Impossible de s'inscrire!","red", userForm)
-                    document.querySelector('.close-button').onclick = () => {
-                        document.querySelector('.alert-modal').style.display = "none"
-                        modalAlreadyExists = 0
+                else{
+                    // Affichage d'un modal pour dire que l'utilisateur s'est trompé
+                    if (modalAlreadyExists == 0) {
+                        createModal("Identifiants incorrects!","red", userForm)
+                        document.querySelector('.close-button').onclick = () => {
+                            document.querySelector('.alert-modal').style.display = "none"
+                            modalAlreadyExists = 0
+                        }
+                        modalAlreadyExists = 1
+                    } else if(modalAlreadyExists != 0) {
+                        document.querySelector('.alert-modal').style.display = "block"
                     }
-                    modalAlreadyExists = 1
-                } else if(modalAlreadyExists != 0) {
-                    document.querySelector('.alert-modal').style.display = "block"
                 }
-            }
-        })  
-    }
+            })  
+        } else if(currentForm == 'register'){
+            await fetch('index.php?controller=users&action=register',{
+                method: "post",
+                body: userFormData
+            })
+            .then(res => res.json())          
+            .then(json => {
+                if (json.is_created == true) {
+                    window.location.href = 'index.php';
+                }
+                else{
+                    // Affichage d'un modal pour dire que l'utilisateur s'est trompé
+                    if (modalAlreadyExists == 0) {
+                        createModal("Impossible de s'inscrire!","red", userForm)
+                        document.querySelector('.close-button').onclick = () => {
+                            document.querySelector('.alert-modal').style.display = "none"
+                            modalAlreadyExists = 0
+                        }
+                        modalAlreadyExists = 1
+                    } else if(modalAlreadyExists != 0) {
+                        document.querySelector('.alert-modal').style.display = "block"
+                    }
+                }
+            })  
+        }
 
 
-})
+    })
+}  
 
 
-//FONCTIONS 
-const createModal = (text, color, parent) => {
-    let modal = document.createElement("div")
-    modal.className = "alert-modal"
-    let closeButton = document.createElement("button")
-    closeButton.type = "button"
-    closeButton.className = "close-button"
-    closeButton.innerHTML = `<i class="far fa-times-circle"></i>`
-    modal.appendChild(closeButton)
-    let modal_p = document.createElement("p")
-    modal.appendChild(modal_p)
-    modal_p.innerHTML = text
-    modal.style.backgroundColor = color
-    parent.insertBefore(modal, null) 
+// User profile, informations/commandes
+if (getParameterByName('controller') == "users" && getParameterByName('action') == 'display') {
+    console.log('Bonne page')
+    const userSelectBtn = document.querySelector('.select-btn')
+    let isChecked = 0
+    userSelectBtn.addEventListener('click', () => {
+        if (isChecked == 0) {
+            userSelectBtn.classList = "select-btn checked"
+            isChecked ++
+        } else {
+            userSelectBtn.classList = "select-btn unchecked"
+            isChecked --
+        }
+    })
 }
 
-const getParameterByName = (name) => {
-let url = new URL(document.URL);
-let parameter = url.searchParams.get(name)
-console.log(parameter)
-return parameter
-}

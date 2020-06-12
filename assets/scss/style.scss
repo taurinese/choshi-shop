@@ -21,6 +21,22 @@
         bottom:200vh;
     }
 }
+@keyframes translateX-btn-in {
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform: translateX(250px);
+    }
+}
+@keyframes translateX-btn-out{
+    from{
+        transform:translateX(250px);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
 
 // Balises HTML
 * {
@@ -31,14 +47,13 @@
 body{
     background-color: #F1F1F1;
 }
-nav {
+#nav-bar {
     height:10vh;
-    width:100%;
     box-shadow: 0px 1px 10px grey;
     background-color: #F7F7F7;
     .nav-container{
         @include flex(row wrap, space-evenly, center);
-        width:80%;
+        width:80vw;
         height: 100%;
         margin:auto;
 
@@ -47,10 +62,57 @@ nav {
         }
         img {
             width:40px;
+            display:block;
+            margin:auto;
         }
         i {
             font-size:40px;
         }
+        div{
+            width:20%;
+            text-align: center;
+        }
+        div:nth-child(4){
+            position:relative;
+
+            .account-submenu{
+                display:none;
+                position:absolute;
+                width:calc(80vw/5);
+                padding-top:calc(5vh - 20px);
+                li{
+                    list-style:none;
+                    padding:10px;
+                    &:hover{
+                        background-color: #74B9FF;
+                        color:white;
+                    }
+                }
+            }
+            .fa-caret-up{
+                display:none;
+            }
+            &:hover{
+                padding: 10px 0;
+                .fa-caret-up{
+                    display:block;
+                    font-size:40px;
+                    position: absolute;
+                    left:calc(50% - 25px / 2);
+                    color:black;
+                    top:40px;
+                }
+                .account-submenu{
+                    display:block;
+                    ul{
+                        background-color: #f9f9f9;
+                        box-shadow: 0px 1px 10px grey;
+                    }
+                }
+
+            }
+        }
+
     }
 }
 
@@ -139,7 +201,7 @@ input[type="submit"]{
 
 // id & class
 #logo-nav {
-    width:200px;
+    width:200px !important;
 }
 .box-content {
     @include flex-center(row wrap);
@@ -302,6 +364,112 @@ input[type="submit"]{
         }
     }
 }
+
+// User profile page
+.user-profile {
+    height:90vh;
+    width:100%;
+
+    #profile-nav {
+        width:80%;
+        height:200px;
+        margin:auto;
+        @include flex(row wrap, center, center);
+
+        .profile-nav-container{
+            margin:25px;
+            width:100%;
+            padding-top:50px;
+            @include flex(row wrap, center, center);
+
+            .select-btn{
+                overflow: hidden;
+                width:450px;
+                height: 50px;
+                //padding:15px;
+                border-radius:25px;
+                outline:none;
+                border:none;
+                color:white;
+                background-color: lightgrey;
+                cursor:pointer;
+                position:relative;
+                z-index:1;
+                @include flex(row wrap, center, center);
+
+                &::before{
+                    content: 'Informations';
+                    left:50px;
+                }
+                &::after{
+                    content: 'Commandes';
+                    right:50px;
+                }
+                &::after, &::before{
+                    position: absolute;
+                    z-index:5;
+                    font-weight:600;
+                }
+                span{
+                    display: inline-block;
+                    position: relative;
+                    z-index: 2;
+                    background: darken($color: #74B9FF, $amount: 10%);
+                    width: 200px;
+                    height: 50px;
+                    border-radius: 25px;
+                    //Pour être sur Mes commandes
+                    //left: 125px;
+                    //Pour être sur Mes informations
+                    right:125px;
+                }
+                &.checked{
+                    span{
+                        animation: translateX-btn-in 0.75s ease-in-out;
+                        animation-fill-mode: forwards; 
+                    }
+                }
+                &.unchecked{
+                    span{
+                        animation: translateX-btn-out 0.75s ease-in-out;
+                    }
+                }
+            }
+            
+        }
+    }
+    .profile-content{
+        width:60%;
+        margin:auto;
+        padding:50px;
+        .user-data{
+            @include flex(column wrap, center, center);
+            form {
+                background-color: #f7f7f7;
+                padding:50px;
+                border-radius:25px;
+                input {
+                    margin-bottom:25px;
+                    border-radius:25px;
+                    height:3vh;
+                    border:2px solid lightgrey;
+                    outline:none;
+                    padding-left:10px;
+                    color:black;
+                    font-size:15px;
+                }
+                input[type=submit]{
+                    width:100%;
+                }
+
+            }
+
+        }
+    }
+}
+
+
+
 
 .alert-modal {
     max-width:500px;

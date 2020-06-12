@@ -29,17 +29,37 @@ if(isset($_GET['action'])){
             }
             else{
                 $json_return['is_created'] = true;
+                //A vérifier si ça fonctionne
+                $user = checkUser($_POST);
                 $_SESSION['user']= [
-                    'first_name' => $_POST['first_name'],
-                    'last_name' => $_POST['last_name'],
-                    'adresse' => $_POST['address'],
-                    'email' => $_POST['user-email']
+                    'id' => $user['id'],
+                    'first_name' => $user['first_name'],
+                    'last_name' => $user['last_name'],
+                    'adresse' => $user['address'],
+                    'email' => $user['user-email']
                 ];
             }
             echo json_encode($json_return);
             exit();
         break;
 
+
+        case 'display':
+            $view['content'] = 'views/userDisplay.php';
+            $view['title'] = "Compte utilisateur";
+            break;
+
+        case 'disconnect':
+            if (isset($_SESSION['user'])) {
+                unset($_SESSION['user']);
+                header('Location:index.php');
+                exit();
+            }
+            else{
+                header('Location:index.php?controller=users&action=form&form=login');
+                exit();
+            }
+            break;
         default:
             # code...
             break;
