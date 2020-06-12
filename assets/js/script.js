@@ -76,3 +76,10 @@ const createModal = (text, color, parent) => {
     modal.style.backgroundColor = color
     parent.insertBefore(modal, null) 
 }
+
+const getParameterByName = (name) => {
+let url = new URL(document.URL);
+let parameter = url.searchParams.get(name)
+console.log(parameter)
+return parameter
+}

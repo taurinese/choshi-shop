@@ -347,6 +347,13 @@ input[type=submit] {
 #user-page #user-form #user-password {
   background: no-repeat 10px/10% url("../img/icons/lock.png");
 }
+#user-page #user-form a {
+  font-size: 10px;
+  margin: auto;
+}
+#user-page #user-form a p {
+  text-align: right;
+}
 
 .alert-modal {
   max-width: 500px;

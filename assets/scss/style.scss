@@ -293,6 +293,13 @@ input[type="submit"]{
         #user-password{
             background: no-repeat 10px/10% url("../img/icons/lock.png");
         }
+        a {
+            font-size:10px;
+            margin:auto;
+            p {
+                text-align: right;
+            }
+        }
     }
 }
 
