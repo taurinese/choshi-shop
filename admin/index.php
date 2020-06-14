@@ -2,10 +2,10 @@
 
 session_start();
 
-/* if(!$_SESSION['user']['is_admin']){
+if(!$_SESSION['user']['is_admin']){
     header('Location: /choshi/index.php');
     exit;
-} */
+} 
 
 require ('../helpers.php');
 

@@ -21,3 +21,13 @@ function getNewProducts()
     $query = $db->query('SELECT * FROM products ORDER BY created_at DESC LIMIT 3');
     return $query->fetchAll();
 }
+
+function getProductsByCategoryId($categoryId)
+{
+    $db = dbConnect();
+    $query = $db->prepare('SELECT p.* FROM products p INNER JOIN categories_products cp ON p.id = cp.product_id WHERE cp.category_id = ?');
+    $query->execute([
+        $categoryId
+    ]);
+    return $query->fetchAll();
+}

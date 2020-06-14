@@ -277,14 +277,16 @@ input[type="submit"]{
 }
 .category {
     width:100%;
+    
     h2 {
         text-align: center;
         width:50%;
-        margin:auto;
+        margin:30px auto;
     }
     .category-content{
         width:100vw;
         min-height: 100vh;
+        align-items:flex-start;
         aside{
             width:20vw;
         }
@@ -293,28 +295,39 @@ input[type="submit"]{
 .category-products{
     @include flex(row wrap, space-evenly, end);
     width:80vw;
-    div {
-        width:40%;
-        text-align:center;
-
-        img {
-            width:50%;
+    a{
+        width:30%;
+        .flex-center{
+            margin-bottom:5vh;
+            div {
+                width:100%;
+                text-align:center;
+                padding:20px;
+                img {
+                    width:100%;
+                }
+            }
+            h3 {
+                font-size: 32px;
+                font-weight:400;
+                margin-top:10px;
+                margin-bottom:10px;
+            }
+            div p {
+                font-size:24px;
+                font-weight: 300;
+            }
         }
     }
-    div h2 {
-        font-size: 36px;
-        font-weight:400;
-    }
-    div p {
-        font-size:24px;
-        font-weight: 300;
-    }
+
+
 }
 .img-products {
     width:100%;
 }
 .filters{
-    height:90vh;
+    height:100vh;
+    margin-left:25px;
     border-right: 2px solid grey;
 }
 

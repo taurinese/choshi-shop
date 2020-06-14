@@ -27,22 +27,11 @@
     </div>
     <div class="burger">
         <div class="burger-row">
-                <a href="" class="menu-category">
-                    <img src="assets/img/categories/1.png" alt="">
+            <?php foreach($categories as $category): ?>
+                <a href="index.php?controller=categories&id=<?= $category['id'] ?>" class="menu-category">
+                    <img src="assets/img/categories/<?= $category['image'] ?>" alt="<?= $category['name'] ?>">
                 </a>
-                <a href="" class="menu-category">
-                    <img src="assets/img/categories/2.png" alt="">
-                </a>
-                <a href="" class="menu-category">
-                    <img src="assets/img/categories/3.png" alt="">
-                </a>
-                <a href="" class="menu-category">
-                    <img src="assets/img/categories/4.png" alt="">
-                </a>
-                <a href="" class="menu-category">
-                    <img src="assets/img/categories/6.jpg" alt="">
-                </a>
-
+            <?php endforeach; ?>
         </div>
     </div>
 </nav>
