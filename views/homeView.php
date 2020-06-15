@@ -21,7 +21,7 @@
     <div class="products">
     <?php foreach($newProducts as $product): ?>
         <div class="flex-center">
-            <a href="">
+            <a href="index.php?controller=products&id=<?= $product['id'] ?>">
                 <img src="assets/img/products/<?= $product['main_image'] ?>" alt="<?= $product['name'] ?>" class="img-products">
                 <h2><?= $product['price'] ?> €</h2>
                 <h2><?= $product['name'] ?></h2>
@@ -47,7 +47,7 @@
     <div class="products">
     <?php foreach($newProducts as $product): ?>
         <div class="flex-center">
-            <a href="">
+            <a href="index.php?controller=products&id=<?= $product['id'] ?>">
                 <img src="assets/img/products/<?= $product['main_image'] ?>" alt="<?= $product['name'] ?>" class="img-products">
                 <h2><?= $product['price'] ?> €</h2>
                 <h2><?= $product['name'] ?></h2>

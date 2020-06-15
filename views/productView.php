@@ -35,15 +35,21 @@
             <div class="rates-views">
                 <div class="rate-review">
                     <aside>
-                        Prénom <br>
-                        il y a x jours
+                        <h5>Prénom</h5>
+                        <span>il y a x jours</span>
                     </aside>
                     <div>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
+                        <div>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            5/5
+                        </div>
+                        <p>
+                            Ce produit est vraiment super ! Quel produit incroyable wow !
+                        </p>
                     </div>
                 </div>
             </div>

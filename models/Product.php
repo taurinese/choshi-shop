@@ -5,7 +5,7 @@ function getProducts($productId = null)
     $db = dbConnect();
 
     if($productId != null){
-        $query = $db->prepare('SELECT p.*, GROUP_CONCAT(cp.category_id), l.license AS license_name FROM products p INNER JOIN categories_products cp ON p.id = cp.product_id INNER JOIN licenses l ON l.id = p.license_id WHERE p.id = ?');
+        $query = $db->prepare('SELECT p.*, GROUP_CONCAT(cp.category_id), l.license AS license_name FROM products p INNER JOIN categories_products cp ON p.id = cp.product_id LEFT JOIN licenses l ON l.id = p.license_id WHERE p.id = ?');
         $query->execute([$productId]);
         return $query->fetch();
     }
