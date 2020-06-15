@@ -11,6 +11,14 @@ function checkUser($informations)
     return $query->fetch();
 }
 
+function getUser($id)
+{
+    $db = dbConnect();
+    $query = $db->prepare('SELECT * FROM users WHERE id = ?');
+    $query->execute([$id]);
+    return $query->fetch();
+}
+
 function addUser($informations)
 {
     $db = dbConnect();

@@ -7,6 +7,7 @@ const searchBar = document.getElementById('icon-search')
 const searchDiv = document.querySelector('.search-bar')
 const searchInput = document.getElementById('search-input')
 let burgerChecked = 0
+let searchBarOpened = 0
 let pageContent = document.querySelector(".main-content")
 
 //FONCTIONS 
@@ -37,7 +38,49 @@ const getParameterByName = (name) => {
 
 searchBar.addEventListener('click', () => {
     console.log('search click')
-    searchDiv.style.display = 'block'
+    productsArray = []
+    if (searchBarOpened == 0) {
+        searchDiv.style.display = 'block'
+        searchBarOpened ++
+        console.log(searchInput.value)
+        fetch('index.php?controller=products&action=list', {
+            method: 'POST',
+            //body : JSON.stringify(searchInput.value)
+        })
+        .then(res => res.json())
+        .then(json => {
+            json.forEach(element => {
+                productsArray.push(element.name)
+            });
+            productsArray.sort()
+            console.log(productsArray)
+        })
+
+        const arraySorting = setInterval(() => {
+            results = []
+            productsArray.filter( el => {
+                if (el.startsWith(searchInput.value) || el.toLowerCase().startsWith(searchInput.value)) {
+                    results.push(el)
+                }
+            })
+            console.log(results)
+        }, 500);
+/*         searchInput.addEventListener('keydown', (e) =>{
+            e.preventDefault()
+            if(e.keyCode == 13){
+                // Submit la recherche avec Entrée
+            }
+        }) */
+
+        // Utiliser la fonction array.filter() pour récupérer tous les éléments correspondants
+
+
+    } else {
+        searchDiv.style.display = 'none'
+        clearInterval(arraySorting)
+        searchBarOpened --
+    }
+    
 })
 
 iconBurger.addEventListener( "click", function(e) {

@@ -2,6 +2,10 @@
 
 session_start();
 
+if(!isset($_SESSION['cart'])){
+    $_SESSION['cart'] = [];
+}
+
 require ('helpers.php');
 require ('models/Category.php');
 $categories = getCategories();

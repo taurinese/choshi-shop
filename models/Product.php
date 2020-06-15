@@ -10,7 +10,7 @@ function getProducts($productId = null)
         return $query->fetch();
     }
     else{
-        $query = $db->query('SELECT p.*, GROUP_CONCAT(c.name) FROM products p INNER JOIN categories_products cp ON p.id = cp.product_id INNER JOIN categories c on c.id = cp.category_id');
+        $query = $db->query('SELECT * FROM products');
         return $query->fetchAll();
     }
 }
@@ -29,5 +29,12 @@ function getProductsByCategoryId($categoryId)
     $query->execute([
         $categoryId
     ]);
+    return $query->fetchAll();
+}
+
+function getProductsName()
+{
+    $db = dbConnect();
+    $query = $db->query('SELECT name FROM products');
     return $query->fetchAll();
 }

@@ -49,6 +49,7 @@ if(isset($_GET['action'])){
 
 
         case 'display':
+            $user = getUser($_SESSION['user']['id']);
             $view['content'] = 'views/userDisplay.php';
             $view['title'] = "Compte utilisateur";
             break;
