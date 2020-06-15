@@ -51,6 +51,7 @@ body{
     cursor:pointer;
     position:relative;
 }
+
 #nav-bar {
     height:10vh;
     box-shadow: 0px 1px 10px grey;
@@ -77,6 +78,19 @@ body{
                 margin:auto;
                 font-size:30px;
                 outline:none;
+            }
+            .search-results{
+                @include flex(column wrap, center, flex-start);
+                width:30%;
+                margin:auto;
+                background-color: darkslategrey;
+                padding:30px;
+                a{
+                    color:white;
+                    text-decoration: none;
+                    margin-bottom:10px;
+                }
+                
             }
         }
         img {

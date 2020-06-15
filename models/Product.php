@@ -35,6 +35,6 @@ function getProductsByCategoryId($categoryId)
 function getProductsName()
 {
     $db = dbConnect();
-    $query = $db->query('SELECT name FROM products');
+    $query = $db->query('SELECT name, id FROM products');
     return $query->fetchAll();
 }

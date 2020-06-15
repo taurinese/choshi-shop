@@ -27,6 +27,21 @@ const createModal = (text, color, parent) => {
     parent.insertBefore(modal, null) 
 }
 
+const createResultDiv = (resultArray) => {
+    let div = document.createElement('div')
+    div.className = "search-results"
+    for (let i = 0; resultArray.length >= 5 ? i < 5 : i < resultArray.length; i++) {
+        let product = resultArray[i];
+        let link = document.createElement('a')
+        let id = product.id
+        link.href = `index.php?controller=products&id=${id}`
+        link.innerHTML = product.name
+        div.appendChild(link)
+    }
+    searchDiv.insertBefore(div, searchDiv.nextElementSibling)
+    console.log(div)
+}
+
 const getParameterByName = (name) => {
     let url = new URL(document.URL);
     let parameter = url.searchParams.get(name)
@@ -50,21 +65,24 @@ searchBar.addEventListener('click', () => {
         .then(res => res.json())
         .then(json => {
             json.forEach(element => {
-                productsArray.push(element.name)
+                productsArray.push(element)
             });
             productsArray.sort()
             console.log(productsArray)
         })
-
-        const arraySorting = setInterval(() => {
-            results = []
-            productsArray.filter( el => {
-                if (el.startsWith(searchInput.value) || el.toLowerCase().startsWith(searchInput.value)) {
-                    results.push(el)
+        searchInput.addEventListener('keydown', () => {
+                results = []
+                productsArray.filter( el => {
+                    if (el.name.startsWith(searchInput.value) || el.name.toLowerCase().startsWith(searchInput.value)) {
+                        results.push(el)
+                    }
+                })
+                if (document.querySelector('.search-results') != null) {
+                    document.querySelector('.search-results').remove()
                 }
-            })
-            console.log(results)
-        }, 500);
+                createResultDiv(results)
+                console.log(results)
+        })
 /*         searchInput.addEventListener('keydown', (e) =>{
             e.preventDefault()
             if(e.keyCode == 13){
@@ -77,7 +95,8 @@ searchBar.addEventListener('click', () => {
 
     } else {
         searchDiv.style.display = 'none'
-        clearInterval(arraySorting)
+        /* // Ne fonctionne pas pour arrêter le setInterval
+        clearInterval(arraySorting) */
         searchBarOpened --
     }
     

@@ -80,6 +80,21 @@ body {
   font-size: 30px;
   outline: none;
 }
+#nav-bar .nav-container .search-bar .search-results {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 30%;
+  margin: auto;
+  background-color: darkslategrey;
+  padding: 30px;
+}
+#nav-bar .nav-container .search-bar .search-results a {
+  color: white;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
 #nav-bar .nav-container img {
   width: 40px;
   display: block;
