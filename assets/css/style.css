@@ -44,6 +44,11 @@ body {
   background-color: #F1F1F1;
 }
 
+#icon-search {
+  cursor: pointer;
+  position: relative;
+}
+
 #nav-bar {
   height: 10vh;
   box-shadow: 0px 1px 10px grey;
@@ -60,6 +65,20 @@ body {
 }
 #nav-bar .nav-container :first-child {
   z-index: 9999;
+}
+#nav-bar .nav-container .search-bar {
+  display: none;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  margin-top: 50px;
+}
+#nav-bar .nav-container .search-bar #search-input {
+  width: 30%;
+  height: 40px;
+  margin: auto;
+  font-size: 30px;
+  outline: none;
 }
 #nav-bar .nav-container img {
   width: 40px;

@@ -3,6 +3,9 @@ const iconBurger = document.querySelector("#icon-burger")
 const burger = document.querySelector(".burger")
 const navBar = document.querySelector("nav")
 const footer = document.querySelector(".footer")
+const searchBar = document.getElementById('icon-search')
+const searchDiv = document.querySelector('.search-bar')
+const searchInput = document.getElementById('search-input')
 let burgerChecked = 0
 let pageContent = document.querySelector(".main-content")
 
@@ -31,6 +34,11 @@ const getParameterByName = (name) => {
 }
 
 
+
+searchBar.addEventListener('click', () => {
+    console.log('search click')
+    searchDiv.style.display = 'block'
+})
 
 iconBurger.addEventListener( "click", function(e) {
     e.preventDefault()
@@ -155,10 +163,12 @@ if (getParameterByName('controller') == "users" && getParameterByName('action') 
 //Product page
 if (getParameterByName('controller') == 'products') {
     const quantityInput = document.getElementById('product-quantity')
+    const quantityMaxVal = parseInt(quantityInput.max)
+    console.log(quantityMaxVal)
     const incrementQuantity = document.getElementById('increment-qtt')
     const decrementQuantity = document.getElementById('decrement-qtt')
     incrementQuantity.addEventListener('click', () => {
-        if(quantityInput.value < 10 ){
+        if(quantityInput.value < quantityMaxVal ){
             quantityInput.value ++
         }
     })

@@ -4,7 +4,10 @@
             <a href=""><span class="material-icons" id="icon-burger"> menu </span></a>
         </div>
         <div>
-            <a href=""><img src="assets/img/icons/search.png" alt="search"></a>
+            <img src="assets/img/icons/search.png" alt="search" id="icon-search">
+            <div class="search-bar">
+                <input type="text" name="search-input" id="search-input">
+            </div>
         </div>
         <div>
             <a href="index.php"><img src="assets/img/logo_choshi.png" alt="Logo choshi" id="logo-nav"></a>
