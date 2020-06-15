@@ -152,3 +152,19 @@ if (getParameterByName('controller') == "users" && getParameterByName('action') 
     }) 
 }
 
+//Product page
+if (getParameterByName('controller') == 'products') {
+    const quantityInput = document.getElementById('product-quantity')
+    const incrementQuantity = document.getElementById('increment-qtt')
+    const decrementQuantity = document.getElementById('decrement-qtt')
+    incrementQuantity.addEventListener('click', () => {
+        if(quantityInput.value < 10 ){
+            quantityInput.value ++
+        }
+    })
+    decrementQuantity.addEventListener('click', () => {
+        if (quantityInput.value > 0) {
+            quantityInput.value --
+        }
+    })
+}

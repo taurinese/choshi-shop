@@ -10,16 +10,16 @@ if(isset($_GET['controller'])){
     switch ($_GET['controller']){
         case 'products' :
             require 'controllers/productController.php';
-        break;
+            break;
         case 'categories':
             require 'controllers/categoryController.php';
-        break;
+            break;
         case 'users':
             require 'controllers/userController.php';
-        break;
+            break;
         case 'home':
             require 'controllers/homeController.php';
-        break;
+            break;
         case 'cart':
             require 'controllers/cartController.php';
             break;
