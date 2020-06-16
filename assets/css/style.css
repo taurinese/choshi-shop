@@ -88,12 +88,16 @@ body {
   width: 30%;
   margin: auto;
   background-color: darkslategrey;
-  padding: 30px;
 }
 #nav-bar .nav-container .search-bar .search-results a {
   color: white;
   text-decoration: none;
-  margin-bottom: 10px;
+  text-align: left;
+  padding: 15px 30px;
+  width: 100%;
+}
+#nav-bar .nav-container .search-bar .search-results a:hover {
+  background-color: #558f8f;
 }
 #nav-bar .nav-container img {
   width: 40px;

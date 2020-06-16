@@ -18,7 +18,7 @@
             <p><?= $selectedProduct['description'] ?></p>
             <h3>Licence : <?= $selectedProduct['license_name'] ?></h3>
             <h3>Quantité : <button id="decrement-qtt">-</button><input type="number" name="product-quantity" id="product-quantity" value="0" min="0" max="<?= $selectedProduct['quantity'] ?>"><button id="increment-qtt">+</button></h3>
-            <button type="submit">Ajouter au panier</button>
+            <button type="submit" id="add-cart">Ajouter au panier</button>
         </aside>
     </div>
     <div class="product-row rates">

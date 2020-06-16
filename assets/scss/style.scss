@@ -84,11 +84,15 @@ body{
                 width:30%;
                 margin:auto;
                 background-color: darkslategrey;
-                padding:30px;
                 a{
                     color:white;
                     text-decoration: none;
-                    margin-bottom:10px;
+                    text-align:left;
+                    padding:15px 30px;
+                    width:100%;
+                    &:hover {
+                        background-color: lighten(darkslategrey, 20%);
+                    }
                 }
                 
             }

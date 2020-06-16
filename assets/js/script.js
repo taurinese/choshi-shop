@@ -81,17 +81,10 @@ searchBar.addEventListener('click', () => {
                     document.querySelector('.search-results').remove()
                 }
                 createResultDiv(results)
-                console.log(results)
         })
-/*         searchInput.addEventListener('keydown', (e) =>{
-            e.preventDefault()
-            if(e.keyCode == 13){
-                // Submit la recherche avec Entrée
-            }
-        }) */
-
-        // Utiliser la fonction array.filter() pour récupérer tous les éléments correspondants
-
+        searchInput.addEventListener('focusout', () => {
+            document.querySelector('.search-results').remove()
+        })
 
     } else {
         searchDiv.style.display = 'none'
@@ -101,6 +94,10 @@ searchBar.addEventListener('click', () => {
     }
     
 })
+
+
+
+
 
 iconBurger.addEventListener( "click", function(e) {
     e.preventDefault()
@@ -226,17 +223,32 @@ if (getParameterByName('controller') == "users" && getParameterByName('action') 
 if (getParameterByName('controller') == 'products') {
     const quantityInput = document.getElementById('product-quantity')
     const quantityMaxVal = parseInt(quantityInput.max)
-    console.log(quantityMaxVal)
     const incrementQuantity = document.getElementById('increment-qtt')
     const decrementQuantity = document.getElementById('decrement-qtt')
-    incrementQuantity.addEventListener('click', () => {
+    const addToCart = document.getElementById('add-cart')
+    incrementQuantity.addEventListener('click', (e) => {
+        e.preventDefault()
         if(quantityInput.value < quantityMaxVal ){
             quantityInput.value ++
         }
     })
-    decrementQuantity.addEventListener('click', () => {
+    decrementQuantity.addEventListener('click', (e) => {
+        e.preventDefault()
         if (quantityInput.value > 0) {
             quantityInput.value --
         }
     })
+    addToCart.addEventListener('click', (e) => {
+        e.preventDefault()
+        console.log(quantityInput.value)
+        fetch('index.php?controller=cart&action=add', {
+            method: "post",
+            body: JSON.stringify({'product_id' : getParameterByName('id'), 'quantity' : quantityInput.value})
+        })
+        .then(res => res.json())
+        .then(json => {
+            console.log(json)
+        })
+    })
+
 }
