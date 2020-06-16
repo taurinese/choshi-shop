@@ -24,13 +24,20 @@ else {
             }
             break;
         case 'delete':
-            # code...
+            if(!isset($_GET['id'])){
+                header('Location:index.php?controller=cart&action=list');
+                exit();
+            }
             break;
         case 'update':
             # code...
             break;
         case 'list':
             $cartProducts = getProductsForCart($_SESSION['cart']);
+            $total = 0;
+            foreach($cartProducts as $key => $cartProduct){
+                $total += $cartProduct['price'] * $_SESSION['cart'][$key]['quantity'];
+            }
             $view['content'] = 'views/cartList.php';
             $view['title'] = 'Panier';
             break;

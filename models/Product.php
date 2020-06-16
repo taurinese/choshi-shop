@@ -49,6 +49,6 @@ function getProductsForCart($cart)
             $queryArray .= ',';
         }
     }
-    $query = $db->query("SELECT * FROM products WHERE id IN ($queryArray)");
+    $query = $db->query("SELECT p.* , l.license FROM products p LEFT JOIN licenses l ON l.id = p.license_id WHERE p.id IN ($queryArray)");
     return $query->fetchAll();
 }

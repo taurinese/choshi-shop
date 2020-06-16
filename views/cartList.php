@@ -3,12 +3,12 @@
         <thead>
             <tr>
                 <td>
-                    Mon panier
+                    <h3>Mon panier</h3>
                 </td>
             </tr>
         </thead>
         <tbody>
-            <?php foreach($cartProducts as $cartProduct): ?>
+            <?php foreach($cartProducts as $index => $cartProduct): ?>
                 <tr>
                     <td>
                         <img class="cart-img" src="assets/img/products/<?= $cartProduct['main_image'] ?>" alt="<?= $cartProduct['name'] ?>">
@@ -18,22 +18,69 @@
                             <tr>
                                 <td>
                                     <?= $cartProduct['name'] ?>
+                                    <a href="index.php?controller=cart&action=delete&id=<?= $cartProduct['id'] ?>" onclick="confirm('Êtes-vous surs de supprimer cet article de votre panier?')">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <?php if(isset($cartProduct['license_id'])): ?>
+                            <tr>
+                                <td>
+                                    <?= $cartProduct['license'] ?>
+                                </td>
+                            </tr>
+                            <?php endif; ?>
+                            <tr>
+                                <td>
+                                    Prix à l'unité : <?= $cartProduct['price'] ?>€
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <?= $cartProduct['license_id'] ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Prix à l'unité : <?= $cartProduct['price'] ?>
+                                    <div class="qtt-buttons"><span>Quantité : </span><button id="decrement-qtt">-</button><input type="number" name="product-quantity" id="product-quantity" value="<?= $_SESSION['cart'][$index]['quantity'] ?>" min="0" max="<?= $cartProduct['quantity'] ?>"><button id="increment-qtt">+</button></div>
                                 </td>
                             </tr>
                         </table>
                     </td>
                 </tr>
+                <hr>
             <?php endforeach; ?>
         </tbody>
     </table>
+    <div id="cart-recap">
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        <h3>MONTANT DE VOTRE PANIER</h3>
+                        <hr>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach($cartProducts as $key => $cartProduct): ?>
+                <tr>
+                    <td class="table-row-flex">
+                        <span><?= $cartProduct['name'] ?></span>
+                        <span><?= $_SESSION['cart'][$key]['quantity'] ?> x <?= $cartProduct['price'] ?>€</span>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            <tr>
+                <td>
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-row-flex">
+                    <span>TOTAL</span>
+                    <span><?= $total ?>€</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="submit" id="cart-add">
+            Valider mon panier
+        </button>
+    </div>
 </div>

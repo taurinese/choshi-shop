@@ -57,6 +57,7 @@ if(isset($_GET['action'])){
         case 'disconnect':
             if (isset($_SESSION['user'])) {
                 unset($_SESSION['user']);
+                unset($_SESSION['cart']);
                 header('Location:index.php');
                 exit();
             }

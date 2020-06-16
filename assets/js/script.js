@@ -6,6 +6,7 @@ const footer = document.querySelector(".footer")
 const searchBar = document.getElementById('icon-search')
 const searchDiv = document.querySelector('.search-bar')
 const searchInput = document.getElementById('search-input')
+const body = document.querySelector('.main-content')
 let burgerChecked = 0
 let searchBarOpened = 0
 let pageContent = document.querySelector(".main-content")
@@ -73,10 +74,10 @@ searchBar.addEventListener('click', () => {
         searchInput.addEventListener('keyup', () => {
             displayDivResult()
         })
-        searchInput.addEventListener('focusout', () => {
+        body.addEventListener('click', () => {
             document.querySelector('.search-results').style.display = 'none'
-        })
-        searchInput.addEventListener('focusin', () => {
+        }) 
+        searchInput.addEventListener('focus', () => {
             if(document.querySelector('.search-results') != null){
                 document.querySelector('.search-results').style.display = 'flex'
             }
