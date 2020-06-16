@@ -38,3 +38,17 @@ function getProductsName()
     $query = $db->query('SELECT name, id FROM products');
     return $query->fetchAll();
 }
+
+function getProductsForCart($cart)
+{
+    $db = dbConnect();
+    $queryArray = '';
+    foreach($cart as $key => $product){
+        $queryArray .= $product['product_id'];
+        if($key != array_key_last($cart)){
+            $queryArray .= ',';
+        }
+    }
+    $query = $db->query("SELECT * FROM products WHERE id IN ($queryArray)");
+    return $query->fetchAll();
+}

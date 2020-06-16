@@ -6,7 +6,7 @@
         <div>
             <img src="assets/img/icons/search.png" alt="search" id="icon-search">
             <div class="search-bar">
-                <input type="text" name="search-input" id="search-input">
+                <input type="text" name="search-input" id="search-input" autocomplete="off">
             </div>
         </div>
         <div>
@@ -25,7 +25,7 @@
             <?php endif; ?>
         </div>
         <div>
-            <a href=""><img src="assets/img/icons/cart.png" alt="cart"></a>
+            <a href="index.php?controller=cart&action=list"><img src="assets/img/icons/cart.png" alt="cart"></a>
         </div>
     </div>
     <div class="burger">

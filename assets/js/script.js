@@ -9,6 +9,7 @@ const searchInput = document.getElementById('search-input')
 let burgerChecked = 0
 let searchBarOpened = 0
 let pageContent = document.querySelector(".main-content")
+let divAlreadyHere = 0
 
 //FONCTIONS 
 const createModal = (text, color, parent) => {
@@ -27,10 +28,14 @@ const createModal = (text, color, parent) => {
     parent.insertBefore(modal, null) 
 }
 
+
 const createResultDiv = (resultArray) => {
+    if(document.querySelector('.search-results') != null){
+        document.querySelector('.search-results').remove()
+    }
     let div = document.createElement('div')
     div.className = "search-results"
-    for (let i = 0; resultArray.length >= 5 ? i < 5 : i < resultArray.length; i++) {
+    for ( let i = 0; resultArray.length >= 5 ? i < 5 : i < resultArray.length; i++) {
         let product = resultArray[i];
         let link = document.createElement('a')
         let id = product.id
@@ -39,13 +44,11 @@ const createResultDiv = (resultArray) => {
         div.appendChild(link)
     }
     searchDiv.insertBefore(div, searchDiv.nextElementSibling)
-    console.log(div)
 }
 
 const getParameterByName = (name) => {
     let url = new URL(document.URL);
     let parameter = url.searchParams.get(name)
-    console.log(parameter)
     return parameter
 }
 
@@ -57,10 +60,8 @@ searchBar.addEventListener('click', () => {
     if (searchBarOpened == 0) {
         searchDiv.style.display = 'block'
         searchBarOpened ++
-        console.log(searchInput.value)
         fetch('index.php?controller=products&action=list', {
-            method: 'POST',
-            //body : JSON.stringify(searchInput.value)
+            method: 'POST'
         })
         .then(res => res.json())
         .then(json => {
@@ -68,34 +69,41 @@ searchBar.addEventListener('click', () => {
                 productsArray.push(element)
             });
             productsArray.sort()
-            console.log(productsArray)
         })
-        searchInput.addEventListener('keydown', () => {
-                results = []
-                productsArray.filter( el => {
-                    if (el.name.startsWith(searchInput.value) || el.name.toLowerCase().startsWith(searchInput.value)) {
-                        results.push(el)
-                    }
-                })
-                if (document.querySelector('.search-results') != null) {
-                    document.querySelector('.search-results').remove()
-                }
-                createResultDiv(results)
+        searchInput.addEventListener('keyup', () => {
+            displayDivResult()
         })
         searchInput.addEventListener('focusout', () => {
-            document.querySelector('.search-results').remove()
+            document.querySelector('.search-results').style.display = 'none'
         })
+        searchInput.addEventListener('focusin', () => {
+            if(document.querySelector('.search-results') != null){
+                document.querySelector('.search-results').style.display = 'flex'
+            }
+            else{
+                displayDivResult()
+            }
+        } )
 
     } else {
         searchDiv.style.display = 'none'
-        /* // Ne fonctionne pas pour arrêter le setInterval
-        clearInterval(arraySorting) */
         searchBarOpened --
     }
     
 })
 
-
+const displayDivResult = () => {
+    results = []
+    productsArray.filter( el => {
+        if (el.name.startsWith(searchInput.value) || el.name.toLowerCase().startsWith(searchInput.value)) {
+            results.push(el)
+        }
+    })
+    if (document.querySelector('.search-results') != null) {
+        document.querySelector('.search-results').style.display = 'none'
+    }
+    createResultDiv(results)
+}
 
 
 

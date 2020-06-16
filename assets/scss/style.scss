@@ -649,6 +649,24 @@ input[type="submit"]{
 }
 
 
+.cart-list{
+    max-width:100vw;
+    #cart-table{
+        width:40%;
+        margin:auto;
+        tbody td:first-child{
+            width:20%;
+        }
+        tbody td:nth-child(2){
+            width:80%;
+            background-color: red;
+        }
+        .cart-img{
+            width:100%;
+        }
+    }
+}
+
 
 .alert-modal {
     max-width:500px;

@@ -708,6 +708,24 @@ input[type=submit] {
   padding: 15px;
 }
 
+.cart-list {
+  max-width: 100vw;
+}
+.cart-list #cart-table {
+  width: 40%;
+  margin: auto;
+}
+.cart-list #cart-table tbody td:first-child {
+  width: 20%;
+}
+.cart-list #cart-table tbody td:nth-child(2) {
+  width: 80%;
+  background-color: red;
+}
+.cart-list #cart-table .cart-img {
+  width: 100%;
+}
+
 .alert-modal {
   max-width: 500px;
   max-height: 200px;

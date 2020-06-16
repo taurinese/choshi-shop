@@ -5,6 +5,7 @@ if(!isset($_GET['action'])){
     exit();
 }
 else {
+    require 'models/Product.php';
     switch ($_GET['action']) {
         case 'add':
             $encodedData = file_get_contents("php://input");
@@ -29,7 +30,9 @@ else {
             # code...
             break;
         case 'list':
-            # code...
+            $cartProducts = getProductsForCart($_SESSION['cart']);
+            $view['content'] = 'views/cartList.php';
+            $view['title'] = 'Panier';
             break;
                     
         default:
