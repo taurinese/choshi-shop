@@ -18,6 +18,9 @@
                 <i class="fas fa-caret-up"></i>
                 <div class="account-submenu">
                     <ul>
+                        <?php if($_SESSION['user']['is_admin'] == 1 ): ?>
+                            <li><a href="admin/">Administration</a></li>
+                        <?php endif; ?>
                         <li><a href="index.php?controller=users&action=display">Mon compte</a></li>
                         <li><a href="index.php?controller=users&action=disconnect">Se déconnecter</a></li>
                     </ul>

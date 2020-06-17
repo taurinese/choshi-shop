@@ -33,7 +33,10 @@ function addProduct($informations)
 
 	if($result && !empty($_FILES['main_image']['tmp_name'])){
 		$result = updateProductImg(false, $productId);
-    }
+	}
+	if($result && !empty($_FILES['images']['tmp_name'])){
+		$result = addMultipleProductImg($productId);
+	}
     return $result;
 
 }
@@ -69,6 +72,9 @@ function updateProduct($id, $informations)
 	if($result) $result = deleteProductCategories($id);
 	if($result) $result = addProductCategories($id, $informations['categories']); // ici
 	if($result && !empty($_FILES['image']['tmp_name'])) $result = updateProductImg(true, $id);
+	if($result && !empty($_FILES['images']['tmp_name'])){
+		$result = addMultipleProductImg($id);
+	}
 	return $result;
 }
 
@@ -109,6 +115,43 @@ function updateProductImg($fileMayExists = true, $productId)
 	return false;
 	
 }
+
+function addMultipleProductImg($productId)
+{
+	$db = dbConnect();
+	$queryString = 'INSERT INTO images_products (product_id, image) VALUES ';
+	$queryValues = array();
+	/* $query = $db->prepare('SELECT COUNT(*) AS total FROM images_products WHERE product_id = ?');
+	$query->execute([ $productId ]);
+	$result = $query->fetchAll(); */
+	$allowed_extensions = array( 'jpg' , 'jpeg' , 'gif', 'png', 'jfif' );
+	foreach ($_FILES['images']['name'] as $key => $image) {
+		$my_file_extension = pathinfo( $image, PATHINFO_EXTENSION);
+		if (in_array($my_file_extension , $allowed_extensions)){
+			$new_file_name = $productId . '_' . $key . '.' . $my_file_extension ;
+			$destination = '../assets/img/products/alt/' . $new_file_name;
+			$result = move_uploaded_file( $_FILES['images']['tmp_name'][$key], $destination);
+			if($result){
+				$queryString .= "( :product_id_$key , :image_$key )" ;
+				if($key !== array_key_last($_FILES['images']['name'])) $queryString .= ',';
+				$queryValues["product_id_$key"]= intval($productId);
+				$queryValues["image_$key"] = $new_file_name;
+			}
+			
+		}
+	}
+/* 	var_dump($queryString);
+	echo(' ');
+	var_dump($queryValues);
+	die(); */
+	$query = $db->prepare($queryString);
+	$result = $query->execute(
+		$queryValues
+	);
+	return $result;
+	
+}
+
 
 function productImageExist($id)
 {
