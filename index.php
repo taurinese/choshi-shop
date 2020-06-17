@@ -27,6 +27,9 @@ if(isset($_GET['controller'])){
         case 'cart':
             require 'controllers/cartController.php';
             break;
+        case 'orders':
+            require 'controllers/orderController.php';
+            break;
         default :
             require 'controllers/homeController.php';
     }

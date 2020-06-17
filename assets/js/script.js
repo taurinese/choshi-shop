@@ -88,6 +88,7 @@ searchBar.addEventListener('click', () => {
 
     } else {
         searchDiv.style.display = 'none'
+        body.style.display = 'block'
         searchBarOpened --
     }
     
@@ -191,14 +192,20 @@ if(getParameterByName('controller') == 'users' && getParameterByName('action') =
 if (getParameterByName('controller') == "users" && getParameterByName('action') == 'display') {
     console.log('Bonne page')
     const userSelectBtn = document.querySelector('.select-btn')
+    const userDataList = document.querySelector('.user-data')
     const editUserForm = document.getElementById('edit-user-form')
+    const orderUserList = document.querySelector('.user-orders')
     let isChecked = 0
     userSelectBtn.addEventListener('click', () => {
         if (isChecked == 0) {
             userSelectBtn.classList = "select-btn checked"
+            orderUserList.style.display = 'block'
+            userDataList.style.display = 'none'
             isChecked ++
         } else {
             userSelectBtn.classList = "select-btn unchecked"
+            orderUserList.style.display = 'none'
+            userDataList.style.display = 'flex'
             isChecked --
         }
     })
@@ -265,4 +272,9 @@ if (getParameterByName('controller') == 'products') {
                 }
     })
 
+}
+
+//Cart list
+if (getParameterByName('controller') == 'cart' && getParameterByName('action') == 'list') {
+    
 }

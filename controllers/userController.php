@@ -3,6 +3,7 @@
 if(isset($_GET['action'])){
 
     require 'models/User.php';
+    require 'models/Order.php';
     switch ($_GET['action']) {
         case 'form':
             $view['content'] = 'views/userForm.php';
@@ -50,6 +51,9 @@ if(isset($_GET['action'])){
 
         case 'display':
             $user = getUser($_SESSION['user']['id']);
+            $orders = getOrdersByUserId($_SESSION['user']['id']);
+            /* print_r($orders);
+            die(); */
             $view['content'] = 'views/userDisplay.php';
             $view['title'] = "Compte utilisateur";
             break;

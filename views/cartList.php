@@ -79,8 +79,11 @@
             </tr>
             </tbody>
         </table>
-        <button type="submit" id="cart-add">
-            Valider mon panier
-        </button>
+        <a href="index.php?controller=orders&action=add">
+            <button id="cart-add">
+                Valider mon panier
+            </button>
+        </a>
+        
     </div>
 </div>

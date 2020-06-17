@@ -20,6 +20,29 @@
                 <input type="submit" value="Modifier">
             </form>
         </div>
+        <div class="user-orders">
+            
+            <table>
+                <tbody>
+                    <?php foreach($orders as $key => $order): ?>
+                        <tr>
+                            <td>
+                                #<?= $key +1 ?>
+                            </td>
+                            <td>
+                                <?= $order['date'] ?>
+                            </td>
+                            <td>
+                                <?= $order['total'] ?>€
+                            </td>
+                            <td>
+                                <a href=""><i class="fas fa-external-link-alt"></i></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            
+        </div>
     </div>
 </div>
-<?php var_dump($_SESSION) ?>
