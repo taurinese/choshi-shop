@@ -3,9 +3,9 @@
         <aside class="product-img">
             <div class="alternate-images">
                 <img src="assets/img/products/<?= $selectedProduct['main_image'] ?>" alt="<?= $selectedProduct['name'] ?>">
-                <?php /* foreach($selectedProduct['images'] as $altImg): ?>
-                    <img src="assets/img/products_alt/<?= $altImg['image'] ?>" alt="<?= $selectedProduct['name'] ?>">
-                <?php endforeach; */ ?>
+                <?php foreach($images as $altImg): ?>
+                    <img src="assets/img/products/alt/<?= $altImg ?>" alt="<?= $selectedProduct['name'] ?>">
+                <?php endforeach; ?>
             </div>
             <div class="main-img">
                 <img src="assets/img/products/<?= $selectedProduct['main_image'] ?>" alt="<?= $selectedProduct['name'] ?>">

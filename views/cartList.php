@@ -37,7 +37,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="qtt-buttons"><span>Quantité : </span><button id="decrement-qtt">-</button><input type="number" name="product-quantity" id="product-quantity" value="<?= $_SESSION['cart'][$index]['quantity'] ?>" min="0" max="<?= $cartProduct['quantity'] ?>"><button id="increment-qtt">+</button></div>
+                            <div class="qtt-buttons"><span>Quantité : </span><button id="decrement-qtt">-</button><input type="number" name="product-quantity" id="product-quantity" value="<?php foreach($_SESSION['cart'] as $cart_product): ?><?php if($cartProduct['id'] == $cart_product['product_id']): ?><?= $cart_product['quantity'] ?><?php endif; ?><?php endforeach; ?>" min="0" max="<?= $cartProduct['quantity'] ?>"><button id="increment-qtt">+</button></div>
                                 </td>
                             </tr>
                         </table>
@@ -62,7 +62,7 @@
                 <tr>
                     <td class="table-row-flex">
                         <span><?= $cartProduct['name'] ?></span>
-                        <span><?= $_SESSION['cart'][$key]['quantity'] ?> x <?= $cartProduct['price'] ?>€</span>
+                        <span><?php foreach($_SESSION['cart'] as $cart_product): ?><?php if($cartProduct['id'] == $cart_product['product_id']): ?><?= $cart_product['quantity'] ?><?php endif; ?><?php endforeach; ?> x <?= $cartProduct['price'] ?>€</span>
                     </td>
                 </tr>
             <?php endforeach; ?>

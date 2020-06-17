@@ -249,6 +249,7 @@ if (getParameterByName('controller') == 'products') {
     })
     addToCart.addEventListener('click', (e) => {
         e.preventDefault()
+        const productDiv = document.querySelector('.product-row')
         console.log(quantityInput.value)
         fetch('index.php?controller=cart&action=add', {
             method: "post",
@@ -258,6 +259,10 @@ if (getParameterByName('controller') == 'products') {
         .then(json => {
             console.log(json)
         })
+        createModal('Produit(s) ajouté(s) au panier!',"#00B894", productDiv)
+                document.querySelector('.close-button').onclick = () => {
+                    document.querySelector('.alert-modal').remove()
+                }
     })
 
 }
