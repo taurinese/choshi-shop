@@ -2,13 +2,15 @@
     <div class="product-row">
         <aside class="product-img">
             <div class="alternate-images">
-                <img src="assets/img/products/<?= $selectedProduct['main_image'] ?>" alt="<?= $selectedProduct['name'] ?>">
-                <?php foreach($images as $altImg): ?>
-                    <img src="assets/img/products/alt/<?= $altImg ?>" alt="<?= $selectedProduct['name'] ?>">
-                <?php endforeach; ?>
+                <img src="assets/img/products/<?= $selectedProduct['main_image'] ?>" alt="<?= $selectedProduct['name'] ?>" class="alt-img">
+                <?php if(!empty($images)): ?>
+                    <?php foreach($images as $altImg): ?>
+                        <img src="assets/img/products/alt/<?= $altImg ?>" alt="<?= $selectedProduct['name'] ?>" class="alt-img">
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
             <div class="main-img">
-                <img src="assets/img/products/<?= $selectedProduct['main_image'] ?>" alt="<?= $selectedProduct['name'] ?>">
+                <img src="assets/img/products/<?= $selectedProduct['main_image'] ?>" alt="<?= $selectedProduct['name'] ?>" id="current-img">
             </div>
         </aside>
         <aside class="product-desc">

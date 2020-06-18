@@ -14,6 +14,10 @@ if(!isset($_GET['id'])){
 }
 $selectedProduct = getProducts($_GET['id']);
 $images = array();
-$images = explode(',', $selectedProduct['images']);
+if(!empty($selectedProduct['images'])){    
+    $images = explode(',', $selectedProduct['images']);
+}
+/* var_dump($images);
+die(); */
 $view['content'] = 'views/productView.php';
 $view['title'] = $selectedProduct['name'];

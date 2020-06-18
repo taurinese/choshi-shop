@@ -236,6 +236,12 @@ if (getParameterByName('controller') == "users" && getParameterByName('action') 
 }
 
 //Product page
+
+function changeImage(previous,next){
+    let newImg = next.getAttribute("src")
+    previous.setAttribute("src", newImg)
+}
+
 if (getParameterByName('controller') == 'products') {
     const quantityInput = document.getElementById('product-quantity')
     const quantityMaxVal = parseInt(quantityInput.max)
@@ -271,6 +277,13 @@ if (getParameterByName('controller') == 'products') {
                     document.querySelector('.alert-modal').remove()
                 }
     })
+    if(document.querySelectorAll('.alt-img') != null){
+        document.querySelectorAll('.alt-img').forEach((img) => {
+            img.addEventListener('click', () => {
+                changeImage(document.getElementById('current-img'), img)
+            })
+        })
+    }
 
 }
 
