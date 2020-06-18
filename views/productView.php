@@ -48,20 +48,35 @@
                 </div>
                 <?php endforeach; ?>
                 <div class="rate-review">
-                    <aside>
-                        <h5><?= $_SESSION['user']['first_name'] ?></h5>
-                        <span><?= date_create()->format('d-m-Y H:i:s') ?></span>
-                    </aside>
-                    <div>
-                        <form method="post" action="index.php?controller=rates&action=add&id=<?= $_GET['id'] ?>">
-                            <div>
-                                <input type="text" name="product-rate" id="product-rate"> /5
-                            </div>
-                        
-                            <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
-                            <input type="submit" id="rate-submit" value="Commenter">
-                        </form>
-                    </div>
+                    <?php if(isset($_SESSION['user']) && $alreadyRated == 0): ?>
+                        <aside>
+                            <h5><?= $_SESSION['user']['first_name'] ?></h5>
+                            <span><?= date_create()->format('d-m-Y H:i:s') ?></span>
+                        </aside>
+                        <div>
+                            <form method="post" action="index.php?controller=rates&action=add&id=<?= $_GET['id'] ?>">
+                                <div>
+                                    <input type="text" name="product-rate" id="product-rate"> /5
+                                </div>
+                            
+                                <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                                <input type="submit" id="rate-submit" value="Commenter">
+                            </form>
+                        </div>
+                    <?php elseif($alreadyRated == 1): ?>
+                        <div class="isnt-logged">
+                            <h3>
+                                Vous ne pouvez pas publier plus d'un avis pour un seul produit!
+                            </h3>
+                        </div>
+                    <?php else: ?>
+                        <div class="isnt-logged">
+                            <h3>
+                                Veuillez vous connecter pour publier un avis!
+                            </h3>
+                            <img src="assets/img/lock.svg" alt="Verrou">
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

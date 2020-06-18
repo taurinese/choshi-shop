@@ -13,6 +13,10 @@ if(!isset($_GET['id'])){
     exit();
 }
 $selectedProduct = getProducts($_GET['id']);
+$alreadyRated = 0;
+if(isset($_SESSION['user'])){
+    $alreadyRated = empty(getRateByUserId($_SESSION['user']['id'], $_GET['id'])) ? 0 : 1;
+}
 $images = array();
 if(!empty($selectedProduct['images'])){    
     $images = explode(',', $selectedProduct['images']);

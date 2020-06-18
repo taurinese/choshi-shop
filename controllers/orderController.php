@@ -25,7 +25,11 @@ switch ($_GET['action']) {
         break;
 
     case 'list':
-        # code...
+        $orderDetails = getOrderDetails($_GET['id']);
+/*         var_dump($orderDetails);
+        die(); */
+        $view['content'] = 'views/orderDetails.php';
+        $view['title'] = "Détails commande";
         break;
     
     default:

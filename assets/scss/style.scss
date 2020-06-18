@@ -837,6 +837,26 @@ input[type="submit"]{
     }
 }
 
+/* .order-details{
+    #cart-table{
+        @include flex(row wrap, center, center);
+        thead tr{
+            width:100%;
+        }
+    }
+} */
+
+.isnt-logged{
+    @include flex(column wrap, center, center);
+    width:100% !important;
+    border-left:none !important;
+    h3{
+        margin: 0 auto 25px auto;
+    }
+    img{
+        width:10%;
+    }
+}
 
 .alert-modal {
     max-width:500px;

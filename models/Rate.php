@@ -22,3 +22,14 @@ function getRatesByProductId($productId)
     return $query->fetchAll();
 
 }
+
+function getRateByUserId($userId, $productId)
+{
+    $db = dbConnect();
+    $query = $db->prepare('SELECT * FROM products_rates WHERE product_id = ? AND user_id = ?');
+    $query->execute([
+        $productId,
+        $userId
+    ]);
+    return $query->fetch();
+}

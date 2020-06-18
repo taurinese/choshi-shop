@@ -36,7 +36,7 @@
                                 <?= $order['total'] ?>€
                             </td>
                             <td>
-                                <a href=""><i class="fas fa-external-link-alt"></i></a>
+                                <a href="index.php?controller=orders&action=list&id=<?= $order['id'] ?>"><i class="fas fa-external-link-alt"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
