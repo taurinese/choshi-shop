@@ -40,14 +40,16 @@ else {
             break;
         case 'list':
             listCase:
-            $cartProducts = getProductsForCart($_SESSION['cart']);
-            /* var_dump($cartProducts);
-            die(); */
-            $total = 0;
-            foreach($cartProducts as $key => $cartProduct){
-                foreach ($_SESSION['cart'] as $key => $cart_product) {
-                    if($cartProduct['id'] == $cart_product['product_id']){
-                        $total += $cartProduct['price'] * $cart_product['quantity'];
+            if(!empty($_SESSION['cart'])){
+                $cartProducts = getProductsForCart($_SESSION['cart']);
+                /* var_dump($cartProducts);
+                die(); */
+                $total = 0;
+                foreach($cartProducts as $key => $cartProduct){
+                    foreach ($_SESSION['cart'] as $key => $cart_product) {
+                        if($cartProduct['id'] == $cart_product['product_id']){
+                            $total += $cartProduct['price'] * $cart_product['quantity'];
+                        }
                     }
                 }
             }

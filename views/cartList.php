@@ -1,4 +1,5 @@
 <div class="cart-list">
+    <?php if (isset($cartProducts)): ?>
     <table id="cart-table">
         <thead>
             <tr>
@@ -84,6 +85,10 @@
                 Valider mon panier
             </button>
         </a>
-        
+        <?php else: ?>
+        <div class="cart-message">
+            <h4> Votre panier est vide ! </h4>
+        </div>
+        <?php endif; ?>
     </div>
 </div>

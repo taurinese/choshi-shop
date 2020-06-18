@@ -755,6 +755,13 @@ input[type=submit] {
   justify-content: space-between;
   align-items: center;
 }
+.cart-list .cart-message {
+  background-color: #00B894;
+  color: white;
+  padding: 50px;
+  font-size: 30px;
+  border-radius: 25px;
+}
 .cart-list #cart-recap {
   background-color: white;
   border: 2px solid lightgrey;
