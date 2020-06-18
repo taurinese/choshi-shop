@@ -10,11 +10,21 @@ else {
         case 'add':
             $encodedData = file_get_contents("php://input");
             $product = json_decode($encodedData, true);
+            $productAdded = false;
             if(isset($product['product_id']) && isset($product['quantity'])){
-                $_SESSION['cart'][] = [
-                    'product_id' => $product['product_id'],
-                    'quantity' => $product['quantity']
-                ];
+                foreach($_SESSION['cart'] as $key => $cartProduct){
+                    if($cartProduct['product_id'] == $product['product_id']){
+                        $previousQuantity = intval($cartProduct['quantity']);
+                        $_SESSION['cart'][$key]['quantity'] = $previousQuantity + intval($product['quantity']);
+                        $productAdded = true;
+                    }
+                }
+                if($productAdded == false){
+                    $_SESSION['cart'][] = [
+                        'product_id' => $product['product_id'],
+                        'quantity' => $product['quantity']
+                    ];
+                }
                 echo json_encode(['success' => true]);
                 exit();
             }

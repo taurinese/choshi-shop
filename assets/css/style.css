@@ -638,7 +638,8 @@ input[type=submit] {
 }
 .product-content .product-row .product-img .alternate-images img {
   width: 20%;
-  margin-right: 20px;
+  /* margin-right:20px; */
+  margin: 20px 20px 0 20px;
   box-shadow: 0px 1px 10px grey;
   cursor: pointer;
 }
