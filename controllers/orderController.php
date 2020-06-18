@@ -13,7 +13,10 @@ switch ($_GET['action']) {
             if($order['result']){
                 $result = addOrderProducts($cartProducts, $order['order_id']);
                 if($result){
-                    unset($_SESSION['cart']);
+                    $result = updateProductQuantity($_SESSION['cart']);
+                    if($result){
+                        unset($_SESSION['cart']);
+                    }
                 }
             }
         }

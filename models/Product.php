@@ -64,3 +64,19 @@ function getProductsForCart($cart)
     $query = $db->query("SELECT p.* , l.license FROM products p LEFT JOIN licenses l ON l.id = p.license_id WHERE p.id IN ($queryArray)");
     return $query->fetchAll();
 }
+
+function updateProductQuantity($cart)
+{
+    $db = dbConnect();
+    foreach ($cart as $key => $product) {
+        $query = $db->prepare("UPDATE products SET quantity = quantity - ? WHERE id = ?");
+        $result = $query->execute([
+            $product['quantity'],
+            $product['product_id']
+        ]);
+        if(!$result){
+            exit();
+        }
+    }
+    return $result;
+}
