@@ -36,7 +36,11 @@ else {
             goto listCase;
             break;
         case 'update':
-            # code...
+            $encodedData = file_get_contents("php://input");
+            $json = json_decode($encodedData, true); 
+            $_SESSION['cart'][$json['id']]['quantity'] = $json['quantity'];
+            echo(json_encode('true'));
+            die();
             break;
         case 'list':
             listCase:

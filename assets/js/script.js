@@ -250,7 +250,7 @@ if (getParameterByName('controller') == 'products') {
     })
     decrementQuantity.addEventListener('click', (e) => {
         e.preventDefault()
-        if (quantityInput.value > 0) {
+        if (quantityInput.value > 1) {
             quantityInput.value --
         }
     })
@@ -276,5 +276,21 @@ if (getParameterByName('controller') == 'products') {
 
 //Cart list
 if (getParameterByName('controller') == 'cart' && getParameterByName('action') == 'list') {
-    
+    const inputs = document.querySelectorAll('input[type="number"]')
+    inputs.forEach((input) => {
+        input.addEventListener('keyup', (e) => {
+            if(e.keyCode == 13){
+                fetch('index.php?controller=cart&action=update',{
+                    method: "post",
+                    body : JSON.stringify({'quantity' : input.value, 'id': input.id})
+                })
+                .then(res => res.json())
+                .then(json => {
+                    if(json == 'true'){
+                        location.reload()
+                    }
+                })
+            }
+        })
+    })
 }

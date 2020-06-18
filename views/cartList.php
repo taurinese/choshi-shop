@@ -38,7 +38,7 @@
                             </tr>
                             <tr>
                                 <td>
-                            <div class="qtt-buttons"><span>Quantité : </span><button id="decrement-qtt">-</button><input type="number" name="product-quantity" id="product-quantity" value="<?php foreach($_SESSION['cart'] as $cart_product): ?><?php if($cartProduct['id'] == $cart_product['product_id']): ?><?= $cart_product['quantity'] ?><?php endif; ?><?php endforeach; ?>" min="0" max="<?= $cartProduct['quantity'] ?>"><button id="increment-qtt">+</button></div>
+                            <div class="qtt-buttons"><span>Quantité : </span><button id="decrement-qtt">-</button><input type="number" name="product-quantity" id="<?= $index ?>" value="<?php foreach($_SESSION['cart'] as $cart_product): ?><?php if($cartProduct['id'] == $cart_product['product_id']): ?><?= $cart_product['quantity'] ?><?php endif; ?><?php endforeach; ?>" min="0" max="<?= $cartProduct['quantity'] ?>"><button id="increment-qtt">+</button></div>
                                 </td>
                             </tr>
                         </table>
