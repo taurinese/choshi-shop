@@ -22,18 +22,18 @@ function getNewProducts()
     return $query->fetchAll();
 }
 
-/* function getPopularProducts()
+function getPopularProducts()
 {
     $db = dbConnect();
-    $query = $db->query('SELECT p.name, sum(od.quantity) AS total_quantity
+    $query = $db->query('SELECT p.*, sum(op.quantity) AS total_quantity
     FROM products p
-    JOIN order_details od ON p.id = od.product_id
+    JOIN orders_products op ON p.id = op.product_id
+    WHERE op.product_id IS NOT NULL
     GROUP BY p.id
     ORDER BY total_quantity DESC
-    LIMIT 3
-    WHERE od.product_id NOT NULL');
+    LIMIT 3');
     return $query->fetchAll();
-} */
+}
 function getProductsByCategoryId($categoryId)
 {
     $db = dbConnect();

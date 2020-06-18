@@ -262,6 +262,7 @@ if (getParameterByName('controller') == 'products') {
     const incrementQuantity = document.getElementById('increment-qtt')
     const decrementQuantity = document.getElementById('decrement-qtt')
     const addToCart = document.getElementById('add-cart')
+    const cartQuantity = document.getElementById('cart-qty')
     incrementQuantity.addEventListener('click', (e) => {
         e.preventDefault()
         if(quantityInput.value < quantityMaxVal ){
@@ -286,10 +287,12 @@ if (getParameterByName('controller') == 'products') {
         .then(json => {
             console.log(json)
         })
+        //Faire le cas où ça ne fonctionne pas
         createModal('Produit(s) ajouté(s) au panier!',"#00B894", productDiv)
-                document.querySelector('.close-button').onclick = () => {
-                    document.querySelector('.alert-modal').remove()
-                }
+        document.querySelector('.close-button').onclick = () => {
+            document.querySelector('.alert-modal').remove()
+        }
+        cartQuantity.innerHTML ++
     })
     if(document.querySelectorAll('.alt-img') != null){
         document.querySelectorAll('.alt-img').forEach((img) => {

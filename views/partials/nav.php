@@ -28,7 +28,7 @@
             <?php endif; ?>
         </div>
         <div>
-            <a href="index.php?controller=cart&action=list"><img src="assets/img/icons/cart.png" alt="cart"></a>
+            <a href="index.php?controller=cart&action=list"><span id="cart-qty"><?= count($_SESSION['cart']) ?></span><img src="assets/img/icons/cart.png" alt="cart"></a>
         </div>
     </div>
     <div class="burger">

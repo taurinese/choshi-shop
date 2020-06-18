@@ -1,8 +1,10 @@
 <div class="box-content">
-    <div class="box-surprise">
-        <img src="assets/img/box-choshi-adobexd.png" alt="Box surprise">
-        <h2>NOUVELLE BOX SURPRISE <br> DISPONIBLE DES MAINTENANT</h2>
-    </div>
+    <a href="index.php?controller=categories&id=6">
+        <div class="box-surprise">
+            <img src="assets/img/box-choshi-adobexd.png" alt="Box surprise">
+            <h2>NOUVELLE BOX SURPRISE <br> DISPONIBLE DES MAINTENANT</h2>
+        </div>
+    </a>
 </div>
 <div class="product-box popular">
     <div class="box-title">
@@ -19,7 +21,7 @@
         <p>Les produits les plus prisés du moment</p>
     </div>
     <div class="products">
-    <?php foreach($newProducts as $product): ?>
+    <?php foreach($popularProducts as $product): ?>
         <div class="flex-center">
             <a href="index.php?controller=products&id=<?= $product['id'] ?>">
                 <img src="assets/img/products/<?= $product['main_image'] ?>" alt="<?= $product['name'] ?>" class="img-products">
