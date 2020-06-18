@@ -53,7 +53,21 @@ const getParameterByName = (name) => {
     return parameter
 }
 
-
+// Messages de session
+if(document.querySelectorAll('.alert-modal') != null){
+    let closeBtns = document.querySelectorAll('.close-button')
+    console.log(closeBtns)
+    for(let [key, btn] of closeBtns.entries()){
+        btn.addEventListener('click', () => {
+            document.getElementById(key).style.display = 'none'
+        })
+    }
+/*     closeBtns.forEach((key, btn) => {
+        btn.addEventListener('click', () => {
+            document.getElementById(key).style.display = 'none'
+        })
+    }) */
+}
 
 searchBar.addEventListener('click', () => {
     console.log('search click')

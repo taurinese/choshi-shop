@@ -16,6 +16,15 @@
 	require ('views/partials/nav.php');
 ?>
 </div>
+<?php if(!empty($_SESSION['messages'])): ?>
+  <?php foreach($_SESSION['messages'] as $key => $message): ?>
+    <div class="alert-modal <?= $message['color'] ?>" id="<?= $key ?>">
+      <?= $message['message'] ?>
+      <button class="close-button"><i class="far fa-times-circle"></i></button>
+    </div>
+  <?php endforeach; ?>
+<?php endif; ?>
+
 
 <div class="main-content">
   <?php require $view['content'] ; ?>

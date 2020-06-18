@@ -19,21 +19,13 @@
             <h3>Description : </h3>
             <p><?= $selectedProduct['description'] ?></p>
             <h3>Licence : <?= $selectedProduct['license_name'] ?></h3>
-            <h3>Quantité : <button id="decrement-qtt">-</button><input type="number" name="product-quantity" id="product-quantity" value="0" min="0" max="<?= $selectedProduct['quantity'] ?>"><button id="increment-qtt">+</button></h3>
+            <h3>Quantité : <button id="decrement-qtt">-</button><input type="number" name="product-quantity" id="product-quantity" value="1" min="1" max="<?= $selectedProduct['quantity'] ?>"><button id="increment-qtt">+</button></h3>
             <button type="submit" id="add-cart">Ajouter au panier</button>
         </aside>
     </div>
     <div class="product-row rates">
         <h3>Avis</h3><br>
         <div class="rate-content">
-            <aside id="product-display">
-                <h4><?= $selectedProduct['name'] ?></h4>
-                <img src="assets/img/products/<?= $selectedProduct['main_image'] ?>" alt="<?= $selectedProduct['name'] ?>"><br>
-                <!-- Notes / 5 -->
-                <!-- Nb d'avis -->
-                <button>Donner mon avis</button><br>
-                <button>Voir tous les avis</button><br>
-            </aside>
             <div class="rates-views">
                 <div class="rate-review">
                     <aside>
@@ -41,17 +33,33 @@
                         <span>il y a x jours</span>
                     </aside>
                     <div>
-                        <div>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            5/5
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <span><?= '5' ?>/5</span>
                         </div>
                         <p>
                             Ce produit est vraiment super ! Quel produit incroyable wow !
                         </p>
+                    </div>
+                </div>
+
+                <div class="rate-review">
+                    <aside>
+                        <h5><?= $_SESSION['user']['first_name'] ?></h5>
+                        <span><?= strftime("%A %d %B %G", strtotime(time())) ?></span>
+                    </aside>
+                    <div>
+                        <form method="post" action="index.php?controller=rates&action=add&id=<?= $_GET['id'] ?>">
+                            <div>
+                            <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                            </div>
+                                <input type="text" name="product-rate" id="product-rate"> /5
+                            </div>
+                        
+                            <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                            <input type="submit" id="rate-submit" value="Commenter">
+                        </form>
                     </div>
                 </div>
             </div>

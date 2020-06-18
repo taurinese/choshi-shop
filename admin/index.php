@@ -2,8 +2,8 @@
 
 session_start();
 
-if(!$_SESSION['user']['is_admin']){
-    header('Location: /choshi/index.php');
+if(!isset($_SESSION['user']) || $_SESSION['user']['is_admin'] == '0'){
+    header('Location:../index.php');
     exit;
 } 
 

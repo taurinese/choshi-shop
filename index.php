@@ -1,5 +1,8 @@
 <?php
 
+//Pour afficher les dates en français sur le site
+setlocale(LC_TIME, "fr_FR", "French");
+
 session_start();
 
 if(!isset($_SESSION['cart'])){
@@ -30,6 +33,9 @@ if(isset($_GET['controller'])){
         case 'orders':
             require 'controllers/orderController.php';
             break;
+        case 'rates':
+            require 'controllers/rateController.php';
+            break;
         default :
             require 'controllers/homeController.php';
     }
@@ -40,6 +46,9 @@ else{
 
 require 'views/view.php';
 
+if(isset($_SESSION['messages'])){
+    unset($_SESSION['messages']);	
+}
 
 ?>	
 
