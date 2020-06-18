@@ -11,3 +11,14 @@ function addRate($productId, $userId, $informations)
         'content' => $informations['comment']
     ]);
 }
+
+function getRatesByProductId($productId)
+{
+    $db = dbConnect();
+    $query = $db->prepare('SELECT pr.*, u.first_name FROM products_rates pr INNER JOIN users u ON u.id = pr.user_id WHERE product_id = ?');
+    $query->execute([
+        $productId
+    ]);
+    return $query->fetchAll();
+
+}

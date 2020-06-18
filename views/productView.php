@@ -27,33 +27,34 @@
         <h3>Avis</h3><br>
         <div class="rate-content">
             <div class="rates-views">
+                <?php foreach($rates as $rate): ?>
                 <div class="rate-review">
                     <aside>
-                        <h5>Prénom</h5>
-                        <span>il y a x jours</span>
+                        <h5><?= $rate['first_name'] ?></h5>
+                        <span><?php $diff = date_diff($currentDate, date_create($rate['created_at']));
+                        echo $diff->format('il y a %d jours'); ?></span>
                     </aside>
                     <div>
                         <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <span><?= '5' ?>/5</span>
+                            <?php for($i = 0; $i < $rate['rate']; $i++ ): ?>
+                                <i class="fas fa-star"></i>
+                            <?php endfor; ?>
+                            <span><?= $rate['rate'] ?>/5</span>
                         </div>
                         <p>
-                            Ce produit est vraiment super ! Quel produit incroyable wow !
+                            <?= $rate['content'] ?>
                         </p>
                     </div>
                 </div>
-
+                <?php endforeach; ?>
                 <div class="rate-review">
                     <aside>
                         <h5><?= $_SESSION['user']['first_name'] ?></h5>
-                        <span><?= strftime("%A %d %B %G", strtotime(time())) ?></span>
+                        <span><?= date_create()->format('d-m-Y H:i:s') ?></span>
                     </aside>
                     <div>
                         <form method="post" action="index.php?controller=rates&action=add&id=<?= $_GET['id'] ?>">
                             <div>
-                            <div class="stars-outer">
-                                <div class="stars-inner"></div>
-                            </div>
                                 <input type="text" name="product-rate" id="product-rate"> /5
                             </div>
                         

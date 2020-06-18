@@ -1,7 +1,7 @@
 <?php
 
 require 'models/Product.php';
-
+require 'models/Rate.php';
 
 if(isset($_GET['action']) && $_GET['action'] == 'list'){
     $products = getProductsName();
@@ -17,6 +17,10 @@ $images = array();
 if(!empty($selectedProduct['images'])){    
     $images = explode(',', $selectedProduct['images']);
 }
+$rates = getRatesByProductId($_GET['id']);
+$currentDate = date_create();
+/* var_dump($rates);
+die(); */
 /* var_dump($images);
 die(); */
 $view['content'] = 'views/productView.php';
