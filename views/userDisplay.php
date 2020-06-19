@@ -27,10 +27,10 @@
                     <?php foreach($orders as $key => $order): ?>
                         <tr>
                             <td>
-                                #<?= $key +1 ?>
+                                <strong>#<?= $key +1 ?></strong>
                             </td>
                             <td>
-                                <?= $order['date'] ?>
+                                <?= $order['new_date'] ?>
                             </td>
                             <td>
                                 <?= $order['total'] ?>€
@@ -46,4 +46,3 @@
         </div>
     </div>
 </div>
-<?php var_dump($_SESSION); ?>

@@ -435,25 +435,15 @@ input[type="submit"]{
             border:2px solid lightgrey;
             outline:none;
         }
-        input[type=text], input[type=remail], input[type=password]{
-            padding-left:40px;
-            width: calc(100vw-40px);
+        input[type=text], input[type=email], input[type=password]{/* 
+            width: calc(100% - 40px); */
+            padding-left:5px;
+            width:100%;
         }
         input[type=submit]{
             width:100%;
         }
-        #first_name, #last_name{
-            background: no-repeat 10px/10% url("../img/icons/user_full.png");
-        }
-        #address{
-            background: no-repeat 10px/10% url("../img/icons/location.png");
-        }
-        #user-remail{
-            background: no-repeat 10px/10% url("../img/icons/mail.png");
-        }
-        #user-password{
-            background: no-repeat 10px/10% url("../img/icons/lock.png");
-        }
+
         a {
             font-size:0.625px;
             margin:auto;
@@ -538,7 +528,7 @@ input[type="submit"]{
         }
     }
     .profile-content{
-        width:60%;
+        max-width:60%;
         margin:auto;
         padding:50px;
         .user-data{
@@ -571,6 +561,10 @@ input[type="submit"]{
         background-color: #f7f7f7;
         padding:20px;
         border-radius:25px;
+        text-align: center;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
         table{
             width:100%;
             margin: 25px 0;
@@ -1246,7 +1240,54 @@ input[type="submit"]{
             width:80vw !important;
         }
     }
-    
+    .user-profile{
+        .profile-content{
+            max-width:80vw;
+            .user-data{
+                @include flex(row wrap, center, center);
+                form{
+                    padding:20px;
+                }
+            }
+            .user-orders{
+                min-width:60vw;
+            }
+        }
+        #profile-nav{
+            .profile-nav-container{
+                .select-btn{
+                    width:250px;
+                    font-size: 0.5 * $h3;
+                    &::before{
+                        left:10px;
+                    }
+                    &::after{
+                        right:10px;
+                    }
+                    span{
+                        width:100px;
+                        right:75px;
+                    }
+                }
+            }
+        }
+    }
+    @keyframes translateX-btn-in {
+        from{
+            transform:translateX(0);
+        }
+        to{
+            transform: translateX(150px);
+        }
+    }
+    @keyframes translateX-btn-out{
+        from{
+            transform:translateX(150px);
+        }
+        to{
+            transform: translateX(0);
+        }
+    }
 }
 
 @media (max-width:600px){
@@ -1270,6 +1311,17 @@ input[type="submit"]{
             tbody tr td:nth-child(2) table {
                 td{
                     font-size: 0.6 * $h3;
+                }
+            }
+        }
+    }
+    .user-profile{
+        .profile-content{
+            .user-orders{
+                width: 100%;
+                padding:15px;
+                table{
+                    margin:0;
                 }
             }
         }

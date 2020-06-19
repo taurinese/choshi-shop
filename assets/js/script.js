@@ -213,7 +213,7 @@ if (getParameterByName('controller') == "users" && getParameterByName('action') 
     userSelectBtn.addEventListener('click', () => {
         if (isChecked == 0) {
             userSelectBtn.classList = "select-btn checked"
-            orderUserList.style.display = 'block'
+            orderUserList.style.display = 'flex'
             userDataList.style.display = 'none'
             isChecked ++
         } else {

@@ -44,7 +44,7 @@ function getOrdersByUserId($userId)
     LEFT JOIN products p ON p.id = op.product_id 
     WHERE user_id = ?
     GROUP BY op.id'); */
-    $query = $db->prepare('SELECT o.*, SUM(op.price) AS total FROM orders o INNER JOIN orders_products op ON o.id = op.order_id WHERE user_id = ? GROUP BY o.id');
+    $query = $db->prepare('SELECT o.*, DATE_FORMAT(o.date, "%d/%m/%Y") AS new_date, SUM(op.price) AS total FROM orders o INNER JOIN orders_products op ON o.id = op.order_id WHERE user_id = ? GROUP BY o.id');
     $query->execute([ $userId ]);
     return $query->fetchAll();
 }

@@ -488,24 +488,14 @@ input[type=submit] {
   border: 2px solid lightgrey;
   outline: none;
 }
-#user-page #user-form input[type=text], #user-page #user-form input[type=remail], #user-page #user-form input[type=password] {
-  padding-left: 40px;
-  width: calc(100vw-40px);
+#user-page #user-form input[type=text], #user-page #user-form input[type=email], #user-page #user-form input[type=password] {
+  /* 
+  width: calc(100% - 40px); */
+  padding-left: 5px;
+  width: 100%;
 }
 #user-page #user-form input[type=submit] {
   width: 100%;
-}
-#user-page #user-form #first_name, #user-page #user-form #last_name {
-  background: no-repeat 10px/10% url("../img/icons/user_full.png");
-}
-#user-page #user-form #address {
-  background: no-repeat 10px/10% url("../img/icons/location.png");
-}
-#user-page #user-form #user-remail {
-  background: no-repeat 10px/10% url("../img/icons/mail.png");
-}
-#user-page #user-form #user-password {
-  background: no-repeat 10px/10% url("../img/icons/lock.png");
 }
 #user-page #user-form a {
   font-size: 0.625px;
@@ -585,7 +575,7 @@ input[type=submit] {
   animation: translateX-btn-out 0.75s ease-in-out;
 }
 .user-profile .profile-content {
-  width: 60%;
+  max-width: 60%;
   margin: auto;
   padding: 50px;
 }
@@ -619,6 +609,10 @@ input[type=submit] {
   background-color: #f7f7f7;
   padding: 20px;
   border-radius: 25px;
+  text-align: center;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
 }
 .user-profile .user-orders table {
   width: 100%;
@@ -1329,6 +1323,53 @@ input[type=submit] {
   .product-content .isnt-logged {
     width: 80vw !important;
   }
+
+  .user-profile .profile-content {
+    max-width: 80vw;
+  }
+  .user-profile .profile-content .user-data {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .user-profile .profile-content .user-data form {
+    padding: 20px;
+  }
+  .user-profile .profile-content .user-orders {
+    min-width: 60vw;
+  }
+  .user-profile #profile-nav .profile-nav-container .select-btn {
+    width: 250px;
+    font-size: 0.75rem;
+  }
+  .user-profile #profile-nav .profile-nav-container .select-btn::before {
+    left: 10px;
+  }
+  .user-profile #profile-nav .profile-nav-container .select-btn::after {
+    right: 10px;
+  }
+  .user-profile #profile-nav .profile-nav-container .select-btn span {
+    width: 100px;
+    right: 75px;
+  }
+
+  @keyframes translateX-btn-in {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(150px);
+    }
+  }
+  @keyframes translateX-btn-out {
+    from {
+      transform: translateX(150px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
 }
 @media (max-width: 600px) {
   h1 {
@@ -1353,6 +1394,14 @@ input[type=submit] {
 
   .cart-list #cart-table tbody tr td:nth-child(2) table td {
     font-size: 0.9rem;
+  }
+
+  .user-profile .profile-content .user-orders {
+    width: 100%;
+    padding: 15px;
+  }
+  .user-profile .profile-content .user-orders table {
+    margin: 0;
   }
 }
 @media (max-width: 550px) {
