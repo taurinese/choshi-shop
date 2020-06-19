@@ -51,6 +51,9 @@ h3{
 h5{
     font-size:$h5;
 }
+p {
+    font-size:$p;
+}
 // Balises HTML
 * {
     @extend %pm-0;
@@ -229,17 +232,9 @@ input[type="submit"]{
 .material-icons {
     font-size:2.5rem !important;
 }
-.flex-center {
-    box-shadow:0px 1px 10px grey;
-    background-color: white;
-    a{
-        @include flex(column wrap, center, center);
-        padding-top:1vh;
-    }
-}
 
 .flex-row-between {
-    @include flex(row nowrap, space-between, flex-center);
+    @include flex(row nowrap, space-between, center);
 }
 .flex-row {
     @include flex(row nowrap, space-evenly,center);
@@ -286,25 +281,25 @@ input[type="submit"]{
             background-color:#F7F7F7;
             box-shadow: 0px 1px 10px grey;
             /* height: 80%; */
-            max-height:80vh;
+            min-height:80vh;
             width:100%;
             @include flex(row wrap, space-evenly, center);
         
             img{
-                width:20%;
+                min-width:20%;
             }
         }
     }
 }
 
 .blue-square{
-    @include square(#74B9FF);
+    @include square(#74B9FF,30px);
 }
 .red-square {
-    @include square(#FF7675);
+    @include square(#FF7675,30px);
 }
 .green-square {
-    @include square(#00B894);
+    @include square(#00B894,30px);
 }
 
 .product-box {
@@ -316,9 +311,41 @@ input[type="submit"]{
         display:inline-block;
     }
     p {
-        font-size:1.875rem;
         font-weight: 300;
         margin-bottom:50px;
+    }
+    .products {
+        @include flex(row nowrap, space-evenly, center);
+        height:80vh;
+        .flex-center {
+            box-shadow:0px 1px 10px grey;
+            background-color: white;
+            height:100%;
+            flex-shrink: 0;
+            min-width:30%;
+            @include flex(row wrap, center, center);
+            a{
+                @include flex(column wrap, space-evenly, center);
+                //padding-top:1vh;
+                height:100%;
+                margin:0;
+                img{
+                    max-width:75%;
+                    min-width: 50%;
+                }
+            }
+        }
+        div {
+            width:20%;
+            text-align:center;
+            //box-shadow: 0px 1px 10px grey;
+        }
+        div h2 {
+            font-weight:400;
+        }
+        div p {
+            font-weight: 300;
+        }
     }
 }
 .box-title {
@@ -330,22 +357,7 @@ input[type="submit"]{
         @include flex(row nowrap, center, center);
     }
 }
-.products {
-    @include flex(row wrap, space-evenly, center);
-    
-    div {
-        width:20%;
-        text-align:center;
-        //box-shadow: 0px 1px 10px grey;
-    }
-    div h2 {
-        font-weight:400;
-    }
-    div p {
-        font-size:1.5rem;
-        font-weight: 300;
-    }
-}
+
 .category {
     width:100%;
     
@@ -357,7 +369,7 @@ input[type="submit"]{
     .category-content{
         width:100vw;
         min-height: 100vh;
-        align-itrems:flex-start;
+        align-items:flex-start;
         aside{
             width:20vw;
         }
@@ -384,7 +396,6 @@ input[type="submit"]{
                 margin-bottom:10px;
             }
             div p {
-                font-size:1.5rem;
                 font-weight: 300;
             }
         }
@@ -906,19 +917,36 @@ input[type="submit"]{
 
 
 .footer {
-    @include flex(column nowrap, center, space-evenly);
+    @include flex(row wrap, space-evenly, center);
     background-color: #272727;
     color:white;
-    width:100%;
-    //height:50%;
-    > div:first-child{
+    width:100vw;
+    min-height:40vh;
+    >div{
+        width:30%;
+        margin:2% 2%;
+        flex-grow: 0;
+        min-height: 15vh;
+        max-height:20vh;
+        @include flex(column nowrap, space-evenly, center);
+    }
+    >div  div:first-child{
         margin-top:30px;
+    }
+    .flex-row-between{
+        width:40%;
+    }
+    i {
+        font-size:26px;
+    }
+    p{
+        width:100%;
+        text-align: center;
     }
 }
 
 //Media queries
-
-@media (max-width : 1000px){
+@media (max-width:1200px){
     h1{
         font-size: 0.8 * $h1;
     }
@@ -931,6 +959,120 @@ input[type="submit"]{
     h5{
         font-size: 0.8 * $h5;
     }
+    p{
+        font-size: 0.8 * $p;
+    }
+    .blue-square{
+        @include square(#74B9FF,25px);
+    }
+    .red-square {
+        @include square(#FF7675,25px);
+    }
+    .green-square {
+        @include square(#00B894,25px);
+    }
+    .box-content{
+        a{
+            .box-surprise{
+                flex-flow: column wrap;
+                justify-content: center;
+                min-height:50vh;
+                h2{
+                    order:1;
+                }
+                img{
+                    order:2
+                }
+            }
+        }
+    }
+    .product-box{
+        .products{
+            width:80vw;
+            margin:auto;
+            padding-bottom:10px;
+            padding-top:5px;
+            overflow-x: scroll;
+            scroll-snap-type: x none;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            justify-content:end;
+            &::-webkit-scrollbar {
+                width: 10px;
+                height: 10px;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: black;
+                border-radius: 10px;
+            }
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            .flex-center{
+                box-shadow: none;
+                min-width: 90%;
+                min-height: 90%;
+                border-radius:10px;
+                //margin-right: 50px;
+                border-radius: 10px;
+                scroll-snap-align: start;
+                flex-shrink: 0;
+                &:nth-child(2){
+                    margin:0 10vh;
+                } 
+                a{
+                    width:90%;
+                    height:90%;
+                }
+            }
+            .flex-center:first-child{
+                margin-left:10%;
+            }
+        }
+    }   
+}
+
+
+
+@media (max-width : 1000px){
+    h1{
+        font-size: 0.6 * $h1;
+    }
+    h2{
+        font-size: 0.6 * $h2;
+    }
+    h3{
+        font-size: 0.6 * $h3;
+    }
+    h5{
+        font-size: 0.6 * $h5;
+    }
+    p{
+        font-size: 0.6 * $p;
+    }
+    .footer{
+        i {
+            font-size:20px;
+        }
+    }
+    .blue-square{
+        @include square(#74B9FF,20px);
+    }
+    .red-square {
+        @include square(#FF7675,20px);
+    }
+    .green-square {
+        @include square(#00B894,20px);
+    }
+    .product-box{
+        .products{
+            .flex-center{
+
+            }
+        }
+    }
+
+
 
     #nav-bar{
         .nav-container{
@@ -943,6 +1085,21 @@ input[type="submit"]{
 }
 
 @media (max-width : 800px){
+    h1{
+        font-size: 0.5 * $h1;
+    }
+    h2{
+        font-size: 0.5 * $h2;
+    }
+    h3{
+        font-size: 0.5 * $h3;
+    }
+    h5{
+        font-size: 0.5 * $h5;
+    }
+    p{
+        font-size: 0.5 * $p;
+    }
     #nav-bar{
         .nav-container{
             div:first-child{
@@ -998,4 +1155,40 @@ input[type="submit"]{
         }
     }
     
+}
+
+@media (max-width:600px){
+    h1{
+        font-size: 0.4 * $h1;
+    }
+    h2{
+        font-size: 0.4 * $h2;
+    }
+    h3{
+        font-size: 0.4 * $h3;
+    }
+    h5{
+        font-size: 0.4 * $h5;
+    }
+    p{
+        font-size: 0.4 * $p;
+    }
+}
+
+@media (max-width:400px){
+    h1{
+        font-size: 0.3 * $h1;
+    }
+    h2{
+        font-size: 0.3 * $h2;
+    }
+    h3{
+        font-size: 0.3 * $h3;
+    }
+    h5{
+        font-size: 0.3 * $h5;
+    }
+    p{
+        font-size: 0.3 * $p;
+    }
 }

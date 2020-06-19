@@ -11,9 +11,9 @@
     align-items: center;
 }
 
-@mixin square($color){
-    width:30px;
-    height:30px;
+@mixin square($color, $width){
+    width:$width;
+    height:$width;
     margin:10px;
     display:inline-block;
     background-color: $color;
