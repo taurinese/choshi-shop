@@ -377,11 +377,17 @@ input[type="submit"]{
 }
 .category-products{
     @include flex(row wrap, space-evenly, end);
+    border-left: 2px solid grey;
     width:80vw;
     a{
-        width:30%;
+        min-width:30%;
         .flex-center{
             margin-bottom:5vh;
+            margin-right:2vw;
+            text-align:center;
+            &:first-child{
+                margin-left:2vw;
+            }
             div {
                 width:100%;
                 text-align:center;
@@ -407,11 +413,21 @@ input[type="submit"]{
     width:100%;
 }
 .filters{
-    height:100vh;
+    min-height:100%;
     margin-left:25px;
-    border-right: 2px solid grey;
+     > h5:first-child{
+        margin-bottom:2vh;
+    }
+    ul {
+        list-style: none;
+        h5{
+            margin-bottom:1vh;
+        }
+    }
 }
-
+#filter-btn{
+    display:none;
+}
 //Login/register page
 #user-page {
     height:90vh;
@@ -1031,7 +1047,18 @@ input[type="submit"]{
                 margin-left:10%;
             }
         }
-    }   
+    }  
+     .category-products{
+         a{
+             max-width:50%;
+             min-width:none;
+             .flex-center{
+                 img{
+                     width:100%;
+                 }
+             }
+         }
+     }
 }
 
 
@@ -1325,6 +1352,28 @@ input[type="submit"]{
                 }
             }
         }
+    }
+    .category-content{
+        aside{
+            display:none;
+        }
+        .category-products{
+            width:90vw;
+            border-left: none;
+        }
+    }
+    #filter-btn{
+        display:block;
+        float:right;
+        margin-right:15px;
+        margin-bottom:15px;
+        padding:10px;
+        border-radius:15px;
+        background-color: white;
+        border:none;
+        box-shadow: 0px 1px 10px grey;
+        outline:none;
+        cursor:pointer;
     }
 }
 

@@ -12,6 +12,7 @@ function getCategories($categoryId = null)
         $query->execute([
             'id' => $categoryId
         ]);
+
         return $query->fetch();
     }
 }

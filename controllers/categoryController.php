@@ -5,7 +5,12 @@ if(!isset($_GET['id']) && $_GET['controller'] != 'categories'){
     exit();
 }
 require 'models/Product.php';
-$category_products = getProductsByCategoryId($_GET['id']);
+if(!isset($_GET['filter'])){
+    $category_products = getProductsByCategoryId($_GET['id']);
+}
+else{   
+    $category_products = getProductsByCategoryId($_GET['id'], $_GET['filter']);
+}    
 $currentCategory = getCategories($_GET['id']);
 /* var_dump($category);
 die(); */

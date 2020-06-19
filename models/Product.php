@@ -34,10 +34,28 @@ function getPopularProducts()
     LIMIT 3');
     return $query->fetchAll();
 }
-function getProductsByCategoryId($categoryId)
+function getProductsByCategoryId($categoryId,$categoryFilter = null)
 {
     $db = dbConnect();
-    $query = $db->prepare('SELECT p.* FROM products p INNER JOIN categories_products cp ON p.id = cp.product_id WHERE cp.category_id = ?');
+    $queryString = 'SELECT p.* FROM products p INNER JOIN categories_products cp ON p.id = cp.product_id WHERE cp.category_id = ? ';
+    
+    if($categoryFilter != null){
+        switch ($categoryFilter) {
+            case 'stock':
+                $queryString .= 'AND  p.quantity > 0';
+                break;
+            case 'price-asc':
+                $queryString .= 'ORDER BY p.price ASC';
+                break;
+            case 'price-desc':
+                $queryString .= 'ORDER BY p.price DESC';
+                break;
+            default:
+                break;
+        }
+    }
+    
+    $query = $db->prepare($queryString);
     $query->execute([
         $categoryId
     ]);

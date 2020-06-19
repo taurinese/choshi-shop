@@ -428,13 +428,19 @@ input[type=submit] {
   flex-flow: row wrap;
   justify-content: space-evenly;
   align-items: end;
+  border-left: 2px solid grey;
   width: 80vw;
 }
 .category-products a {
-  width: 30%;
+  min-width: 30%;
 }
 .category-products a .flex-center {
   margin-bottom: 5vh;
+  margin-right: 2vw;
+  text-align: center;
+}
+.category-products a .flex-center:first-child {
+  margin-left: 2vw;
 }
 .category-products a .flex-center div {
   width: 100%;
@@ -458,9 +464,21 @@ input[type=submit] {
 }
 
 .filters {
-  height: 100vh;
+  min-height: 100%;
   margin-left: 25px;
-  border-right: 2px solid grey;
+}
+.filters > h5:first-child {
+  margin-bottom: 2vh;
+}
+.filters ul {
+  list-style: none;
+}
+.filters ul h5 {
+  margin-bottom: 1vh;
+}
+
+#filter-btn {
+  display: none;
 }
 
 #user-page {
@@ -1113,6 +1131,14 @@ input[type=submit] {
   .product-box .products .flex-center:first-child {
     margin-left: 10%;
   }
+
+  .category-products a {
+    max-width: 50%;
+    min-width: none;
+  }
+  .category-products a .flex-center img {
+    width: 100%;
+  }
 }
 @media (max-width: 1000px) {
   h1 {
@@ -1402,6 +1428,28 @@ input[type=submit] {
   }
   .user-profile .profile-content .user-orders table {
     margin: 0;
+  }
+
+  .category-content aside {
+    display: none;
+  }
+  .category-content .category-products {
+    width: 90vw;
+    border-left: none;
+  }
+
+  #filter-btn {
+    display: block;
+    float: right;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: white;
+    border: none;
+    box-shadow: 0px 1px 10px grey;
+    outline: none;
+    cursor: pointer;
   }
 }
 @media (max-width: 550px) {
