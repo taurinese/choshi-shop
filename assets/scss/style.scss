@@ -760,7 +760,7 @@ input[type="submit"]{
 
 .cart-list{
     max-width:100vw;
-    height:90vh;
+    min-height:90vh;
     @include flex(row wrap, space-evenly, center);
     .table-row-flex{
         width:100%;
@@ -810,7 +810,7 @@ input[type="submit"]{
 
     }
     #cart-table{
-        width:40%;
+        min-width:30%;
         //margin:auto;
         border: 2px solid lightgrey;
         background-color: white;
@@ -1072,11 +1072,27 @@ input[type="submit"]{
     .green-square {
         @include square(#00B894,20px);
     }
-    .product-box{
-        .products{
-            .flex-center{
-
+    .cart-list{
+        flex-flow:column wrap;
+        #cart-table{
+            min-width:80vw;
+            max-width:90vw;
+            .cart-img{
+                min-width:100%;
             }
+            tbody tr td:first-child{
+                min-width:20%;
+            }
+            tbody tr td:nth-child(2) table {
+                min-width:80%;
+                td{
+                    font-size: 0.8 * $h3;
+                }
+            }
+        }
+        #cart-recap{
+            min-width:60%;
+            margin-bottom:10vh;
         }
     }
 
@@ -1107,6 +1123,22 @@ input[type="submit"]{
     }
     p{
         font-size: 0.8 * $p;
+    }
+    .cart-list{
+        #cart-table{
+            tbody tr td:nth-child(2) table {
+                td{
+                    font-size: 0.7 * $h3;
+                }
+            }
+            tbody tr td:first-child{
+                width:30%;
+            }
+            tbody tr td:nth-child(2){
+                padding:0;
+                max-width:60%;
+            }
+        }
     }
     #nav-bar{
         .nav-container{
@@ -1233,6 +1265,25 @@ input[type="submit"]{
     p{
         font-size: 0.6 * $p;
     }
+    .cart-list{
+        #cart-table{
+            tbody tr td:nth-child(2) table {
+                td{
+                    font-size: 0.6 * $h3;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:550px){
+    .cart-list{
+        #cart-table{
+            tbody tr td:first-child{
+                width:40%;
+            }
+        }
+    }
 }
 
 @media (max-width:400px){
@@ -1250,5 +1301,17 @@ input[type="submit"]{
     }
     p{
         font-size: 0.5 * $p;
+    }
+    .cart-list{
+        #cart-table{
+            tbody tr td:nth-child(2) table {
+                td{
+                    font-size: 0.5 * $h3;
+                }
+            }
+/*             tbody tr td:first-child{
+                width:40%;
+            } */
+        }
     }
 }
