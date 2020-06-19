@@ -39,5 +39,29 @@
                 </a>
             <?php endforeach; ?>
         </div>
+        <div class="burger-row">
+            <?php if(isset($_SESSION['user'])): ?>
+                <?php if($_SESSION['user']['is_admin'] == 1): ?>
+                    <a href="admin/" class="menu-category">
+                        <button class="admin-btn">Administration</button>
+                    </a>
+                <?php endif; ?>
+                <a href="index.php?controller=users&action=display" class="menu-category">
+                    <button class="user-btn">Mon compte</button>
+                </a>
+                <a href="index.php?controller=users&action=disconnect" class="menu-category">
+                    <button class="user-btn">Se déconnecter</button>
+                </a>
+            <?php else: ?>
+                <a href="index.php?controller=users&action=form&form=login" class="menu-category">
+                    <button class="user-btn">Se connecter / S'inscrire</button>
+                </a>
+            <?php endif; ?>
+            <?php foreach($categories as $category): ?>
+                <a href="index.php?controller=categories&id=<?= $category['id'] ?>" class="menu-category">
+                    <button class="category-btn"><?= $category['name'] ?></button>
+                </a>
+            <?php endforeach; ?>
+        </div>
     </div>
 </nav>

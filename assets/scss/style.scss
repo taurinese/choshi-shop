@@ -38,6 +38,19 @@
     }
 }
 
+//Font size
+h1{
+    font-size:$h1;
+}
+h2{
+    font-size:$h2;
+}
+h3{
+    font-size:$h3;
+}
+h5{
+    font-size:$h5;
+}
 // Balises HTML
 * {
     @extend %pm-0;
@@ -62,9 +75,15 @@ body{
         width:80vw;
         height: 100%;
         margin:auto;
-        #cart-qty{
-            font-weight:600;
-            color:darken($blue, 30%);
+         > div:last-child{
+            position:relative;
+            #cart-qty{
+                font-weight:600;
+                position:absolute;
+                color:darken($blue, 30%);
+                bottom:40px;
+                left:50%;
+            }
         }
         div:first-child{
             z-index:9999;
@@ -83,7 +102,7 @@ body{
                 width:30%;
                 height:40px;
                 margin:auto;
-                font-size:30px;
+                font-size:2rem;
                 outline:none;
             }
             .search-results{
@@ -110,7 +129,7 @@ body{
             margin:auto;
         }
         i {
-            font-size:40px;
+            font-size:2.5rem;
         }
         div{
             width:20%;
@@ -140,7 +159,7 @@ body{
                 padding: 10px 0;
                 .fa-caret-up{
                     display:block;
-                    font-size:40px;
+                    font-size:2.5rem;
                     position: absolute;
                     left:calc(50% - 25px / 2);
                     color:black;
@@ -190,7 +209,7 @@ input[type="submit"]{
     height:100vh;
     box-shadow: 0px 1px 10px grey;
     background-color: white;
-    .burger-row {
+    .burger-row:first-child {
         @include flex(row nowrap, space-evenly, center);
         height:100vh;
         .menu-category{
@@ -202,10 +221,13 @@ input[type="submit"]{
             }
         }
     }
+    .burger-row:last-child{
+        display:none;
+    }
 }
 //Class génériques
 .material-icons {
-    font-size:40px !important;
+    font-size:2.5rem !important;
 }
 .flex-center {
     box-shadow:0px 1px 10px grey;
@@ -237,14 +259,13 @@ input[type="submit"]{
         @include flex(column nowrap, space-evenly, center);
     }
     > div > h5 {
-        font-size:20px;
         font-weight:500;
     }
     > div i {
-        font-size:30px;
+        font-size:2rem;
     }
     .i-larger{
-        font-size:34px;
+        font-size:2.125rem;
     }
     .icons{
         margin:0px 15px;
@@ -253,7 +274,7 @@ input[type="submit"]{
 
 // id & class
 #logo-nav {
-    width:200px !important;
+    width:160px !important;
 }
 .box-content {
     @include flex-center(row wrap);
@@ -264,7 +285,8 @@ input[type="submit"]{
         .box-surprise {
             background-color:#F7F7F7;
             box-shadow: 0px 1px 10px grey;
-            height: 80%;
+            /* height: 80%; */
+            max-height:80vh;
             width:100%;
             @include flex(row wrap, space-evenly, center);
         
@@ -290,12 +312,11 @@ input[type="submit"]{
     width:100%;
     background-color: transparent;
     h1 {
-        font-size:60px;
         font-weight:400;
         display:inline-block;
     }
     p {
-        font-size:30px;
+        font-size:1.875rem;
         font-weight: 300;
         margin-bottom:50px;
     }
@@ -318,11 +339,10 @@ input[type="submit"]{
         //box-shadow: 0px 1px 10px grey;
     }
     div h2 {
-        font-size: 36px;
         font-weight:400;
     }
     div p {
-        font-size:24px;
+        font-size:1.5rem;
         font-weight: 300;
     }
 }
@@ -337,7 +357,7 @@ input[type="submit"]{
     .category-content{
         width:100vw;
         min-height: 100vh;
-        align-items:flex-start;
+        align-itrems:flex-start;
         aside{
             width:20vw;
         }
@@ -359,13 +379,12 @@ input[type="submit"]{
                 }
             }
             h3 {
-                font-size: 32px;
                 font-weight:400;
                 margin-top:10px;
                 margin-bottom:10px;
             }
             div p {
-                font-size:24px;
+                font-size:1.5rem;
                 font-weight: 300;
             }
         }
@@ -405,7 +424,7 @@ input[type="submit"]{
             border:2px solid lightgrey;
             outline:none;
         }
-        input[type=text], input[type=email], input[type=password]{
+        input[type=text], input[type=remail], input[type=password]{
             padding-left:40px;
             width: calc(100vw-40px);
         }
@@ -418,14 +437,14 @@ input[type="submit"]{
         #address{
             background: no-repeat 10px/10% url("../img/icons/location.png");
         }
-        #user-email{
+        #user-remail{
             background: no-repeat 10px/10% url("../img/icons/mail.png");
         }
         #user-password{
             background: no-repeat 10px/10% url("../img/icons/lock.png");
         }
         a {
-            font-size:10px;
+            font-size:0.625px;
             margin:auto;
             p {
                 text-align: right;
@@ -525,7 +544,7 @@ input[type="submit"]{
                     outline:none;
                     padding-left:10px;
                     color:black;
-                    font-size:15px;
+                    font-size:1rem;
                 }
                 input[type=submit]{
                     width:100%;
@@ -597,7 +616,7 @@ input[type="submit"]{
                 background-color: $green;
                 outline:none;
                 color:white;
-                font-size:24px;
+                font-size:1.5rem;
                 padding:10px;
                 border:none;
                 box-shadow:0px 7px 1px grey; 
@@ -607,7 +626,6 @@ input[type="submit"]{
                 }
             }
             h3{
-                font-size:25px;
                 margin-bottom:30px;
                 //Chrome, Safari, Edge, Opera
                 input::-webkit-outer-spin-button,
@@ -625,7 +643,7 @@ input[type="submit"]{
                 }
                 input[type=number], button {
                     text-align: center;
-                    font-size:15px;
+                    font-size:1rem;
                 }
                 button:nth-child(1){
                     margin-left:10px;
@@ -646,7 +664,7 @@ input[type="submit"]{
             }
             button[type=submit]{
                 width:30%;
-                font-size:20px;
+                font-size:1.25rem;
                 cursor:pointer;
             }
         }
@@ -692,7 +710,7 @@ input[type="submit"]{
                     }
                     #product-rate{
                         width:20px;
-                        font-size:16px;
+                        font-size:1rem;
                         text-align:center;
                         border-radius:5px;
                         border:1px solid grey;
@@ -701,7 +719,7 @@ input[type="submit"]{
                         width:100%;
                         height:100px;
                         resize: none;
-                        font-size:15px;
+                        font-size:1rem;
                         border-radius:5px;
                         border:1px solid grey;
                     }
@@ -734,7 +752,7 @@ input[type="submit"]{
         background-color: $green;
         color:white;
         padding:50px;
-        font-size:30px;
+        font-size:1.875rem;
         border-radius:25px;
     }
     #cart-recap{
@@ -750,7 +768,6 @@ input[type="submit"]{
                 }
             }
             h3{
-                font-size:20px;
                 font-weight:500;
                 text-align: center;
             }
@@ -762,7 +779,7 @@ input[type="submit"]{
             position:absolute;
             background-color: #00B894;
             color:white;
-            font-size:24px;
+            font-size:1.5rem;
             outline:none;
             border:none;
             cursor:pointer;
@@ -821,9 +838,9 @@ input[type="submit"]{
                         tr:first-child td{
                             width:100%;
                             @include flex(row nowrap, space-between, center);
-                            font-size:20px;
+                            font-size:1.375rem;
                             i{
-                                font-size:28px;
+                                font-size:1.875rem;
                             }
                         }
                     }
@@ -874,7 +891,7 @@ input[type="submit"]{
         position: absolute;
         right: 10px;
         top: 10px;
-        font-size: 20px;
+        font-size: 1.25rem;
         color:white;
         background-color: transparent;
         border:none;
@@ -897,4 +914,88 @@ input[type="submit"]{
     > div:first-child{
         margin-top:30px;
     }
+}
+
+//Media queries
+
+@media (max-width : 1000px){
+    h1{
+        font-size: 0.8 * $h1;
+    }
+    h2{
+        font-size: 0.8 * $h2;
+    }
+    h3{
+        font-size: 0.8 * $h3;
+    }
+    h5{
+        font-size: 0.8 * $h5;
+    }
+
+    #nav-bar{
+        .nav-container{
+            width: 90vw;
+        }
+        #logo-nav{
+            width:100% !important;
+        }
+    }
+}
+
+@media (max-width : 800px){
+    #nav-bar{
+        .nav-container{
+            div:first-child{
+                order:4;
+            }
+            div:nth-child(2){
+                order:2;
+            }
+            div:nth-child(3){
+                order:1;
+            }
+            div:nth-child(4){
+                display:none;
+            }
+            div:last-child{
+                order:3;
+                #cart-qty{
+                    bottom:100%;
+                }
+            }
+            img{
+                width:30%;
+            }
+        }
+    }
+    .burger{
+        .burger-row:first-child{
+            display:none;
+        }
+        .burger-row:last-child{
+            @include flex(column wrap, space-evenly, center);
+            height:100vh;
+            .menu-category{
+                width:40%;
+                cursor:pointer;
+                .category-btn, .user-btn, .admin-btn{
+                    padding:20px;
+                    border-radius: 25px;
+                    border:none;
+                    color:white;
+                    width:100%;
+                }
+                .category-btn{
+                    background-color: $blue;
+                }
+                .user-btn{
+                    background-color: $green;
+                }
+                .admin-btn{
+                    background-color: $red;
+                }
+            }
+        }
+    }
+    
 }
