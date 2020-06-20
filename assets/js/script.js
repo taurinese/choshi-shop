@@ -159,21 +159,23 @@ if(getParameterByName('controller') == 'users' && getParameterByName('action') =
             .then(res => res.json())          
             .then(json => {
                 if (json.is_logged_in == true) {
+                    modalMsg = ''
                     json.message.forEach((msg) => {
                         modalMsg += msg + '<br>'
                     })
                     createModal(modalMsg,"#00B894", userForm)
-                    document.querySelector('.close-button').onclick = () => {
+                    document.querySelector('.close-button').onmousedown = () => {
                         window.location.href = 'index.php';
                     }
                 }
                 else{
                     // Affichage d'un modal pour dire que l'utilisateur s'est trompé
+                    modalMsg = ''
                     json.message.forEach((msg) => {
                         modalMsg += msg + '<br>'
                     })
                     createModal(modalMsg,"#FF7675", userForm)
-                    document.querySelector('.close-button').onclick = () => {
+                    document.querySelector('.close-button').onmousedown = () => {
                         document.querySelector('.alert-modal').remove()
                     }
                 }
@@ -186,22 +188,24 @@ if(getParameterByName('controller') == 'users' && getParameterByName('action') =
             .then(res => res.json())          
             .then(json => {
                 if (json.is_created == true) {
+                    modalMsg = ''
                     json.message.forEach((msg) => {
                         modalMsg += msg + '<br>'
                     })
                     createModal(modalMsg,"#00B894", editUserForm)
-                    document.querySelector('.close-button').onclick = () => {
+                    document.querySelector('.close-button').onmousedown = () => {
                         document.querySelector('.alert-modal').remove()
                         window.location.href = 'index.php';
                     }
                 }
                 else{
                     // Affichage d'un modal pour dire que l'utilisateur s'est trompé
+                    modalMsg = ''
                     json.message.forEach((msg) => {
                         modalMsg += msg + '<br>'
                     })
                     createModal(modalMsg,"#FF7675", userForm)
-                    document.querySelector('.close-button').onclick = () => {
+                    document.querySelector('.close-button').onmousedown = () => {
                         document.querySelector('.alert-modal').remove()
                     }
                 }
@@ -244,14 +248,14 @@ if (getParameterByName('controller') == "users" && getParameterByName('action') 
         .then(json => {
             if (json.is_updated == true) {
                 createModal(json.message,"#00B894", editUserForm)
-                document.querySelector('.close-button').onclick = () => {
+                document.querySelector('.close-button').onmousedown = () => {
                     document.querySelector('.alert-modal').remove()
                 }
             }
             else{
                 // Affichage d'un modal pour dire que l'utilisateur s'est trompé
                     createModal(json.message,"#FF7675", editUserForm)
-                    document.querySelector('.close-button').onclick = () => {
+                    document.querySelector('.close-button').onmousedown = () => {
                         document.querySelector('.alert-modal').remove()
                     }
             }
@@ -302,14 +306,14 @@ if (getParameterByName('controller') == 'products') {
             .then(json => {
                 if(json.success == true){
                     createModal('Produit(s) ajouté(s) au panier!',"#00B894", productDiv)
-                    document.querySelector('.close-button').onclick = () => {
+                    document.querySelector('.close-button').onmousedown = () => {
                         document.querySelector('.alert-modal').remove()
                     }
                     cartQuantity.innerHTML ++
                 }
                 else{
                     createModal('Échec lors de l\'ajout au panier!',"#FF7675", productDiv)
-                    document.querySelector('.close-button').onclick = () => {
+                    document.querySelector('.close-button').onmousedown = () => {
                         document.querySelector('.alert-modal').remove()
                     }
                 }

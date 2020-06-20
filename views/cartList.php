@@ -91,4 +91,3 @@
         <?php endif; ?>
     </div>
 </div>
-<?php var_dump($_SESSION); ?>
