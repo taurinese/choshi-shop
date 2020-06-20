@@ -1,0 +1,1 @@
+<h3>Bienvenue dans le Back-office d'administration de Choshi!</h3>

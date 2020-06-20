@@ -15,10 +15,16 @@ switch ($_GET['action']) {
         break;
     
     case 'display':
-        $order = getOrderDetails($_GET['id']);
-        $total = 0;
-        $view['content'] = 'views/orderDisplay.php';
-        $view['title'] = 'Aperçu commande';
+        if(isset($_GET['id']) && is_numeric($_GET['id'])){
+            $order = getOrderDetails($_GET['id']);
+            $total = 0;
+            $view['content'] = 'views/orderDisplay.php';
+            $view['title'] = 'Aperçu commande';
+        }
+        else{
+            header('Location:index.php?controller=orders&action=list');
+            exit;
+        }
         break;
     
 

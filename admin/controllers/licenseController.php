@@ -15,34 +15,40 @@ switch ($_GET['action']) {
         break;
     
     case 'edit':
-        if(empty($_POST)){
-            if(!isset($_SESSION['old_inputs'])){
-                $license = getLicenses($_GET['id']);
-                if($license == false){
+        if(isset($_GET['id']) && is_numeric($_GET['id'])){
+            if(empty($_POST)){
+                if(!isset($_SESSION['old_inputs'])){
+                    $license = getLicenses($_GET['id']);
+                    if($license == false){
+                        header('Location:index.php?controller=licenses&action=list');
+                        exit;
+                    }
+                }
+                $view['content'] = 'views/licenseForm.php';
+                $view['title'] = 'Formulaire licence';
+            }
+            else{
+                if(empty($_POST['license'])){
+                    $_SESSION['messages'][] = 'Le champ "licence" est obligatoire !';
+    
+                    $_SESSION['old_inputs'] = $_POST;
+                    $_SESSION['alertSuccess'] = false;
+                    header('Location:index.php?controller=licenses&action=edit&id=' . $_GET['id']);
+                    exit;
+                }
+                else {
+                    $result = updateLicense($_GET['id'], $_POST);
+                    $_SESSION['messages'][] = $result ? 'Licence modifiée !' : "Erreur lors de la modification de la licence... :(";
+                    $_SESSION['alertSuccess'] = $result ? true : false;
                     header('Location:index.php?controller=licenses&action=list');
                     exit;
                 }
-            }
-            $view['content'] = 'views/licenseForm.php';
-            $view['title'] = 'Formulaire licence';
+            }   
         }
         else{
-            if(empty($_POST['license'])){
-                $_SESSION['messages'][] = 'Le champ "licence" est obligatoire !';
-
-                $_SESSION['old_inputs'] = $_POST;
-                $_SESSION['alertSuccess'] = false;
-                header('Location:index.php?controller=licenses&action=edit&id=' . $_GET['id']);
-                exit;
-            }
-            else {
-                $result = updateLicense($_GET['id'], $_POST);
-                $_SESSION['messages'][] = $result ? 'Licence modifiée !' : "Erreur lors de la modification de la licence... :(";
-                $_SESSION['alertSuccess'] = $result ? true : false;
-                header('Location:index.php?controller=licenses&action=list');
-                exit;
-            }
-        }   
+            header('Location:index.php?controller=licenses&action=list');
+            exit;
+        }
         break;
     case 'add':
         if(empty($_POST['license'])){
@@ -66,11 +72,17 @@ switch ($_GET['action']) {
         $view['title'] = 'Aperçu licence';
         break; 
     case 'delete':
-        $result = deleteLicense($_GET['id']);
-        $_SESSION['messages'][] = $result ? 'Licence supprimée !' : "Erreur lors de la suppression de la licence... :(";
-        $_SESSION['alertSuccess'] = $result ? true : false;
-        header('Location:index.php?controller=licenses&action=list');
-        exit;
+        if(isset($_GET['id']) && is_numeric($_GET['id'])){
+            $result = deleteLicense($_GET['id']);
+            $_SESSION['messages'][] = $result ? 'Licence supprimée !' : "Erreur lors de la suppression de la licence... :(";
+            $_SESSION['alertSuccess'] = $result ? true : false;
+            header('Location:index.php?controller=licenses&action=list');
+            exit;
+        }
+        else{
+            header('Location:index.php?controller=licenses&action=list');
+            exit;
+        }
         break;
     default:
         header('Location:/choshi/admin/index.php');

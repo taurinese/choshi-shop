@@ -55,57 +55,66 @@ switch ($_GET['action']) {
         break;
 
         case 'edit':
-            if(empty($_POST)){
-                if(!isset($_SESSION['old_inputs'])){
-                    $user = getUsers($_GET['id']);
-                    if($user == false){
+            if(isset($_GET['id']) && is_numeric($_GET['id'])){
+                if(empty($_POST)){
+                    if(!isset($_SESSION['old_inputs'])){
+                        $user = getUsers($_GET['id']);
+                        if($user == false){
+                            header('Location:index.php?controller=users&action=list');
+                            exit;
+                        }
+                    }
+                    $view['content'] = 'views/userForm.php';
+                    $view['title'] = 'Formulaire utilisateur';
+                }
+                else{
+                    if(empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['email']) || empty($_POST['adresse'])){
+            
+                        if(empty($_POST['first_name'])){
+                            $_SESSION['messages'][] = 'Le champ "prénom" est obligatoire !';
+                        }
+                        if(empty($_POST['last_name'])){
+                            $_SESSION['messages'][] = 'Le champ "nom de famille" est obligatoire !';
+                        }
+                        if(empty($_POST['email'])){
+                            $_SESSION['messages'][] = 'Le champ "email" est obligatoire !';
+                        }
+                        if(empty($_POST['adresse'])){
+                            $_SESSION['messages'][] = 'Le champ "adresse" est obligatoire !';
+                        }
+                        $_SESSION['old_inputs'] = $_POST;
+                        $_SESSION['alertSuccess'] = false;
+                        header('Location:index.php?controller=users&action=edit&id=' . $_GET['id']);
+                        exit;
+                    }
+                    else {
+                        if(empty($_POST['is_admin'])){
+                            $_POST['is_admin'] = 0;
+                        }
+                        $result = updateUser($_GET['id'], $_POST);
+                        $_SESSION['messages'][] = $result ? 'Utilisateur modifié !' : "Erreur lors de la modification de l'utilisateur... :(";
+                        $_SESSION['alertSuccess'] = $result ? true : false;
                         header('Location:index.php?controller=users&action=list');
                         exit;
                     }
-                }
-                $view['content'] = 'views/userForm.php';
-                $view['title'] = 'Formulaire utilisateur';
+                }   
             }
-            else{
-                if(empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['email']) || empty($_POST['adresse'])){
-		
-                    if(empty($_POST['first_name'])){
-                        $_SESSION['messages'][] = 'Le champ "prénom" est obligatoire !';
-                    }
-                    if(empty($_POST['last_name'])){
-                        $_SESSION['messages'][] = 'Le champ "nom de famille" est obligatoire !';
-                    }
-                    if(empty($_POST['email'])){
-                        $_SESSION['messages'][] = 'Le champ "email" est obligatoire !';
-                    }
-                    if(empty($_POST['adresse'])){
-                        $_SESSION['messages'][] = 'Le champ "adresse" est obligatoire !';
-                    }
-                    $_SESSION['old_inputs'] = $_POST;
-                    $_SESSION['alertSuccess'] = false;
-                    header('Location:index.php?controller=users&action=edit&id=' . $_GET['id']);
-                    exit;
-                }
-                else {
-                    if(empty($_POST['is_admin'])){
-                        $_POST['is_admin'] = 0;
-                    }
-                    $result = updateUser($_GET['id'], $_POST);
-                    $_SESSION['messages'][] = $result ? 'Utilisateur modifié !' : "Erreur lors de la modification de l'utilisateur... :(";
-                    $_SESSION['alertSuccess'] = $result ? true : false;
-                    header('Location:index.php?controller=users&action=list');
-                    exit;
-                }
-            }   
             break;
         
         case 'delete':
-            $result = deleteUser($_GET['id']);
-            $_SESSION['messages'][] = $result ? 'Utilisateur supprimé !' : "Erreur lors de la suppression de l'utilisateur... :(";
-            $_SESSION['alertSuccess'] = $result ? true : false;
-            header('Location:index.php?controller=users&action=list');
-            exit;
+            if(isset($_GET['id']) && is_numeric($_GET['id'])){
+                $result = deleteUser($_GET['id']);
+                $_SESSION['messages'][] = $result ? 'Utilisateur supprimé !' : "Erreur lors de la suppression de l'utilisateur... :(";
+                $_SESSION['alertSuccess'] = $result ? true : false;
+                header('Location:index.php?controller=users&action=list');
+                exit;
+            }
+            else{
+                header('Location:index.php?controller=users&action=list');
+                exit;
+            }
             break;
+            
     default:
         header('Location:/choshi/admin/index.php');
         exit;

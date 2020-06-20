@@ -31,11 +31,17 @@ switch ($_GET['action']) {
         break;
 
     case 'delete':
-        $result = deleteRate($_GET['id']);
-        $_SESSION['messages'][] = $result ? 'Avis supprimé !' : "Erreur lors de la suppression de l'avis'... :(";
-        $_SESSION['alertSuccess'] = $result ? true : false;
-        header('Location:index.php?controller=rates&action=list');
-        exit;
+        if(isset($_GET['id']) && is_numeric($_GET['id'])){
+            $result = deleteRate($_GET['id']);
+            $_SESSION['messages'][] = $result ? 'Avis supprimé !' : "Erreur lors de la suppression de l'avis'... :(";
+            $_SESSION['alertSuccess'] = $result ? true : false;
+            header('Location:index.php?controller=rates&action=list');
+            exit;
+        }
+        else{
+            header('Location:index.php?controller=rates&action=list');
+            exit;  
+        }
         break;
         
     default:
