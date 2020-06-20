@@ -14,10 +14,10 @@ if(isset($_GET['action'])){
             if(empty($_POST['user-email']) || empty($_POST['user-password'])){
                 $json_return['is_logged_in'] = false;
                 if(empty($_POST['user-email'])){
-                    $json_return['message'] = "Veuillez remplir le champ 'email' !";
+                    $json_return['message'][] = "Veuillez remplir le champ 'email' !";
                 }
-                else if(empty($_POST['user-password'])){
-                    $json_return['message'] = "Veuillez remplir le champ 'mot de passe' !";
+                if(empty($_POST['user-password'])){
+                    $json_return['message'][] = "Veuillez remplir le champ 'mot de passe' !";
                 }
                 echo json_encode($json_return);
                 exit();
@@ -25,11 +25,11 @@ if(isset($_GET['action'])){
             $result = checkUser($_POST);
             if(empty($result)){
                 $json_return['is_logged_in'] = false;
-                $json_return['message'] = "Identifiants incorrects !";
+                $json_return['message'][] = "Identifiants incorrects !";
             }
             else{
                 $json_return['is_logged_in'] = true;
-                $json_return['message'] = "Utilisateur connecté !";
+                $json_return['message'][] = "Utilisateur connecté !";
                 $_SESSION['user']= $result;
             }
             echo json_encode($json_return);
@@ -37,8 +37,32 @@ if(isset($_GET['action'])){
             break;
 
         case 'register':
+            if(empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['address']) || empty($_POST['user-email']) || empty($_POST['user-password'])){
+                $json_return['is_logged_in'] = false;
+                if(empty($_POST['user-email'])){
+                    $json_return['message'][] = "Veuillez remplir le champ 'email' !";
+                }
+                if(empty($_POST['user-password'])){
+                    $json_return['message'][] = "Veuillez remplir le champ 'mot de passe' !";
+                }
+                if(empty($_POST['first_name'])){
+                    $json_return['message'][] = "Veuillez remplir le champ 'prénom' !";
+                }
+                if(empty($_POST['last_name'])){
+                    $json_return['message'][] = "Veuillez remplir le champ 'nom' !";
+                }
+                if(empty($_POST['address'])){
+                    $json_return['message'][] = "Veuillez remplir le champ 'adresse' !";
+                }
+                echo json_encode($json_return);
+                exit();
+            }
             $result = addUser($_POST);
-            if(!$result){
+            if(is_array($result)){
+                $json_return['is_created'] = false;
+                $json_return['message'] = "Cette adresse mail est déjà utilisée !";
+            }
+            else if(!$result){
                 $json_return['is_created'] = false;
                 $json_return['message'] = "Erreur lors de l'enregistrement de l'utilisateur !";
             }
@@ -51,7 +75,7 @@ if(isset($_GET['action'])){
                     'id' => $user['id'],
                     'first_name' => $user['first_name'],
                     'last_name' => $user['last_name'],
-                    'adresse' => $user['address'],
+                    'adresse' => $user['adresse'],
                     'email' => $user['user-email']
                 ];
             }

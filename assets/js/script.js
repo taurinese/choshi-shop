@@ -146,6 +146,7 @@ iconBurger.addEventListener( "click", function(e) {
 /* const buttonConnect = document.querySelector('#btn-connect') */  
 if(getParameterByName('controller') == 'users' && getParameterByName('action') == 'form'){
     const userForm = document.querySelector('#user-form')
+    let modalMsg = ''
     userForm.addEventListener('submit', async function(e) {
         e.preventDefault()
         let userFormData = new FormData(this)
@@ -158,14 +159,20 @@ if(getParameterByName('controller') == 'users' && getParameterByName('action') =
             .then(res => res.json())          
             .then(json => {
                 if (json.is_logged_in == true) {
-                    createModal(json.message,"#00B894", userForm)
+                    json.message.forEach((msg) => {
+                        modalMsg += msg + '<br>'
+                    })
+                    createModal(modalMsg,"#00B894", userForm)
                     document.querySelector('.close-button').onclick = () => {
                         window.location.href = 'index.php';
                     }
                 }
                 else{
                     // Affichage d'un modal pour dire que l'utilisateur s'est trompé
-                    createModal(json.message,"#FF7675", userForm)
+                    json.message.forEach((msg) => {
+                        modalMsg += msg + '<br>'
+                    })
+                    createModal(modalMsg,"#FF7675", userForm)
                     document.querySelector('.close-button').onclick = () => {
                         document.querySelector('.alert-modal').remove()
                     }
@@ -179,15 +186,21 @@ if(getParameterByName('controller') == 'users' && getParameterByName('action') =
             .then(res => res.json())          
             .then(json => {
                 if (json.is_created == true) {
-                    window.location.href = 'index.php';
-                    createModal(json.message,"#00B894", editUserForm)
+                    json.message.forEach((msg) => {
+                        modalMsg += msg + '<br>'
+                    })
+                    createModal(modalMsg,"#00B894", editUserForm)
                     document.querySelector('.close-button').onclick = () => {
                         document.querySelector('.alert-modal').remove()
+                        window.location.href = 'index.php';
                     }
                 }
                 else{
                     // Affichage d'un modal pour dire que l'utilisateur s'est trompé
-                    createModal(json.message,"#FF7675", userForm)
+                    json.message.forEach((msg) => {
+                        modalMsg += msg + '<br>'
+                    })
+                    createModal(modalMsg,"#FF7675", userForm)
                     document.querySelector('.close-button').onclick = () => {
                         document.querySelector('.alert-modal').remove()
                     }

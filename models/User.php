@@ -22,6 +22,15 @@ function getUser($id)
 function addUser($informations)
 {
     $db = dbConnect();
+    $query =$db->prepare('SELECT * FROM users WHERE email = ?');
+    $query->execute([
+        $informations['user-email']
+    ]);
+    $result = $query->fetch();
+    $result = !empty($result) ? ['exists' => true] : '';
+    if(is_array($result)){
+        return $result;
+    }
     $query = $db->prepare('INSERT INTO users (first_name, last_name, adresse, password, email, is_admin) 
                            VALUES (:first_name, :last_name, :adresse, :password, :email, :is_admin)');
     return $query->execute([
