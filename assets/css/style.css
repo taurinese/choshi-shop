@@ -394,7 +394,7 @@ input[type=submit] {
   margin: 0;
 }
 .product-box .products .flex-center a img {
-  max-width: 75%;
+  max-width: 100%;
   min-width: 50%;
 }
 .product-box .products div {
@@ -1637,7 +1637,7 @@ input[type=submit] {
     min-height: 80%;
   }
   .product-box .products .flex-center a img {
-    max-width: 40%;
+    max-width: 60%;
     min-width: 0;
   }
 }
