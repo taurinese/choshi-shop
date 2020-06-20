@@ -24,7 +24,7 @@
                     <li><a href="index.php?controller=users&action=display">Mon compte</a></li>
                     <li><a href="index.php?controller=users&action=disconnect">Se déconnecter</a></li>
                     <?php else: ?>
-                    <li><a href="index.php?controller=users&action=form&form=login"></a></li>
+                    <li><a href="index.php?controller=users&action=form&form=login">Se connecter</a></li>
                     <?php endif; ?>
                 </ul>
             </div>
