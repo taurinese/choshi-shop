@@ -1,4 +1,4 @@
-<main class="col-9">
+<main class="col-12">
 	<?php if(isset($_SESSION['messages'])): ?>
 	<div>
 		<?php foreach($_SESSION['messages'] as $message): ?>

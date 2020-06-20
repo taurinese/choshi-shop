@@ -1,4 +1,4 @@
-<main class="d-flex flex-row col-9 justify-content-around">
+<main class="d-flex flex-row col-12 justify-content-around">
 	
 	<div> <!-- Div du formulaire -->
 		<?php if(isset($_SESSION['messages'])): ?>

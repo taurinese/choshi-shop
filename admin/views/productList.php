@@ -1,4 +1,4 @@
-<main class="col-9">
+<main class="col-12">
 	<?php if(isset($_SESSION['messages'])): ?>
 	<div>
 		<?php foreach($_SESSION['messages'] as $message): ?>
@@ -28,7 +28,7 @@
                 <td><?=  $product['name'] ?></td>
                 <td><?=  $product['GROUP_CONCAT(c.name)'] ?></td>
 				<td><a href="index.php?controller=products&action=edit&id=<?= $product['id'] ?>"><button type="button" class="btn btn-warning">Modifier</button></a>  </td>
-				<td><a onclick="return confirm('Are you sure?')" href="index.php?controller=products&action=delete&id=<?= $product['id'] ?>"><button type="button" class="btn btn-danger">Supprimer</button></a></p></td>
+				<td><a onclick="return confirm('Are you sure?')" href="index.php?controller=products&action=delete&id=<?= $product['id'] ?>"><button type="button" class="btn btn-danger">Supprimer</button></a></td>
 			</tr>
 		<?php endforeach; ?>
 		</tbody>

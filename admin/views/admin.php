@@ -6,10 +6,9 @@
 	<title><?= $view['title'] ?></title>
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body class="d-flex flex-row" style="height:100vh">
-<div class="col-2 bg-light h-100 border-right border-dark">
+<body class="d-flex flex-column" >
+<div class=" bg-light border-bottom border-dark">
 <?php 
-	require ('views/partials/header.php');
 	require ('views/partials/menu.php'); 
 ?>
 </div>

@@ -19,8 +19,13 @@
             <h3>Description : </h3>
             <p><?= $selectedProduct['description'] ?></p>
             <h3>Licence : <?= $selectedProduct['license_name'] ?></h3>
-            <h3>Quantité : <button id="decrement-qtt">-</button><input type="number" name="product-quantity" id="product-quantity" value="1" min="1" max="<?= $selectedProduct['quantity'] ?>"><button id="increment-qtt">+</button></h3>
+            <h3> <?php if($selectedProduct['quantity'] > 0): ?>
+                Quantité :<button id="decrement-qtt">-</button><input type="number" name="product-quantity" id="product-quantity" value="1" min="1" max="<?= $selectedProduct['quantity'] ?>"><button id="increment-qtt">+</button>
+            </h3>
             <button type="submit" id="add-cart">Ajouter au panier</button>
+            <?php else: ?>
+                    <strong>Ce produit n'est plus disponible!</strong>
+                <?php endif; ?>
         </aside>
     </div>
     <div class="product-row rates">

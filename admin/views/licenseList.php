@@ -1,4 +1,4 @@
-<main class="col-9">
+<main class="col-12">
 	<?php if(isset($_SESSION['messages'])): ?>
 	<div>
 		<?php foreach($_SESSION['messages'] as $message): ?>
@@ -9,7 +9,7 @@
 	</div>
 	<?php endif; ?>
 
-	<h2>Liste complète des promotions : </h2>	<a href="index.php?controller=licenses&action=new"><button type="button" class="btn btn-primary">Ajouter une licence</button></a> 
+	<h2>Liste complète des licences : </h2>	<a href="index.php?controller=licenses&action=new"><button type="button" class="btn btn-primary">Ajouter une licence</button></a> 
     <table class="table">
 		<thead>
 			<tr>

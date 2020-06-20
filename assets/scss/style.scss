@@ -985,6 +985,9 @@ input[type="submit"]{
     p{
         font-size: 0.8 * $p;
     }
+    .cart-list #cart-recap #cart-add {
+        font-size: 0.8 * 1.5rem;
+    }
     .blue-square{
         @include square(#74B9FF,25px);
     }

@@ -258,42 +258,49 @@ function changeImage(previous,next){
 
 if (getParameterByName('controller') == 'products') {
     const quantityInput = document.getElementById('product-quantity')
-    const quantityMaxVal = parseInt(quantityInput.max)
+    let quantityMaxVal
+    if(quantityInput != null){
+        quantityMaxVal = parseInt(quantityInput.max)
+    }
     const incrementQuantity = document.getElementById('increment-qtt')
     const decrementQuantity = document.getElementById('decrement-qtt')
     const addToCart = document.getElementById('add-cart')
     const cartQuantity = document.getElementById('cart-qty')
-    incrementQuantity.addEventListener('click', (e) => {
-        e.preventDefault()
-        if(quantityInput.value < quantityMaxVal ){
-            quantityInput.value ++
-        }
-    })
-    decrementQuantity.addEventListener('click', (e) => {
-        e.preventDefault()
-        if (quantityInput.value > 1) {
-            quantityInput.value --
-        }
-    })
-    addToCart.addEventListener('click', (e) => {
-        e.preventDefault()
-        const productDiv = document.querySelector('.product-row')
-        console.log(quantityInput.value)
-        fetch('index.php?controller=cart&action=add', {
-            method: "post",
-            body: JSON.stringify({'product_id' : getParameterByName('id'), 'quantity' : quantityInput.value})
+    if(incrementQuantity != null && decrementQuantity != null){
+        incrementQuantity.addEventListener('click', (e) => {
+            e.preventDefault()
+            if(quantityInput.value < quantityMaxVal ){
+                quantityInput.value ++
+            }
         })
-        .then(res => res.json())
-        .then(json => {
-            console.log(json)
+        decrementQuantity.addEventListener('click', (e) => {
+            e.preventDefault()
+            if (quantityInput.value > 1) {
+                quantityInput.value --
+            }
         })
-        //Faire le cas où ça ne fonctionne pas
-        createModal('Produit(s) ajouté(s) au panier!',"#00B894", productDiv)
-        document.querySelector('.close-button').onclick = () => {
-            document.querySelector('.alert-modal').remove()
-        }
-        cartQuantity.innerHTML ++
-    })
+    }
+    if(addToCart != null){
+        addToCart.addEventListener('click', (e) => {
+            e.preventDefault()
+            const productDiv = document.querySelector('.product-row')
+            console.log(quantityInput.value)
+            fetch('index.php?controller=cart&action=add', {
+                method: "post",
+                body: JSON.stringify({'product_id' : getParameterByName('id'), 'quantity' : quantityInput.value})
+            })
+            .then(res => res.json())
+            .then(json => {
+                console.log(json)
+            })
+            //Faire le cas où ça ne fonctionne pas
+            createModal('Produit(s) ajouté(s) au panier!',"#00B894", productDiv)
+            document.querySelector('.close-button').onclick = () => {
+                document.querySelector('.alert-modal').remove()
+            }
+            cartQuantity.innerHTML ++
+        })
+    }
     if(document.querySelectorAll('.alt-img') != null){
         document.querySelectorAll('.alt-img').forEach((img) => {
             img.addEventListener('click', () => {
