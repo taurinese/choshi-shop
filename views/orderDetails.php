@@ -43,6 +43,7 @@
                     </td>
                 </tr>
                 <hr>
+                <?php $total += $orderProduct['price'] * $orderProduct['quantity'] ?>
             <?php endforeach; ?>
         </tbody>
     </table>
@@ -76,7 +77,7 @@
                         <?= $orderDetails[0]['delivery_address'] ?>
                     </td>
                     <td>
-                        <?= $orderDetails[0]['total'] ?>€
+                        <?= $total ?>€
                     </td>
                 </tr>
             </tbody>

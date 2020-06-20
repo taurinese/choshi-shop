@@ -15,6 +15,8 @@ switch ($_GET['action']) {
         break;
     
     case 'display':
+        $order = getOrderDetails($_GET['id']);
+        $total = 0;
         $view['content'] = 'views/orderDisplay.php';
         $view['title'] = 'Aperçu commande';
         break;

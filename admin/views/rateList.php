@@ -30,7 +30,7 @@
                 <td><?=  $rate['last_name'] ?></td>
                 <td><?=  $rate['rate']  ?></td>
                 <td><?=  $rate['name']  ?></td>
-				<td><a href="index.php?controller=rates&action=edit&id=<?= $rate['id'] ?>"><button type="button" class="btn btn-warning">Modifier</button></a>  </td>
+				<td><a href="index.php?controller=rates&action=display&id=<?= $rate['id'] ?>"><button type="button" class="btn btn-warning">Afficher</button></a>  </td>
 				<td><a onclick="return confirm('Are you sure?')" href="index.php?controller=rates&action=delete&id=<?= $rate['id'] ?>"><button type="button" class="btn btn-danger">Supprimer</button></a></td>
 			</tr>
 		<?php endforeach; ?>

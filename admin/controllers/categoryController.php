@@ -20,8 +20,7 @@ switch ($_GET['action']) {
         break;
     
     case 'add':
-        if(empty($_POST['name']) ){
-		
+        if(empty($_POST['name']) ){		
             if(empty($_POST['name'])){
                 $_SESSION['messages'][] = 'Le champ "nom" est obligatoire !';
             }
@@ -42,8 +41,14 @@ switch ($_GET['action']) {
         case 'edit':
             if(empty($_POST)){
                 if(!isset($_SESSION['old_inputs'])){
-                    $category = getCategories($_GET['id']);
-                    if($category == false){
+                    if(isset($_GET['id']) && is_numeric($_GET['id'])){
+                        $category = getCategories($_GET['id']);
+                        if($category == false){
+                            header('Location:index.php?controller=categories&action=list');
+                            exit;
+                        }
+                    }
+                    else{
                         header('Location:index.php?controller=categories&action=list');
                         exit;
                     }
@@ -62,21 +67,33 @@ switch ($_GET['action']) {
                     exit;
                 }
                 else {
-                    $result = updateCategory($_GET['id'], $_POST);
-                    $_SESSION['messages'][] = $result ? 'Catégorie modifiée !' : "Erreur lors de la modification de la catégorie... :(";
-                    $_SESSION['alertSuccess'] = $result ? true : false;
-                    header('Location:index.php?controller=categories&action=list');
-                    exit;
+                    if(isset($_GET['id']) && is_numeric($_GET['id'])){
+                        $result = updateCategory($_GET['id'], $_POST);
+                        $_SESSION['messages'][] = $result ? 'Catégorie modifiée !' : "Erreur lors de la modification de la catégorie... :(";
+                        $_SESSION['alertSuccess'] = $result ? true : false;
+                        header('Location:index.php?controller=categories&action=list');
+                        exit;
+                    }
+                    else{
+                        header('Location:index.php?controller=categories&action=list');
+                        exit;
+                    }
                 }
             }   
             break;
         
         case 'delete':
-            $result = deleteCategory($_GET['id']);
-            $_SESSION['messages'][] = $result ? 'Catégorie supprimée !' : 'Erreur lors de la suppression de la catégorie... :(';
-            $_SESSION['alertSuccess'] = $result ? true : false;
-            header('Location:index.php?controller=categories&action=list');
-            exit;
+            if(isset($_GET['id']) && is_numeric($_GET['id'])){
+                $result = deleteCategory($_GET['id']);
+                $_SESSION['messages'][] = $result ? 'Catégorie supprimée !' : 'Erreur lors de la suppression de la catégorie... :(';
+                $_SESSION['alertSuccess'] = $result ? true : false;
+                header('Location:index.php?controller=categories&action=list');
+                exit;
+            }
+            else{
+                header('Location:index.php?controller=categories&action=list');
+                exit;
+            }
             break;
     default:
         header('Location:/choshi/admin/index.php');

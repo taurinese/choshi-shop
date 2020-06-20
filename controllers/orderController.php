@@ -28,6 +28,7 @@ switch ($_GET['action']) {
         $orderDetails = getOrderDetails($_GET['id']);
 /*         var_dump($orderDetails);
         die(); */
+        $total = 0;
         $view['content'] = 'views/orderDetails.php';
         $view['title'] = "Détails commande";
         break;

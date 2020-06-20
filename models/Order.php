@@ -3,12 +3,13 @@
 function addOrder($user)
 {
     $db = dbConnect();
-    $query = $db->prepare('INSERT INTO orders (user_id, delivery_address, first_name, last_name) VALUES (:user_id, :address, :first_name, :last_name)');
+    $query = $db->prepare('INSERT INTO orders (user_id, delivery_address, first_name, last_name, email) VALUES (:user_id, :address, :first_name, :last_name, :email)');
     $result = $query->execute([
         'user_id' => $user['id'],
         'address' => $user['adresse'],
         'first_name' => $user['first_name'],
-        'last_name' => $user['last_name']
+        'last_name' => $user['last_name'],
+        'email' => $user['email']
     ]);
     $orderId = $db->lastInsertId();
     return [
