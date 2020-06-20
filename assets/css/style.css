@@ -70,6 +70,10 @@ body {
   position: relative;
 }
 
+.main-content {
+  min-height: 90vh;
+}
+
 #nav-bar {
   height: 10vh;
   box-shadow: 0px 1px 10px grey;
@@ -212,7 +216,7 @@ input[type=submit] {
   z-index: 2000;
   width: 100vw;
   bottom: 200vh;
-  height: 100vh;
+  min-height: 100vh;
   box-shadow: 0px 1px 10px grey;
   background-color: white;
 }
@@ -530,7 +534,7 @@ input[type=submit] {
 }
 
 .user-profile {
-  height: 90vh;
+  min-height: 90vh;
   width: 100%;
 }
 .user-profile #profile-nav {
@@ -620,7 +624,7 @@ input[type=submit] {
   height: 3vh;
   border: 2px solid lightgrey;
   outline: none;
-  padding-left: 10px;
+  padding: 10px;
   color: black;
   font-size: 1rem;
 }
@@ -1311,20 +1315,23 @@ input[type=submit] {
   .burger .burger-row:last-child {
     display: flex;
     flex-flow: column wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100vw;
+    position: absolute;
   }
   .burger .burger-row:last-child .menu-category {
     width: 40%;
     cursor: pointer;
   }
   .burger .burger-row:last-child .menu-category .category-btn, .burger .burger-row:last-child .menu-category .user-btn, .burger .burger-row:last-child .menu-category .admin-btn {
-    padding: 20px;
+    padding: 2vh;
     border-radius: 25px;
     border: none;
     color: white;
     width: 100%;
+    margin: 2vh 0;
   }
   .burger .burger-row:last-child .menu-category .category-btn {
     background-color: #74B9FF;
@@ -1597,6 +1604,11 @@ input[type=submit] {
   }
   .cart-list #cart-table tbody tr td:nth-child(2) table td {
     font-size: 0.75rem;
+  }
+}
+@media (max-height: 800px) {
+  .user-profile .profile-content {
+    min-height: calc(100% + 200px);
   }
 }
 

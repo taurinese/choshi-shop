@@ -68,7 +68,9 @@ body{
     cursor:pointer;
     position:relative;
 }
-
+.main-content{
+    min-height:90vh;
+}
 #nav-bar {
     height:10vh;
     box-shadow: 0px 1px 10px grey;
@@ -209,7 +211,7 @@ input[type="submit"]{
     z-index:2000;
     width:100vw;
     bottom:200vh;
-    height:100vh;
+    min-height:100vh;
     box-shadow: 0px 1px 10px grey;
     background-color: white;
     .burger-row:first-child {
@@ -479,7 +481,7 @@ input[type="submit"]{
 
 // User profile page
 .user-profile {
-    height:90vh;
+    min-height:90vh;
     width:100%;
 
     #profile-nav {
@@ -566,7 +568,7 @@ input[type="submit"]{
                     height:3vh;
                     border:2px solid lightgrey;
                     outline:none;
-                    padding-left:10px;
+                    padding:10px;
                     color:black;
                     font-size:1rem;
                 }
@@ -1223,17 +1225,20 @@ input[type="submit"]{
             display:none;
         }
         .burger-row:last-child{
-            @include flex(column wrap, space-evenly, center);
+            @include flex(column wrap, center, center);
             height:100vh;
+            width:100vw;
+            position:absolute;
             .menu-category{
                 width:40%;
                 cursor:pointer;
                 .category-btn, .user-btn, .admin-btn{
-                    padding:20px;
+                    padding:2vh;
                     border-radius: 25px;
                     border:none;
                     color:white;
                     width:100%;
+                    margin: 2vh 0;
                 }
                 .category-btn{
                     background-color: $blue;
@@ -1493,5 +1498,11 @@ input[type="submit"]{
                 width:40%;
             } */
         }
+    }
+}
+
+@media (max-height:800px){
+    .user-profile .profile-content{
+        min-height:calc(100% + 200px);
     }
 }

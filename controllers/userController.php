@@ -11,6 +11,17 @@ if(isset($_GET['action'])){
             break;
         
         case 'login':
+            if(empty($_POST['user-email']) || empty($_POST['user-password'])){
+                $json_return['is_logged_in'] = false;
+                if(empty($_POST['user-email'])){
+                    $json_return['message'] = "Veuillez remplir le champ 'email' !";
+                }
+                else if(empty($_POST['user-password'])){
+                    $json_return['message'] = "Veuillez remplir le champ 'mot de passe' !";
+                }
+                echo json_encode($json_return);
+                exit();
+            }
             $result = checkUser($_POST);
             if(empty($result)){
                 $json_return['is_logged_in'] = false;

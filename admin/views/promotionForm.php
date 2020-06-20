@@ -16,9 +16,9 @@
 		method="post" enctype="multipart/form-data">
 
 			<label for="name">Nom :</label>
-			<input  type="text" name="name" id="name" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['name'] : '' ?><?= isset($promotion) ? $promotion['name'] : '' ?>" /><br>
+			<input required type="text" name="name" id="name" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['name'] : '' ?><?= isset($promotion) ? $promotion['name'] : '' ?>" /><br>
 			<label for="discount">Promotion :</label>
-			<input  type="text" name="discount" id="discount" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['discount'] : '' ?><?= isset($promotion) ? $promotion['discount'] : '' ?>" /><br>
+			<input required type="text" name="discount" id="discount" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['discount'] : '' ?><?= isset($promotion) ? $promotion['discount'] : '' ?>" /><br>
 			<input type="submit" value="Enregistrer" />
 
 		</form>

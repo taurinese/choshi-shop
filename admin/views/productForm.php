@@ -16,26 +16,26 @@
 		method="post" enctype="multipart/form-data">
 
 			<label for="name">Nom :</label>
-			<input  type="text" name="name" id="name" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['name'] : '' ?><?= isset($product) ? $product['name'] : '' ?>" /><br>
+			<input required type="text" name="name" id="name" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['name'] : '' ?><?= isset($product) ? $product['name'] : '' ?>" /><br>
 			
             <label for="price">Prix :</label>
-			<input  type="text" name="price" id="price" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['price'] : '' ?><?= isset($product) ? $product['price'] : '' ?>" /><br>
+			<input required type="text" name="price" id="price" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['price'] : '' ?><?= isset($product) ? $product['price'] : '' ?>" /><br>
 
             <label for="categories[]">Catégories :</label>
-            <select name="categories[]" id="categories[]" multiple>
+            <select name="categories[]" id="categories[]" multiple required>
                 <?php foreach($categories as $category): ?>
 					<option value="<?= $category['id'] ?>" <?php if(isset($selectedCategories) && in_array($category['id'], $selectedCategories)): ?> selected="selected" <?php endif; ?>><?= $category['name'] ?></option>
                 <?php endforeach; ?>
             </select><br>
 
             <label for="description">Description :</label>
-			<input  type="text" name="description" id="description" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['description'] : '' ?><?= isset($product) ? $product['description'] : '' ?>" /><br>
+			<input required type="text" name="description" id="description" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['description'] : '' ?><?= isset($product) ? $product['description'] : '' ?>" /><br>
 
             <label for="quantity">Quantité :</label>
-			<input  type="text" name="quantity" id="quantity" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['quantity'] : '' ?><?= isset($product) ? $product['quantity'] : '' ?>" /><br>
+			<input required type="text" name="quantity" id="quantity" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['quantity'] : '' ?><?= isset($product) ? $product['quantity'] : '' ?>" /><br>
 
 			<label for="license_id">Licence :</label>
-			<select name="license_id" id="license_id">
+			<select name="license_id" id="license_id" required>
 					<option value=""></option>
 				<?php foreach($licenses as $license): ?>
 					<option value="<?= $license['id'] ?>" <?php if(isset($product) && $license['id'] == $product['license_id']): ?> selected="selected" <?php endif; ?>><?= $license['license'] ?></option>
@@ -51,7 +51,7 @@
 				<img class="w-25" src="../assets/img/products/<?= $product['main_image'] ?>" alt="<?= $product['name'] ?>"><br>
 			<?php endif; ?>
 			<label for="main_image">Image principale :</label>
-            <input type="file" name="main_image" id="main_image" /><br>
+            <input required type="file" name="main_image" id="main_image" /><br>
 			
 			<label for="images[]">Images secondaires :</label>
 			<?php if(isset($images)): ?>

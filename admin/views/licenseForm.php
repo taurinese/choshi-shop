@@ -16,7 +16,7 @@
 		method="post" enctype="multipart/form-data">
 
 			<label for="license">Licence :</label>
-			<input  type="text" name="license" id="license" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['license'] : '' ?><?= isset($license) ? $license['license'] : '' ?>" /><br>
+			<input required type="text" name="license" id="license" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['license'] : '' ?><?= isset($license) ? $license['license'] : '' ?>" /><br>
 			<input type="submit" value="Enregistrer" />
 
 		</form>

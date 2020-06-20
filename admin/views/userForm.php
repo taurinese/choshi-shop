@@ -16,17 +16,17 @@
 		method="post" enctype="multipart/form-data">
 
 			<label for="first_name">Prénom :</label>
-			<input  type="text" name="first_name" id="first_name" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['first_name'] : '' ?><?= isset($user) ? $user['first_name'] : '' ?>" /><br>
+			<input required type="text" name="first_name" id="first_name" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['first_name'] : '' ?><?= isset($user) ? $user['first_name'] : '' ?>" /><br>
 			<label for="last_name">Nom de famille :</label>
-			<input  type="text" name="last_name" id="last_name" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['last_name'] : '' ?><?= isset($user) ? $user['last_name'] : '' ?>" /><br>
+			<input required type="text" name="last_name" id="last_name" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['last_name'] : '' ?><?= isset($user) ? $user['last_name'] : '' ?>" /><br>
             <label for="adresse">Adresse :</label>
-			<input  type="text" name="adresse" id="adresse" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['adresse'] : '' ?><?= isset($user) ? $user['adresse'] : '' ?>" /><br>
+			<input required type="text" name="adresse" id="adresse" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['adresse'] : '' ?><?= isset($user) ? $user['adresse'] : '' ?>" /><br>
             <label for="email">Email :</label>
-			<input  type="email" name="email" id="email" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['email'] : '' ?><?= isset($user) ? $user['email'] : '' ?>" /><br>
+			<input required type="email" name="email" id="email" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['email'] : '' ?><?= isset($user) ? $user['email'] : '' ?>" /><br>
 			<label for="password">Mot de passe :</label>
-			<input  type="password" name="password" id="password" value="" /><br>
+			<input required type="password" name="password" id="password" value="" /><br>
             <label for="is_admin">Administrateur :</label>
-            <select name="is_admin" id="is_admin">
+            <select name="is_admin" id="is_admin" required>
                 <option value="0" <?php if(isset($user) && $user['is_admin'] == '0'): ?> selected="selected" <?php endif; ?>>Non</option>
                 <option value="1" <?php if(isset($user) && $user['is_admin'] == '1'): ?> selected="selected" <?php endif; ?>>Oui</option>
             </select><br>
