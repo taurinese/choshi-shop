@@ -60,15 +60,15 @@ if(isset($_GET['action'])){
             $result = addUser($_POST);
             if(is_array($result)){
                 $json_return['is_created'] = false;
-                $json_return['message'] = "Cette adresse mail est déjà utilisée !";
+                $json_return['message'][] = "Cette adresse mail est déjà utilisée !";
             }
             else if(!$result){
                 $json_return['is_created'] = false;
-                $json_return['message'] = "Erreur lors de l'enregistrement de l'utilisateur !";
+                $json_return['message'][] = "Erreur lors de l'enregistrement de l'utilisateur !";
             }
             else{
                 $json_return['is_created'] = true;
-                $json_return['message'] = "Utilisateur enregistré et connecté !";
+                $json_return['message'][] = "Utilisateur enregistré et connecté !";
                 //A vérifier si ça fonctionne
                 $user = checkUser($_POST);
                 $_SESSION['user']= [
@@ -76,7 +76,7 @@ if(isset($_GET['action'])){
                     'first_name' => $user['first_name'],
                     'last_name' => $user['last_name'],
                     'adresse' => $user['adresse'],
-                    'email' => $user['user-email'],
+                    'email' => $user['email'],
                     'is_admin' => $user['is_admin']
                 ];
             }

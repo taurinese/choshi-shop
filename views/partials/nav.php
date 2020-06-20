@@ -13,19 +13,21 @@
             <a href="index.php"><img src="assets/img/logo_choshi.png" alt="Logo choshi" id="logo-nav"></a>
         </div>
         <div>
-            <a href="index.php?controller=users&action=<?= !empty($_SESSION['user'])? 'display' : 'form&form=login' ?>"><img src="assets/img/icons/user.png" alt="user"></a>
-            <?php if(!empty($_SESSION['user'])): ?>
-                <i class="fas fa-caret-up"></i>
-                <div class="account-submenu">
-                    <ul>
-                        <?php if($_SESSION['user']['is_admin'] == 1 ): ?>
-                            <li><a href="admin/">Administration</a></li>
-                        <?php endif; ?>
-                        <li><a href="index.php?controller=users&action=display">Mon compte</a></li>
-                        <li><a href="index.php?controller=users&action=disconnect">Se déconnecter</a></li>
-                    </ul>
-                </div>
-            <?php endif; ?>
+            <img src="assets/img/icons/user.png" alt="user">
+            <i class="fas fa-caret-up"></i>
+            <div class="account-submenu">
+                <ul>
+                    <?php if(!empty($_SESSION['user']) && $_SESSION['user']['is_admin'] == 1 ): ?>
+                        <li><a href="admin/">Administration</a></li>
+                    <?php endif; ?>
+                    <?php if(!empty($_SESSION['user'])): ?>
+                    <li><a href="index.php?controller=users&action=display">Mon compte</a></li>
+                    <li><a href="index.php?controller=users&action=disconnect">Se déconnecter</a></li>
+                    <?php else: ?>
+                    <li><a href="index.php?controller=users&action=form&form=login"></a></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
         </div>
         <div>
             <a href="index.php?controller=cart&action=list"><span id="cart-qty"><?= count($_SESSION['cart']) ?></span><img src="assets/img/icons/cart.png" alt="cart"></a>

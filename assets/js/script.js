@@ -192,7 +192,7 @@ if(getParameterByName('controller') == 'users' && getParameterByName('action') =
                     json.message.forEach((msg) => {
                         modalMsg += msg + '<br>'
                     })
-                    createModal(modalMsg,"#00B894", editUserForm)
+                    createModal(modalMsg,"#00B894", userForm)
                     document.querySelector('.close-button').onmousedown = () => {
                         document.querySelector('.alert-modal').remove()
                         window.location.href = 'index.php';
