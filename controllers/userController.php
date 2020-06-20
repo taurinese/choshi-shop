@@ -53,6 +53,7 @@ if(isset($_GET['action'])){
             if(isset($_SESSION['user'])){
                 $user = getUser($_SESSION['user']['id']);
                 $orders = getOrdersByUserId($_SESSION['user']['id']);
+               /*  $orders_total = getOrdersTotal(); */
                 $view['content'] = 'views/userDisplay.php';
                 $view['title'] = "Compte utilisateur";
             }

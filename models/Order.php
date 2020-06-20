@@ -53,7 +53,7 @@ function getOrdersByUserId($userId)
 function getOrderDetails($orderId)
 {
     $db = dbConnect();
-    $query = $db->prepare('SELECT o.*, SUM(op.price) AS total, op.product_id, op.name, op.quantity, op.price, p.main_image FROM orders o INNER JOIN orders_products op ON op.order_id = o.id LEFT JOIN products p ON p.id = op.product_id WHERE o.id = ? GROUP BY op.name');
+    $query = $db->prepare('SELECT o.*, op.product_id, op.name, op.quantity, op.price, p.main_image FROM orders o INNER JOIN orders_products op ON op.order_id = o.id LEFT JOIN products p ON p.id = op.product_id WHERE o.id = ? GROUP BY op.name');
     $query->execute([$orderId]);
     return $query->fetchAll();
 }

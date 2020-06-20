@@ -50,7 +50,13 @@ function deleteProduct($productId)
 	//ne pas oublier de supprimer le fichier lié s'il y en un
 	//avec la fonction unlink de PHP
 	$result = productImageExist($productId);
-	if(!empty($result)) unlink('../assets/images/products/' . $result['image']) ;
+	var_dump($result);
+	die();
+	if(!empty($result)){
+		foreach($result as $image){
+			unlink('../assets/images/products/' . $image) ;
+		}
+	}
 	$query = $db->prepare('DELETE FROM products WHERE id = ?');
 	$result = $query->execute([$productId]);
 	
@@ -156,10 +162,9 @@ function addMultipleProductImg($productId)
 function productImageExist($id)
 {
     $db = dbConnect();
-	$query = $db->prepare('SELECT main_image, image FROM products p INNER JOIN images_products ip ON p.id = ip.product_id WHERE p.id = ?');
+	$query = $db->prepare('SELECT p.main_image, GROUP_CONCAT(ip.image) AS images FROM products p LEFT JOIN images_products ip ON p.id = ip.product_id WHERE p.id = ?');
 	$query->execute([$id]);
-	$result = $query->fetchAll();
-	return $result;
+	return $query->fetchAll();
 }
 
 

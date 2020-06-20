@@ -23,6 +23,17 @@
         <div class="user-orders">
             
             <table>
+                <thead>
+                    <th>
+                        Numéro
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Détails
+                    </th>
+                </thead>
                 <tbody>
                     <?php foreach($orders as $key => $order): ?>
                         <tr>
@@ -31,9 +42,6 @@
                             </td>
                             <td>
                                 <?= $order['new_date'] ?>
-                            </td>
-                            <td>
-                                <?= $order['total'] ?>€
                             </td>
                             <td>
                                 <a href="index.php?controller=orders&action=list&id=<?= $order['id'] ?>"><i class="fas fa-external-link-alt"></i></a>
