@@ -1226,8 +1226,9 @@ input[type="submit"]{
         }
         .burger-row:last-child{
             @include flex(column wrap, center, center);
-            height:100vh;
+            height:90vh;
             width:100vw;
+            margin-top:10vh;
             position:absolute;
             .menu-category{
                 width:40%;

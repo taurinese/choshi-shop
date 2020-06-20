@@ -76,7 +76,8 @@ if(isset($_GET['action'])){
                     'first_name' => $user['first_name'],
                     'last_name' => $user['last_name'],
                     'adresse' => $user['adresse'],
-                    'email' => $user['user-email']
+                    'email' => $user['user-email'],
+                    'is_admin' => $user['is_admin']
                 ];
             }
             echo json_encode($json_return);
