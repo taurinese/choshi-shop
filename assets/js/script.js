@@ -343,7 +343,7 @@ if (getParameterByName('controller') == 'cart' && getParameterByName('action') =
                 })
                 .then(res => res.json())
                 .then(json => {
-                    if(json == 'true'){
+                    if(json == 'success'){
                         location.reload()
                     }
                 })

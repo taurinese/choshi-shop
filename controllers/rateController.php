@@ -25,7 +25,6 @@ if(isset($_GET['action']) && $_GET['action'] == 'add'){
     }
     header('Location:index.php?controller=products&id=' . $_GET['id']);
     exit();
-    break;
 }
 else{
     header('Location:index.php');

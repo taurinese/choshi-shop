@@ -52,6 +52,9 @@ Accounts you can use to try this eshop:
   user@user.com
   user
   
+* Maxibebou account <br>
+  maxichou@maxime.com
+  maxibebou
 ## Built With
 
 * HTML5
@@ -63,4 +66,4 @@ Accounts you can use to try this eshop:
 ## Contact
 - LinkedIn : [Enzo Taurines](https://www.linkedin.com/in/enzo-taurines-1b9a6a19b/)
 - Email : enzodylan.taurines@gmail.com
-- Online site : [Choshi]()
+- Online site : [Choshi](http://enzotaurines.fr/choshi/index.php)
