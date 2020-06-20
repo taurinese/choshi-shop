@@ -414,6 +414,9 @@ input[type=submit] {
   width: 50%;
   margin: 30px auto;
 }
+.category .flex-row {
+  justify-content: initial;
+}
 .category .category-content {
   width: 100vw;
   min-height: 100vh;
@@ -421,6 +424,9 @@ input[type=submit] {
 }
 .category .category-content aside {
   width: 20vw;
+}
+.category .category-content > div {
+  width: 80vw;
 }
 
 .category-products {
@@ -1131,8 +1137,8 @@ input[type=submit] {
   }
 
   .category-products a {
-    max-width: 50%;
-    min-width: none;
+    max-width: 40%;
+    min-width: 0;
   }
   .category-products a .flex-center img {
     width: 100%;
@@ -1343,6 +1349,25 @@ input[type=submit] {
   .product-content .rates .rate-content .rates-views .rate-review {
     max-width: 80vw;
     min-width: 60vw;
+    flex-flow: column wrap;
+  }
+  .product-content .rates .rate-content .rates-views .rate-review aside {
+    width: 100%;
+  }
+  .product-content .rates .rate-content .rates-views .rate-review aside h5, .product-content .rates .rate-content .rates-views .rate-review aside span {
+    display: inline;
+  }
+  .product-content .rates .rate-content .rates-views .rate-review aside h5 {
+    float: left;
+  }
+  .product-content .rates .rate-content .rates-views .rate-review aside span {
+    float: right;
+    font-size: 14px;
+  }
+  .product-content .rates .rate-content .rates-views .rate-review > div {
+    border-left: none;
+    border-top: 2px groove grey;
+    width: 100%;
   }
   .product-content .isnt-logged {
     width: 80vw !important;
@@ -1416,6 +1441,30 @@ input[type=submit] {
     font-size: 0.9rem;
   }
 
+  .blue-square {
+    width: 15px;
+    height: 15px;
+    margin: 10px;
+    display: inline-block;
+    background-color: #74B9FF;
+  }
+
+  .red-square {
+    width: 15px;
+    height: 15px;
+    margin: 10px;
+    display: inline-block;
+    background-color: #FF7675;
+  }
+
+  .green-square {
+    width: 15px;
+    height: 15px;
+    margin: 10px;
+    display: inline-block;
+    background-color: #00B894;
+  }
+
   .cart-list #cart-table tbody tr td:nth-child(2) table td {
     font-size: 0.9rem;
   }
@@ -1432,7 +1481,7 @@ input[type=submit] {
     display: none;
   }
   .category-content .category-products {
-    width: 90vw;
+    width: 100vw;
     border-left: none;
   }
 
@@ -1449,10 +1498,27 @@ input[type=submit] {
     outline: none;
     cursor: pointer;
   }
+
+  .product-content .rates .rate-content .rates-views .rate-review aside span {
+    font-size: 12px;
+  }
 }
 @media (max-width: 550px) {
   .cart-list #cart-table tbody tr td:first-child {
     width: 40%;
+  }
+}
+@media (max-width: 500px) {
+  .blue-square {
+    margin: 3px;
+  }
+
+  .red-square {
+    margin: 3px;
+  }
+
+  .green-square {
+    margin: 3px;
   }
 }
 @media (max-width: 400px) {
@@ -1474,6 +1540,33 @@ input[type=submit] {
 
   p {
     font-size: 0.75rem;
+  }
+
+  .blue-square {
+    width: 10px;
+    height: 10px;
+    margin: 10px;
+    display: inline-block;
+    background-color: #74B9FF;
+    margin: 1px;
+  }
+
+  .red-square {
+    width: 10px;
+    height: 10px;
+    margin: 10px;
+    display: inline-block;
+    background-color: #FF7675;
+    margin: 1px;
+  }
+
+  .green-square {
+    width: 10px;
+    height: 10px;
+    margin: 10px;
+    display: inline-block;
+    background-color: #00B894;
+    margin: 1px;
   }
 
   .cart-list #cart-table {

@@ -5,12 +5,12 @@ function getProducts($productId = null)
     $db = dbConnect();
 
     if($productId != null){
-        $query = $db->prepare('SELECT p.*, GROUP_CONCAT(cp.category_id), l.license AS license_name, GROUP_CONCAT(ip.image) AS images FROM products p INNER JOIN categories_products cp ON p.id = cp.product_id LEFT JOIN licenses l ON l.id = p.license_id INNER JOIN images_products ip ON ip.product_id = p.id WHERE p.id = ?');
+        $query = $db->prepare('SELECT p.*, GROUP_CONCAT(cp.category_id), l.license AS license_name, GROUP_CONCAT(ip.image) AS images FROM products p INNER JOIN categories_products cp ON p.id = cp.product_id LEFT JOIN licenses l ON l.id = p.license_id INNER JOIN images_products ip ON ip.product_id = p.id WHERE p.id = ? AND p.is_displayed = 1');
         $query->execute([$productId]);
         return $query->fetch();
     }
     else{
-        $query = $db->query('SELECT * FROM products');
+        $query = $db->query('SELECT * FROM products WHERE is_displayed = 1');
         return $query->fetchAll();
     }
 }
@@ -18,7 +18,7 @@ function getProducts($productId = null)
 function getNewProducts()
 {
     $db = dbConnect();
-    $query = $db->query('SELECT * FROM products ORDER BY created_at DESC LIMIT 3');
+    $query = $db->query('SELECT * FROM products WHERE is_displayed = 1 ORDER BY created_at DESC LIMIT 3');
     return $query->fetchAll();
 }
 
@@ -28,7 +28,7 @@ function getPopularProducts()
     $query = $db->query('SELECT p.*, sum(op.quantity) AS total_quantity
     FROM products p
     JOIN orders_products op ON p.id = op.product_id
-    WHERE op.product_id IS NOT NULL
+    WHERE op.product_id IS NOT NULL AND p.is_displayed = 1
     GROUP BY p.id
     ORDER BY total_quantity DESC
     LIMIT 3');
@@ -37,7 +37,7 @@ function getPopularProducts()
 function getProductsByCategoryId($categoryId,$categoryFilter = null)
 {
     $db = dbConnect();
-    $queryString = 'SELECT p.* FROM products p INNER JOIN categories_products cp ON p.id = cp.product_id WHERE cp.category_id = ? ';
+    $queryString = 'SELECT p.* FROM products p INNER JOIN categories_products cp ON p.id = cp.product_id WHERE cp.category_id = ? AND p.is_displayed = 1 ';
     
     if($categoryFilter != null){
         switch ($categoryFilter) {
@@ -64,7 +64,7 @@ function getProductsByCategoryId($categoryId,$categoryFilter = null)
 function getProductsName()
 {
     $db = dbConnect();
-    $query = $db->query('SELECT name, id FROM products');
+    $query = $db->query('SELECT name, id FROM products WHERE is_displayed = 1');
     return $query->fetchAll();
 }
 
