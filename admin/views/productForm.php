@@ -51,7 +51,7 @@
 				<img class="w-25" src="../assets/img/products/<?= $product['main_image'] ?>" alt="<?= $product['name'] ?>"><br>
 			<?php endif; ?>
 			<label for="main_image">Image principale :</label>
-            <input required type="file" name="main_image" id="main_image" /><br>
+			<input <?php if($_GET['action'] == 'new'): ?>required<?php endif; ?> type="file" name="main_image" id="main_image" /><br>
 			
 			<label for="images[]">Images secondaires :</label>
 			<?php if(isset($images)): ?>
