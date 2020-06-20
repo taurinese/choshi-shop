@@ -325,7 +325,7 @@ input[type="submit"]{
             min-width:30%;
             @include flex(row wrap, center, center);
             a{
-                @include flex(column wrap, space-evenly, center);
+                @include flex(column nowrap, space-evenly, center);
                 //padding-top:1vh;
                 height:100%;
                 margin:0;
@@ -409,9 +409,9 @@ input[type="submit"]{
 
 
 }
-.img-products {
+/* .img-products {
     width:100%;
-}
+} */
 .filters{
     min-height:100%;
     margin-left:25px;
@@ -686,7 +686,6 @@ input[type="submit"]{
             p{
                 display:inline-block;
                 text-align: justify;
-                padding-right:20%;
                 margin-bottom:30px;
                 //width:50%;
             }
@@ -1065,19 +1064,19 @@ input[type="submit"]{
 
 @media (max-width : 1000px){
     h1{
-        font-size: 0.6 * $h1;
+        font-size: 0.7 * $h1;
     }
     h2{
-        font-size: 0.6 * $h2;
+        font-size: 0.7 * $h2;
     }
     h3{
-        font-size: 0.6 * $h3;
+        font-size: 0.7 * $h3;
     }
     h5{
-        font-size: 0.6 * $h5;
+        font-size: 0.7 * $h5;
     }
     p{
-        font-size: 0.6 * $p;
+        font-size: 0.7 * $p;
     }
     .footer{
         i {
@@ -1131,19 +1130,19 @@ input[type="submit"]{
 
 @media (max-width : 800px){
     h1{
-        font-size: 0.8 * $h1;
+        font-size: 0.65 * $h1;
     }
     h2{
-        font-size: 0.8 * $h2;
+        font-size: 0.65 * $h2;
     }
     h3{
-        font-size: 0.8 * $h3;
+        font-size: 0.65 * $h3;
     }
     h5{
-        font-size: 0.8 * $h5;
+        font-size: 0.65 * $h5;
     }
     p{
-        font-size: 0.8 * $p;
+        font-size: 0.65 * $p;
     }
     .cart-list{
         #cart-table{

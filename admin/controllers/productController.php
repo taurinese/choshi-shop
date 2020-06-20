@@ -22,7 +22,22 @@ switch ($_GET['action']) {
         $view['content'] = 'views/productForm.php';
         $view['title'] = 'Formulaire produit';
         break;
-    
+
+    case 'delete_img':
+        if(isset($_GET['id']) && is_numeric($_GET['id']) && isset($_GET['img_id']) && is_numeric($_GET['img_id'])){
+            $result = deleteAltImg($_GET['img_id']);
+            $_SESSION['messages'][] = $result ? 'Image supprimée !' : "Erreur lors de la suppression de l'image... :(";
+            $_SESSION['alertSuccess'] = $result ? true : false;
+            header('Location:index.php?controller=products&action=edit&id=' . $_GET['id']);
+            exit();
+        }
+        else{
+            header('Location:index.php?controller=products&action=edit&id=' . $_GET['id']);
+            exit();
+        }
+        break;
+
+
     case 'add':
         if(empty($_POST['name']) || empty($_POST['price']) || empty($_POST['description']) || empty($_POST['quantity']) || empty($_FILES['main_image']['tmp_name'])){
 		
@@ -48,7 +63,7 @@ switch ($_GET['action']) {
         }
         else{
             if(empty($_POST['is_displayed'])){
-                $_POST['is_displayed'] = 1;
+                $_POST['is_displayed'] = 0;
             }
             if(empty($_POST['license_id'])){
                 $_POST['license_id'] = null;
@@ -69,6 +84,10 @@ switch ($_GET['action']) {
                         if($product == false){
                             header('Location:index.php?controller=products&action=list');
                             exit;
+                        }
+                        else if(!empty($product['images']) && !empty($product['img_id'])){
+                            $images = explode(',',$product['images']);
+                            $images_id = explode(',',$product['img_id']);
                         }
                     }
                     $licenses = getLicenses();

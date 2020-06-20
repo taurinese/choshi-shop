@@ -44,41 +44,32 @@
 
 
 			<label for="is_displayed">Afficher le produit :</label>
-			<select name="is_displayed" id="is_displayed">
-				<option value="0" <?php if(isset($product) && $product['is_displayed'] == '0'): ?> selected="selected" <?php endif; ?>>Non</option>
-                <option value="1" <?php if(isset($product) && $product['is_displayed'] == '1'): ?> selected="selected" <?php endif; ?>>Oui</option>
-            </select><br>
+					<input type="checkbox" name="is_displayed" id="is_displayed" value="1" <?php if(isset($product) && $product['is_displayed'] == 1): ?> checked <?php endif; ?>><br>
 
             <?php if(isset($product) && $product['main_image'] != null): ?> 
-				<span class="badge badge-danger">/!\ Attention, une image principale existe déjà pour ce produit /!\</span><br>
+				<span class="badge badge-danger">/!\ Attention, ajouter une nouvelle image principale supprimera l'actuelle /!\</span><br>
+				<img class="w-25" src="../assets/img/products/<?= $product['main_image'] ?>" alt="<?= $product['name'] ?>"><br>
 			<?php endif; ?>
 			<label for="main_image">Image principale :</label>
             <input type="file" name="main_image" id="main_image" /><br>
-            
-            <label for="images[]">Images secondaires :</label>
+			
+			<label for="images[]">Images secondaires :</label>
+			<?php if(isset($images)): ?>
+			<table class="table">
+				<tr>
+				<?php foreach($images as $key => $image): ?>
+						<td>
+							<img class="w-25" src="../assets/img/products/alt/<?= $image ?>" alt="<?= $product['name'] ?>"><br>
+							<a onclick="return confirm('Are you sure?')" href="index.php?controller=products&action=delete_img&id=<?= $_GET['id'] ?>&img_id=<?= $images_id[$key] ?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
+						</td>
+				<?php endforeach; ?>
+				</tr>
+			</table>
+			<?php endif; ?>
 			<input type="file" name="images[]" id="images[]" multiple="multiple" /><br>
 			
 			<input type="submit" value="Enregistrer" />
 
 		</form>
     </div>
-    
-
-
-
-
-<!-- 	<?php if(isset($artist)): ?>
-		<div class="card" style="width: 18rem;">
-			<h3 class="border-dark border-bottom">Affichage de l'artiste</h3>
-			<?php if(!empty($artist['image'])): ?>
-				<img class="card-img-top" src="../assets/images/artist/<?= $artist['image'] ?>" alt="Card image cap">
-			<?php endif; ?>
-			<div class="card-body">
-				<h5 class="card-title"><?= $artist['name'] ?></h5>
-				<?php foreach($artist_labels as $a_label): ?>
-					<h6 class="card-title"><?= $a_label['name'] ?></h6>
-				<?php endforeach; ?>
-				<p class="card-text"><?= $artist['biography'] ?></p>
-		</div>
-	<?php endif; ?> -->
 </main>

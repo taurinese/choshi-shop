@@ -372,7 +372,7 @@ input[type=submit] {
 }
 .product-box .products .flex-center a {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   justify-content: space-evenly;
   align-items: center;
   height: 100%;
@@ -459,10 +459,9 @@ input[type=submit] {
   font-weight: 300;
 }
 
-.img-products {
-  width: 100%;
-}
-
+/* .img-products {
+    width:100%;
+} */
 .filters {
   min-height: 100%;
   margin-left: 25px;
@@ -747,7 +746,6 @@ input[type=submit] {
 .product-content .product-row .product-desc p {
   display: inline-block;
   text-align: justify;
-  padding-right: 20%;
   margin-bottom: 30px;
 }
 .product-content .product-row .product-desc button[type=submit] {
@@ -1142,23 +1140,23 @@ input[type=submit] {
 }
 @media (max-width: 1000px) {
   h1 {
-    font-size: 2.325rem;
+    font-size: 2.7125rem;
   }
 
   h2 {
-    font-size: 1.35rem;
+    font-size: 1.575rem;
   }
 
   h3 {
-    font-size: 0.9rem;
+    font-size: 1.05rem;
   }
 
   h5 {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
   }
 
   p {
-    font-size: 0.9rem;
+    font-size: 1.05rem;
   }
 
   .footer i {
@@ -1222,23 +1220,23 @@ input[type=submit] {
 }
 @media (max-width: 800px) {
   h1 {
-    font-size: 3.1rem;
+    font-size: 2.51875rem;
   }
 
   h2 {
-    font-size: 1.8rem;
+    font-size: 1.4625rem;
   }
 
   h3 {
-    font-size: 1.2rem;
+    font-size: 0.975rem;
   }
 
   h5 {
-    font-size: 1rem;
+    font-size: 0.8125rem;
   }
 
   p {
-    font-size: 1.2rem;
+    font-size: 0.975rem;
   }
 
   .cart-list #cart-table tbody tr td:nth-child(2) table td {

@@ -9,19 +9,19 @@
                 <li>
                     <h5>En stock</h5>
                     <form action="index.php?controller=categories&id=<?= $_GET['id'] ?><?php if(!isset($_GET['filter']) || $_GET['filter'] != 'stock'): ?>&filter=stock<?php endif; ?>" id="filter_form_1">
-                        <input type="checkbox" name="in_stock" id="in_stock" onclick="window.location.href = document.getElementById('filter_form_1').action" <?php if(isset($_GET['filter']) &&$_GET['filter'] == 'stock'): ?> checked <?php endif ?>>
+                        <input type="checkbox" name="in_stock" id="in_stock" onclick="window.location.href = document.getElementById('filter_form_1').action" <?php if(isset($_GET['filter']) && $_GET['filter'] == 'stock'): ?> checked <?php endif ?>>
                         <input type="submit" value="" hidden>
                     </form>
                 </li>
                 <li>
                     <h5>Prix</h5>
                     <form action="index.php?controller=categories&id=<?= $_GET['id'] ?><?php if(!isset($_GET['filter']) || $_GET['filter'] != 'price-asc'): ?>&filter=price-asc<?php endif; ?>" id="filter_form_2">
-                        <input type="checkbox" name="price-asc" id="price-asc" onclick="window.location.href = document.getElementById('filter_form_2').action" <?php if(isset($_GET['filter']) &&$_GET['filter'] == 'price-asc'): ?> checked <?php endif ?>>
+                        <input type="checkbox" name="price-asc" id="price-asc" onclick="window.location.href = document.getElementById('filter_form_2').action" <?php if(isset($_GET['filter']) && $_GET['filter'] == 'price-asc'): ?> checked <?php endif ?>>
                         <label for="price-asc">Croissant</label>
                         <input type="submit" value="" hidden>
                     </form>
                     <form action="index.php?controller=categories&id=<?= $_GET['id'] ?><?php if(!isset($_GET['filter']) || $_GET['filter'] != 'price-desc'): ?>&filter=price-desc<?php endif; ?>" id="filter_form_3">
-                        <input type="checkbox" name="price-desc" id="price-desc" onclick="window.location.href = document.getElementById('filter_form_3').action" <?php if(isset($_GET['filter']) &&$_GET['filter'] == 'price-desc'): ?> checked <?php endif ?>>
+                        <input type="checkbox" name="price-desc" id="price-desc" onclick="window.location.href = document.getElementById('filter_form_3').action" <?php if(isset($_GET['filter']) && $_GET['filter'] == 'price-desc'): ?> checked <?php endif ?>>
                         <label for="price-desc">Décroissant</label>
                         <input type="submit" value="" hidden>
                     </form>

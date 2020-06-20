@@ -5,7 +5,7 @@ function getProducts($productId = null)
     $db = dbConnect();
 
     if($productId != null){
-        $query = $db->prepare('SELECT p.*, GROUP_CONCAT(cp.category_id) FROM products p INNER JOIN categories_products cp ON p.id = cp.product_id WHERE p.id = ?');
+        $query = $db->prepare('SELECT p.*, GROUP_CONCAT(cp.category_id), GROUP_CONCAT(ip.image) AS images, GROUP_CONCAT(ip.id) AS img_id FROM products p INNER JOIN categories_products cp ON p.id = cp.product_id LEFT JOIN images_products ip ON ip.product_id = p.id WHERE p.id = ?');
         $query->execute([$productId]);
         return $query->fetch();
     }
@@ -34,7 +34,9 @@ function addProduct($informations)
 	if($result && !empty($_FILES['main_image']['tmp_name'])){
 		$result = updateProductImg(false, $productId);
 	}
-	if($result && !empty($_FILES['images']['tmp_name'])){
+	if($result && !empty($_FILES['images']['tmp_name'][0])){
+		/* var_dump($result, $_FILES['images']['tmp_name'][0]);
+		die(); */
 		$result = addMultipleProductImg($productId);
 	}
     return $result;
@@ -72,7 +74,7 @@ function updateProduct($id, $informations)
 	if($result) $result = deleteProductCategories($id);
 	if($result) $result = addProductCategories($id, $informations['categories']); // ici
 	if($result && !empty($_FILES['image']['tmp_name'])) $result = updateProductImg(true, $id);
-	if($result && !empty($_FILES['images']['tmp_name'])){
+	if($result && !empty($_FILES['images']['tmp_name'][0])){
 		$result = addMultipleProductImg($id);
 	}
 	return $result;
@@ -145,9 +147,7 @@ function addMultipleProductImg($productId)
 	var_dump($queryValues);
 	die(); */
 	$query = $db->prepare($queryString);
-	$result = $query->execute(
-		$queryValues
-	);
+	$result = $query->execute($queryValues);
 	return $result;
 	
 }
@@ -192,5 +192,14 @@ function deleteProductCategories($productId)
     $query = $db->prepare('DELETE FROM categories_products WHERE product_id = ?');
 	return $query->execute([
 		$productId
+	]);
+}
+
+function deleteAltImg($imageId)
+{
+	$db = dbConnect();
+	$query = $db->prepare('DELETE FROM images_products WHERE id = ?');
+	return $query->execute([
+		$imageId
 	]);
 }
