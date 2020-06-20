@@ -858,7 +858,6 @@ input[type=submit] {
   background-color: white;
   border: 2px solid lightgrey;
   min-width: 20%;
-  margin: 0 auto;
   position: relative;
 }
 .cart-list #cart-recap table {
