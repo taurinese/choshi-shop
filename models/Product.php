@@ -53,8 +53,7 @@ function getProductsByCategoryId($categoryId,$categoryFilter = null)
             default:
                 break;
         }
-    }
-    
+    }  
     $query = $db->prepare($queryString);
     $query->execute([
         $categoryId

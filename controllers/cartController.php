@@ -48,7 +48,12 @@ else {
         case 'update':
             $encodedData = file_get_contents("php://input");
             $json = json_decode($encodedData, true); 
-            $_SESSION['cart'][$json['id']]['quantity'] = $json['quantity'];
+            $qttChanged = false;
+            foreach($_SESSION['cart'] as $key => $cart_product){
+                if($cart_product['product_id'] == $json['id']){
+                    $_SESSION['cart'][$key]['quantity'] = $json['quantity'];
+                }
+            }
             echo(json_encode('true'));
             die();
             break;
