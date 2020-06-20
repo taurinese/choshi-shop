@@ -278,11 +278,11 @@ input[type="submit"]{
 .box-content {
     @include flex-center(row wrap);
     min-height:90vh;
-    margin-top:5vh;
     //background-color: blue;
     a{
         width:100%;
         min-height:80vh;
+        @include flex(row wrap, center, center);
         .box-surprise {
             background-color:#F7F7F7;
             box-shadow: 0px 1px 10px grey;
@@ -1527,7 +1527,7 @@ input[type="submit"]{
     }
 }
 
-@media (max-height:900px) and (max-width:1200px){
+@media (max-height:900px) and (max-width:1200px) and (orientation:landscape){
     .product-box{
         .products{
             min-height:80%;
@@ -1543,7 +1543,7 @@ input[type="submit"]{
     }
 }
 
-@media (max-height:700px) and (max-width:1200px){
+@media (max-height:700px) and (max-width:1200px) and (orientation:landscape){
     .product-box{
         .products{
             margin-bottom:5vh;

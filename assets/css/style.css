@@ -305,11 +305,14 @@ input[type=submit] {
   justify-content: center;
   align-items: center;
   min-height: 90vh;
-  margin-top: 5vh;
 }
 .box-content a {
   width: 100%;
   min-height: 80vh;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
 }
 .box-content a .box-surprise {
   background-color: #F7F7F7;
@@ -1629,7 +1632,7 @@ input[type=submit] {
     width: 140px !important;
   }
 }
-@media (max-height: 900px) and (max-width: 1200px) {
+@media (max-height: 900px) and (max-width: 1200px) and (orientation: landscape) {
   .product-box .products {
     min-height: 80%;
   }
@@ -1638,7 +1641,7 @@ input[type=submit] {
     min-width: 0;
   }
 }
-@media (max-height: 700px) and (max-width: 1200px) {
+@media (max-height: 700px) and (max-width: 1200px) and (orientation: landscape) {
   .product-box .products {
     margin-bottom: 5vh;
   }
