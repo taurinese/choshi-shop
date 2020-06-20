@@ -33,18 +33,31 @@ switch ($_GET['action']) {
         break;
 
     case 'list':
-        $orderDetails = getOrderDetails($_GET['id']);
-/*         var_dump($orderDetails);
-        die(); */
-        $total = 0;
-        $view['content'] = 'views/orderDetails.php';
-        $view['title'] = "Détails commande";
+        if(isset($_SESSION['user'])){
+            if(isset($_GET['id']) && is_numeric($_GET['id'])){
+                $orderDetails = getOrderDetails($_GET['id']);
+                if($orderDetails == false){
+                    header('Location:index.php?controller=users&action=display');
+                    exit;
+                }
+                $total = 0;
+                $view['content'] = 'views/orderDetails.php';
+                $view['title'] = "Détails commande";
+            }
+            else{
+                header('Location:index.php?controller=users&action=display');
+                exit;
+            }
+        }
+        else{
+            header('Location:index.php');
+            exit;
+        }
         break;
     
     default:
-        # code...
+        header('Location:index.php');
+        exit();
         break;
 }
 
-/* $view['content'] = 'views/homeView.php';
-$view['title'] = "Page d'accueil"; */

@@ -1,36 +1,31 @@
 <?php
 
-if(isset($_GET['action'])){
-
+if(isset($_GET['action']) && $_GET['action'] == 'add'){
     require 'models/Rate.php';
-    if($_GET['action'] == 'add'){
-        if(!empty($_POST['comment']) && !empty($_POST['product-rate'])){
-            $result = addRate($_GET['id'], $_SESSION['user']['id'], $_POST);
-            if($result){
-                $_SESSION['messages'][] = [
-                    'color' => 'green',
-                    'message' => "L'avis a été publié!"
-                ];
-            }
-            else{
-                $_SESSION['messages'][] = [
-                    'color' => 'red',
-                    'message' => "L'avis n'a pas pu être publié!"
-                ];
-            }
+    if(!empty($_POST['comment']) && !empty($_POST['product-rate'])){
+        $result = addRate($_GET['id'], $_SESSION['user']['id'], $_POST);
+        if($result){
+            $_SESSION['messages'][] = [
+                'color' => 'green',
+                'message' => "L'avis a été publié!"
+            ];
         }
         else{
             $_SESSION['messages'][] = [
                 'color' => 'red',
-                'message' => "Le commentaire ainsi que la note sont obligatoires pour publier un avis!"
+                'message' => "L'avis n'a pas pu être publié!"
             ];
         }
-        header('Location:index.php?controller=products&id=' . $_GET['id']);
-        die();
-        break;
     }
-
-
+    else{
+        $_SESSION['messages'][] = [
+            'color' => 'red',
+            'message' => "Le commentaire ainsi que la note sont obligatoires pour publier un avis!"
+        ];
+    }
+    header('Location:index.php?controller=products&id=' . $_GET['id']);
+    die();
+    break;
 }
 else{
     header('Location:index.php');

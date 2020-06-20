@@ -34,7 +34,7 @@ else {
             }
             break;
         case 'delete':
-            if(!isset($_GET['id'])){
+            if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
                 header('Location:index.php?controller=cart&action=list');
                 exit();
             }
@@ -72,7 +72,8 @@ else {
             break;
                     
         default:
-            # code...
+            header('Location:index.php');
+            exit();
             break;
     }
 }

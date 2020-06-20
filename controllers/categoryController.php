@@ -5,7 +5,7 @@ if(!isset($_GET['id']) && $_GET['controller'] != 'categories'){
     exit();
 }
 require 'models/Product.php';
-if(!isset($_GET['filter'])){
+if(!isset($_GET['filter']) || ctype_alpha($_GET['filter'])){
     $category_products = getProductsByCategoryId($_GET['id']);
 }
 else{   

@@ -50,18 +50,26 @@ if(isset($_GET['action'])){
 
 
         case 'display':
-            $user = getUser($_SESSION['user']['id']);
-            $orders = getOrdersByUserId($_SESSION['user']['id']);
-            /* print_r($orders);
-            die(); */
-            $view['content'] = 'views/userDisplay.php';
-            $view['title'] = "Compte utilisateur";
+            if(isset($_SESSION['user'])){
+                $user = getUser($_SESSION['user']['id']);
+                $orders = getOrdersByUserId($_SESSION['user']['id']);
+                $view['content'] = 'views/userDisplay.php';
+                $view['title'] = "Compte utilisateur";
+            }
+            else{
+                header('Location:index.php');
+                exit;
+            }
             break;
 
         case 'disconnect':
             if (isset($_SESSION['user'])) {
                 unset($_SESSION['user']);
                 unset($_SESSION['cart']);
+                $_SESSION['messages'][] = [
+                    'message' => 'Vous vous êtes déconnecté!',
+                    'color' => 'green'
+                ];
                 header('Location:index.php');
                 exit();
             }
@@ -72,7 +80,7 @@ if(isset($_GET['action'])){
             break;
 
         case 'edit':
-            if(isset($_GET['id']) && !empty($_POST)){
+            if(isset($_GET['id']) && is_numeric($_GET['id']) && !empty($_POST)){
                 if(empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['user-email']) || empty($_POST['adresse'])){
                     $json_return['is_updated'] = false;
                     $json_return['message'] = "Tous les champs sont obligatoires à l'exception du mot de passe !";
@@ -98,10 +106,15 @@ if(isset($_GET['action'])){
                 echo json_encode($json_return);
                 exit();
             }
+            else{
+                header('Location:index.php');
+                exit;
+            }
             break;
 
         default:
-            # code...
+            header('Location:index.php');
+            exit();
             break;
     }
 
