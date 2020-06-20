@@ -27,7 +27,6 @@
                 <img src="assets/img/products/<?= $product['main_image'] ?>" alt="<?= $product['name'] ?>" class="img-products">
                 <h2><?= $product['price'] ?> €</h2>
                 <h2><?= $product['name'] ?></h2>
-                <p><?= $product['description'] ?></p>
             </a>
         </div>
     <?php endforeach; ?>
@@ -53,7 +52,6 @@
                 <img src="assets/img/products/<?= $product['main_image'] ?>" alt="<?= $product['name'] ?>" class="img-products">
                 <h2><?= $product['price'] ?> €</h2>
                 <h2><?= $product['name'] ?></h2>
-                <p><?= $product['description'] ?></p>
             </a>
         </div>
     <?php endforeach; ?>

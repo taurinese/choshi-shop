@@ -52,9 +52,10 @@ else {
             foreach($_SESSION['cart'] as $key => $cart_product){
                 if($cart_product['product_id'] == $json['id']){
                     $_SESSION['cart'][$key]['quantity'] = $json['quantity'];
+                    $qttChanged = true;
                 }
             }
-            echo(json_encode('true'));
+            echo(json_encode($qttChanged == true ? 'success' : 'fail'));
             die();
             break;
         case 'list':

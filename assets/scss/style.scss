@@ -317,6 +317,7 @@ input[type="submit"]{
     .products {
         @include flex(row nowrap, space-evenly, center);
         height:80vh;
+        padding-bottom:5vh;
         .flex-center {
             box-shadow:0px 1px 10px grey;
             background-color: white;
@@ -1054,9 +1055,9 @@ input[type="submit"]{
                     height:90%;
                 }
             }
-            .flex-center:first-child{
+            /* .flex-center:first-child{
                 margin-left:10%;
-            }
+            } */
         }
     }  
      .category-products{
@@ -1158,6 +1159,15 @@ input[type="submit"]{
     }
     p{
         font-size: 0.65 * $p;
+    }
+    .product-content .rates .rate-content .rates-views .rate-review > div {
+        padding:5px;
+    }
+    .isnt-logged {
+        h3{
+            margin:0;
+            font-size:12px;
+        }
     }
     .cart-list{
         #cart-table{
@@ -1297,7 +1307,7 @@ input[type="submit"]{
             }
         }
         .isnt-logged{
-            width:80vw !important;
+            width:100% !important;
         }
     }
     .user-profile{

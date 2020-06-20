@@ -56,7 +56,6 @@ const getParameterByName = (name) => {
 // Messages de session
 if(document.querySelectorAll('.alert-modal') != null){
     let closeBtns = document.querySelectorAll('.close-button')
-    console.log(closeBtns)
     for(let [key, btn] of closeBtns.entries()){
         btn.addEventListener('click', () => {
             document.getElementById(key).style.display = 'none'
@@ -70,7 +69,6 @@ if(document.querySelectorAll('.alert-modal') != null){
 }
 
 searchBar.addEventListener('click', () => {
-    console.log('search click')
     productsArray = []
     if (searchBarOpened == 0) {
         searchDiv.style.display = 'block'
@@ -204,7 +202,6 @@ if(getParameterByName('controller') == 'users' && getParameterByName('action') =
 
 // User profile, informations/commandes
 if (getParameterByName('controller') == "users" && getParameterByName('action') == 'display') {
-    console.log('Bonne page')
     const userSelectBtn = document.querySelector('.select-btn')
     const userDataList = document.querySelector('.user-data')
     const editUserForm = document.getElementById('edit-user-form')
@@ -284,21 +281,27 @@ if (getParameterByName('controller') == 'products') {
         addToCart.addEventListener('click', (e) => {
             e.preventDefault()
             const productDiv = document.querySelector('.product-row')
-            console.log(quantityInput.value)
             fetch('index.php?controller=cart&action=add', {
                 method: "post",
                 body: JSON.stringify({'product_id' : getParameterByName('id'), 'quantity' : quantityInput.value})
             })
             .then(res => res.json())
             .then(json => {
-                console.log(json)
+                if(json.success == true){
+                    createModal('Produit(s) ajouté(s) au panier!',"#00B894", productDiv)
+                    document.querySelector('.close-button').onclick = () => {
+                        document.querySelector('.alert-modal').remove()
+                    }
+                    cartQuantity.innerHTML ++
+                }
+                else{
+                    createModal('Échec lors de l\'ajout au panier!',"#FF7675", productDiv)
+                    document.querySelector('.close-button').onclick = () => {
+                        document.querySelector('.alert-modal').remove()
+                    }
+                }
             })
             //Faire le cas où ça ne fonctionne pas
-            createModal('Produit(s) ajouté(s) au panier!',"#00B894", productDiv)
-            document.querySelector('.close-button').onclick = () => {
-                document.querySelector('.alert-modal').remove()
-            }
-            cartQuantity.innerHTML ++
         })
     }
     if(document.querySelectorAll('.alt-img') != null){
