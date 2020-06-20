@@ -6,6 +6,14 @@ require 'models/User.php';
 
 switch ($_GET['action']) {
     case 'add':
+        if(!isset($_SESSION['user'])){
+            $_SESSION['messages'][] = [
+                'message' => 'Vous devez être connecté pour passer une commande!',
+                'color' => 'red'
+            ];
+            header('Location:index.php?controller=cart&action=list');
+            exit();
+        }
         $user = getUser($_SESSION['user']['id']);
         $cartProducts = getProductsForCart($_SESSION['cart']);
         if (!empty($cartProducts)) {

@@ -198,8 +198,13 @@ function deleteProductCategories($productId)
 function deleteAltImg($imageId)
 {
 	$db = dbConnect();
+	$query = $db->prepare('SELECT image FROM images_products WHERE id = ?');
+	$query->execute([ $imageId]);
+	$image = $query->fetchColumn();
 	$query = $db->prepare('DELETE FROM images_products WHERE id = ?');
-	return $query->execute([
+	$result = $query->execute([
 		$imageId
 	]);
+	unlink('../assets/images/products/alt/' . $image);
+	return $result;
 }
