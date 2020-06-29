@@ -5,7 +5,7 @@ function getProducts($productId = null)
     $db = dbConnect();
 
     if($productId != null){
-        $query = $db->prepare('SELECT p.*, GROUP_CONCAT(cp.category_id), GROUP_CONCAT(ip.image) AS images, GROUP_CONCAT(ip.id) AS img_id FROM products p INNER JOIN categories_products cp ON p.id = cp.product_id LEFT JOIN images_products ip ON ip.product_id = p.id WHERE p.id = ?');
+        $query = $db->prepare('SELECT p.*, GROUP_CONCAT(DISTINCT cp.category_id) as categories, GROUP_CONCAT(DISTINCT ip.image) AS images, GROUP_CONCAT(DISTINCT ip.id) AS img_id FROM products p INNER JOIN categories_products cp ON p.id = cp.product_id LEFT JOIN images_products ip ON ip.product_id = p.id WHERE p.id = ?');
         $query->execute([$productId]);
         return $query->fetch();
     }

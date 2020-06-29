@@ -13,6 +13,10 @@ if(!isset($_GET['id'])){
     exit();
 }
 $selectedProduct = getProducts($_GET['id']);
+if($selectedProduct['id'] == null){
+    header('Location:index.php');
+    exit();
+}
 $alreadyRated = 0;
 if(isset($_SESSION['user'])){
     $alreadyRated = empty(getRateByUserId($_SESSION['user']['id'], $_GET['id'])) ? 0 : 1;

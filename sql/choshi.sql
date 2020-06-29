@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 20 juin 2020 à 22:09
+-- Généré le :  lun. 29 juin 2020 à 19:19
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `categories_products` (
   PRIMARY KEY (`id`),
   KEY `categories_products_product_id` (`product_id`),
   KEY `categories_products_category_id` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `categories_products`
@@ -75,7 +75,6 @@ INSERT INTO `categories_products` (`id`, `product_id`, `category_id`) VALUES
 (22, 7, 2),
 (24, 8, 2),
 (25, 6, 2),
-(46, 9, 2),
 (47, 27, 4),
 (58, 28, 2),
 (61, 35, 1),
@@ -107,8 +106,10 @@ INSERT INTO `categories_products` (`id`, `product_id`, `category_id`) VALUES
 (90, 62, 3),
 (91, 63, 4),
 (93, 41, 4),
-(96, 1, 2),
-(97, 64, 6);
+(97, 64, 6),
+(119, 1, 2),
+(120, 9, 2),
+(121, 9, 3);
 
 -- --------------------------------------------------------
 
@@ -177,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `email` varchar(200) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `orders_user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `orders`
@@ -188,7 +189,8 @@ INSERT INTO `orders` (`id`, `date`, `user_id`, `delivery_address`, `first_name`,
 (7, '2020-06-17 14:24:07', 4, 'okok', 'Enzo', 'Moi', 'enzo@mail.com'),
 (8, '2020-06-17 14:24:23', 4, 'okok', 'Enzo', 'Moi', 'enzo@mail.com'),
 (9, '2020-06-18 09:44:38', 3, 'Adresse admin', 'admin1', 'admin', 'admin@admin.com'),
-(10, '2020-06-19 22:16:14', 3, 'Adresse admin', 'admin1', 'admin', 'admin@admin.com');
+(10, '2020-06-19 22:16:14', 3, 'Adresse admin', 'admin1', 'admin', 'admin@admin.com'),
+(11, '2020-06-29 19:13:24', 8, 'Administrator', 'User', 'Admin', 'user@admin.com');
 
 -- --------------------------------------------------------
 
@@ -207,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `orders_products` (
   PRIMARY KEY (`id`),
   KEY `orders_products_order_id` (`order_id`),
   KEY `orders_products_product_id` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `orders_products`
@@ -221,7 +223,8 @@ INSERT INTO `orders_products` (`id`, `order_id`, `product_id`, `name`, `quantity
 (5, 7, 5, 'T-shirt Ramen', 2, 35),
 (6, 8, 1, 'Jiraya', 1, 34),
 (7, 9, 1, 'Jiraya', 47, 34),
-(8, 10, 3, 'Erwin', 2, 35);
+(8, 10, 3, 'Erwin', 2, 35),
+(9, 11, 2, 'Livai', 3, 35);
 
 -- --------------------------------------------------------
 
@@ -250,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `products` (
 
 INSERT INTO `products` (`id`, `name`, `price`, `description`, `quantity`, `is_displayed`, `main_image`, `created_at`, `license_id`) VALUES
 (1, 'Jiraya', 34, 'Figurine de Jiraya', 0, 1, '1.png', '2020-06-10', 3),
-(2, 'Livai', 35, 'Figurine de Livai : eseuinguise nguisen uigsenuignseuig nseiug niusengiusengiuseng uisneuignsei ugnsuiegnsiue ngiusenguisengu isneiugns euign siuengiuseng iusngi usngiusenui', 200, 1, '2.png', '2020-06-10', 4),
+(2, 'Livai', 35, 'Figurine de Livai : eseuinguise nguisen uigsenuignseuig nseiug niusengiusengiuseng uisneuignsei ugnsuiegnsiue ngiusenguisengu isneiugns euign siuengiuseng iusngi usngiusenui', 197, 1, '2.png', '2020-06-10', 4),
 (3, 'Erwin', 35, 'Figurine d\'Erwin', 198, 1, '3.png', '2020-06-10', 4),
 (4, 'One Piece Vol. 96', 12, 'One Piece Tome 96', 200, 1, '4.png', '2020-06-10', 2),
 (5, 'T-shirt Ramen', 35, 'T-shirt imprimé japonais', 200, 1, '5.png', '2020-06-10', NULL),

@@ -1,7 +1,7 @@
 <?php
 
 if(!isset($_GET['action'])){
-    header('Location : /choshi/admin/index.php');
+    header('Location : index.php');
     exit;
 }
 
@@ -39,7 +39,7 @@ switch ($_GET['action']) {
 
 
     case 'add':
-        if(empty($_POST['name']) || empty($_POST['price']) || empty($_POST['description']) || empty($_POST['quantity']) || empty($_FILES['main_image']['tmp_name'])){
+        if(empty($_POST['name']) || empty($_POST['price']) || empty($_POST['description']) || (empty($_POST['quantity']) && $_POST['quantity'] != 0) || empty($_FILES['main_image']['tmp_name'])){
 		
             if(empty($_POST['name'])){
                 $_SESSION['messages'][] = 'Le champ "nom" est obligatoire !';
@@ -50,7 +50,7 @@ switch ($_GET['action']) {
             if(empty($_POST['description'])){
                 $_SESSION['messages'][] = 'Le champ "description" est obligatoire !';
             }
-            if(empty($_POST['quantity'])){
+            if((empty($_POST['quantity']) && $_POST['quantity'] != 0)){
                 $_SESSION['messages'][] = 'Le champ "quantité" est obligatoire !';
             }
             if(empty($_FILES['main_image']['tmp_name'])){
@@ -81,7 +81,7 @@ switch ($_GET['action']) {
                 if(empty($_POST)){
                     if(!isset($_SESSION['old_inputs'])){
                         $product = getProducts($_GET['id']);
-                        if($product == false){
+                        if($product['id'] == null){
                             header('Location:index.php?controller=products&action=list');
                             exit;
                         }
@@ -92,12 +92,12 @@ switch ($_GET['action']) {
                     }
                     $licenses = getLicenses();
                     $categories = getCategories();
-                    $selectedCategories = explode(',', $product['GROUP_CONCAT(cp.category_id)']);
+                    $selectedCategories = explode(',', $product['categories']);
                     $view['content'] = 'views/productForm.php';
                     $view['title'] = 'Formulaire produit';
                 }
                 else{
-                    if(empty($_POST['name']) || empty($_POST['price']) || empty($_POST['description']) || empty($_POST['quantity'])){
+                    if(empty($_POST['name']) || empty($_POST['price']) || empty($_POST['description'])  || (empty($_POST['quantity']) && $_POST['quantity'] != 0)){
             
                         if(empty($_POST['name'])){
                             $_SESSION['messages'][] = 'Le champ "nom" est obligatoire !';
@@ -108,7 +108,7 @@ switch ($_GET['action']) {
                         if(empty($_POST['description'])){
                             $_SESSION['messages'][] = 'Le champ "description" est obligatoire !';
                         }
-                        if(empty($_POST['quantity'])){
+                        if((empty($_POST['quantity']) && $_POST['quantity'] != 0)){
                             $_SESSION['messages'][] = 'Le champ "quantité" est obligatoire !';
                         }
                         $_SESSION['old_inputs'] = $_POST;
@@ -152,7 +152,7 @@ switch ($_GET['action']) {
             break;
 
     default:
-        header('Location:/choshi/admin/index.php');
+        header('Location:index.php');
         exit;
         break;
 }

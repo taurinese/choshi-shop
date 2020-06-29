@@ -1,7 +1,7 @@
 <?php
 
 if(!isset($_GET['action'])){
-    header('Location : /choshi/admin/index.php');
+    header('Location : index.php');
     exit;
 }
 
@@ -116,7 +116,7 @@ switch ($_GET['action']) {
             break;
             
     default:
-        header('Location:/choshi/admin/index.php');
+        header('Location:index.php');
         exit;
         break;
 }

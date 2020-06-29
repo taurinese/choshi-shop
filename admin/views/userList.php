@@ -17,6 +17,7 @@
                 <th scope="col">Prénom</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Email</th>
+				<th scope="col">Admin</th>
 				<th scope="col"></th>
 				<th scope="col"></th>
 			</tr>
@@ -28,6 +29,7 @@
                 <td><?=  $user['first_name'] ?></td>
                 <td><?=  $user['last_name'] ?></td>
                 <td><?=  $user['email']  ?></td>
+				<td><?=  $user['is_admin'] ?></td>
 				<td>		<a href="index.php?controller=users&action=edit&id=<?= $user['id'] ?>"><button type="button" class="btn btn-warning">Modifier</button></a>  </td>
 				<td>		<a onclick="return confirm('Are you sure?')" href="index.php?controller=users&action=delete&id=<?= $user['id'] ?>"><button type="button" class="btn btn-danger">Supprimer</button></a></td>
 			</tr>

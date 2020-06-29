@@ -37,11 +37,13 @@ if(isset($_GET['controller'])){
             require 'controllers/rateController.php';
             break;
         default :
-            require 'controllers/homeController.php';
+            header('Location:index.php?controller=home');
+            exit();
     }
 }
 else{
-    require 'controllers/homeController.php';
+    header('Location:index.php?controller=home');
+    exit();
 }
 
 require 'views/view.php';

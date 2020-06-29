@@ -10,9 +10,12 @@ if(!isset($_GET['filter']) || ctype_alpha($_GET['filter'])){
 }
 else{   
     $category_products = getProductsByCategoryId($_GET['id'], $_GET['filter']);
-}    
+}  
+if($category_products == false){
+    header('Location:index.php');
+    exit();
+}  
 $currentCategory = getCategories($_GET['id']);
-/* var_dump($category);
-die(); */
+
 $view['content'] = 'views/categoryView.php';
 $view['title'] = $currentCategory['name'];

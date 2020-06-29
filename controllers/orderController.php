@@ -24,6 +24,10 @@ switch ($_GET['action']) {
                     $result = updateProductQuantity($_SESSION['cart']);
                     if($result){
                         unset($_SESSION['cart']);
+                        $_SESSION['messages'][] = [
+                            'message' => 'Commande effectuée!',
+                            'color' => 'green'
+                        ];
                     }
                 }
             }
